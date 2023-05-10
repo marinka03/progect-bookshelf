@@ -1,4 +1,17 @@
+@import './utils/common';
+@import './utils/fonts';
+@import './utils/mixins';
+@import './utils/placeholders';
+@import './utils/variables';
+
 @import './base/base';
 @import './base/reset';
 
-// @import './components/';
+@import './layouts/container';
+@import './layouts/section';
+
+@import './components/all-categories';
+@import './components/header';
+@import './components/menu-side';
+@import './components/menu.scss';
+@import './components/support-ukraine.scss';
