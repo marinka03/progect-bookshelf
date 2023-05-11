@@ -1,0 +1,13 @@
+.funds {
+  padding: 24px 0 24px 40px;
+  max-width: 356px;
+  max-height: 490px;
+  background-color: $blue-color;
+}
+.funds_element {
+  display: flex;
+}
+.funds_image {
+  margin-left: 16px;
+  filter: brightness(0) invert(1);
+}
