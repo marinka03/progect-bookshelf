@@ -6,6 +6,16 @@
 
   &_funds_element {
     display: flex;
+    align-items: center;
+  }
+
+  &_funds_number {
+    font-family: 'DM Sans';
+    // font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.04em;
+    color: $white-color;
   }
 
   &_funds_image {

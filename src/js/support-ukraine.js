@@ -8,7 +8,7 @@ function createFondMarkup(arr) {
       ({ number, img, url, title }) =>
         `<li>
     <a class="link support_funds_element" href="${url}">
-    <span>${number}</span>
+    <span class="support_funds_number">${number}</span>
     <img class="support_funds_image" src="${img}" target="_blank" alt="${title}">
 </a>
 </li>`
