@@ -14,3 +14,6 @@ $very-light-text-color: #b4afaf;
 // modal
 $ligth-theme_modal-border-color: 2px solid #111111;
 $dark-theme_modal-border-color: 2px solid #f6f6f6;
+
+$cubic: cubic-bezier(0.4, 0, 0.2, 1);
+$transition: transform $cubic 250ms;
