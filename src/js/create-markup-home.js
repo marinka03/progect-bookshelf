@@ -10,7 +10,7 @@ function createMarkupTopBooks(arr) {
         <img src="${obj.book_image}" alt="book_image"  width="180">
         <h3 class="top-books_title">${obj.title}</h3>
         <p class="top-books_author">${obj.contributor}</p>
-        <div class='top-books_quick-view hiden' data-bookId='${obj._id}'>quick view</div>
+        <div class='top-books_quick-view visually-hidden' data-bookId='${obj._id}'>quick view</div>
     </div>
 </li>`
         )
