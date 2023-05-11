@@ -1,15 +1,15 @@
 import { funds } from './funds';
 
-const list_funds = document.querySelector('.js-list-funds');
+const list_support = document.querySelector('.js-support_list');
 
 function createFondMarkup(arr) {
   const markup = arr
     .map(
       ({ number, img, url, title }) =>
         `<li>
-    <a class="link funds_element" href="${url}">
+    <a class="link support_funds_element" href="${url}">
     <span>${number}</span>
-    <img class="funds_image" src="${img}" target="_blank" alt="${title}">
+    <img class="support_funds_image" src="${img}" target="_blank" alt="${title}">
 </a>
 </li>`
     )
@@ -17,4 +17,4 @@ function createFondMarkup(arr) {
   return markup;
 }
 
-list_funds.insertAdjacentHTML('beforeend', createFondMarkup(funds));
+list_support.insertAdjacentHTML('beforeend', createFondMarkup(funds));
