@@ -1,66 +1,102 @@
-.title-top-books{
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 1.08;
-    margin-bottom: 40px;
-    & span {
-            color: #4F2EE8;
-        }
+.title-top-books {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.08;
+  margin-bottom: 40px;
+  & span {
+    color: #4f2ee8;
+  }
 }
 
-.title-top-books 
-
-.top-books {
-    padding: 0px;
-
-    &_container {
-            display: flex;
-        }
-
-    &_category {
-        font-size: 14px;
-        line-height: 1.71;
-        color: #B4AFAF;
-        margin-bottom: 18px;
-    }
-
-    &_list {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        max-width: 200px;
-        margin-right: 24px;
-    }
-
-    &_title {
-        font-size: 16px;
-        line-height: 1.12;
-        letter-spacing: -0.04em;
-        text-transform: uppercase;
-        margin-top: 14px;
-        margin-bottom: 4px;
-    }
-
-    &_author {
-        font-size: 12px;
-        line-height: 1.16;
-        letter-spacing: -0.04em;
-        color: #B4AFAF;
-    }
-
-    &_button {
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 1.28;
-        letter-spacing: -0.01em;
-        text-transform: uppercase;
-        padding: 14px 28px;
-        gap: 10px;
-        width: 124px;
-        height: 46px;
-        border: 2px solid #4F2EE8;
-        border-radius: 40px;
-    }
+.top-books_book {
+  padding: 0px;
+  position: relative;
 }
 
-.top-books_book {}
+.top-books_container {
+  display: flex;
+  gap: 24px;
+  width: 996px;
+  margin-bottom: 32px;
+}
+
+.top-books_category {
+  font-size: 14px;
+  line-height: 1.71;
+  color: #b4afaf;
+  margin-bottom: 18px;
+}
+
+.top-books_list {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.top-books_title {
+  font-size: 16px;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+
+.top-books_author {
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+  color: #b4afaf;
+}
+
+.top-books_button {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  gap: 10px;
+  width: 124px;
+  height: 46px;
+  border: 2px solid #4f2ee8;
+  border-radius: 40px;
+}
+
+.top-books_image {
+  display: block;
+  // width: 180px;
+  height: 256px;
+  border-radius: 8px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  cursor: pointer;
+}
+
+.top-books_quick-view {
+  position: absolute;
+  width: 180px;
+  height: 70px;
+  left: 0px;
+  top: 186px;
+  border-style: none;
+
+  background: #eac645;
+  border-radius: 0px 0px 8px 8px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+
+  color: #111111;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.top-books_book:hover .top-books_quick-view {
+  visibility: visible;
+}

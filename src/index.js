@@ -6,4 +6,5 @@ import './js/create-markup-shopping';
 import './js/btn';
 import './js/funds';
 import './js/support-ukraine';
+import './js/scroll-up';
 import './js/swiper';
