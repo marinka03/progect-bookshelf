@@ -11,6 +11,7 @@
   opacity: 0;
   transition: 500ms opacity, 500ms visibility;
   z-index: 101;
+  display: flex;
 }
 .go-top:hover,
 .go-top:focus {
