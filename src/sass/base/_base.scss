@@ -26,3 +26,22 @@ img {
 //   clip-path: inset(50%);
 //   margin: -1px;
 // }
+.side-bar-container {
+  
+  @include tablet {
+          display: flex;
+      }
+            @include pc {
+                flex-direction: column;
+            }
+}
+
+.global-container {
+    @include tablet {
+        display: flex;
+      }
+    
+      @include pc {
+        display: flex;
+      }
+}
