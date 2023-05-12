@@ -26,7 +26,7 @@ new Swiper('.support-container', {
     nextEl: '.swiper-button-next',
     // prevEl: '.swiper-button-prev',
   },
-  slidesPerView: 4,
+  // slidesPerView: 4,
   spaceBetween: 20,
   loop: true,
   freeMode: true,
@@ -38,9 +38,5 @@ new Swiper('.support-container', {
     768: {
       slidesPerView: 6,
     },
-  },
-  scrollbar: {
-    el: '.swiper-scrollbar',
-    draggable: true,
   },
 });

@@ -71,8 +71,11 @@
 }
 .wrapper .swiper-button-next {
   position: relative;
-  top: 380;
+  top: 250;
   left: 120px;
+  @include tablet {
+    top: 380;
+  }
 }
 
 //----------------------------------UL list
