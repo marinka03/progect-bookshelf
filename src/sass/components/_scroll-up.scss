@@ -1,0 +1,24 @@
+.go-top {
+  position: fixed;
+  right: 1%;
+  top: 100%;
+  transform: translateY(-120%);
+  font-size: 20px;
+  cursor: pointer;
+  fill: #4f2ee8;
+  // border: 1px solid #4f2ee8;
+  border-radius: 50%;
+  display: none;
+  transition: 250ms;
+  z-index: 101;
+}
+.go-top:hover,
+.go-top:focus {
+  filter: brightness(1.5);
+  outline: none;
+}
+.go-top-show {
+  display: block;
+  z-index: 100;
+  transition: 250ms;
+}
