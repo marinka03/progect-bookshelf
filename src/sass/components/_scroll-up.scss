@@ -1,24 +1,25 @@
 .go-top {
   position: fixed;
   right: 1%;
-  top: 100%;
-  transform: translateY(-120%);
-  font-size: 20px;
+  bottom: 1%;
   cursor: pointer;
-  fill: #4f2ee8;
-  // border: 1px solid #4f2ee8;
+  fill: #fff;
+  border: 5px solid #4f2ee8;
+  background-color: #4f2ee8;
   border-radius: 50%;
-  display: none;
-  transition: 250ms;
+  visibility: hidden;
+  opacity: 0;
+  transition: 500ms opacity, 500ms visibility;
   z-index: 101;
 }
 .go-top:hover,
 .go-top:focus {
   filter: brightness(1.5);
-  outline: none;
+  transition: all 200ms;
 }
 .go-top-show {
-  display: block;
+  opacity: 1;
+  visibility: visible;
   z-index: 100;
-  transition: 250ms;
+  transition: 500ms opacity, 500ms visibility;
 }
