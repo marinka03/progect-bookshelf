@@ -8,3 +8,4 @@ import './js/funds';
 import './js/support-ukraine';
 import './js/scroll-up';
 import './js/theme';
+import './js/category-list';
