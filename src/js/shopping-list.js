@@ -2,12 +2,13 @@ const containerEl = document.querySelector('.js-container');
 const listEl = document.querySelector('.js-listInShopping');
 
 const arrToShoppingList = [];
+const array = [];
 
-// apiFetch().then(data =>
-//   containerEl.insertAdjacentHTML('beforeend', createMarkupTopBooks(data))
-// );
+apiFetch().then(data =>
+  containerEl.insertAdjacentHTML('beforeend', createMarkupTopBooks(data))
+);
 
-// containerEl.addEventListener('click', addToShoppingList);
+containerEl.addEventListener('click', addToShoppingList);
 
 function addToShoppingList(evt) {
   evt.preventDefault();
@@ -17,6 +18,16 @@ function addToShoppingList(evt) {
 
   const li = evt.target.closest('.js-card');
   const id = li.dataset.id;
+
+  apiFetchCate(id).then(data => {
+    const inShoppingList = array.some(item => li.dataset.id === item._id);
+    if (inShoppingList) {
+      return;
+    }
+    array.push(data);
+    console.log(array);
+    listEl.innerHTML = createMarkupBooksInShopping(array);
+  });
 
   const mas = document.querySelectorAll('.js-card');
 
@@ -29,22 +40,14 @@ function addToShoppingList(evt) {
   //   if (inShoppingList) {
   //     return;
   //   }
-  const inShoppingList = arrToShoppingList.some(
-    item => li.dataset.id === item.dataset.id
-  );
-  if (inShoppingList) {
-    return;
-  }
-  arrToShoppingList.push(li);
-  console.log(arrToShoppingList);
-
-  //   localStorage.setItem('arr', JSON.stringify(arrToShoppingList));
-  //   console.log(JSON.parse(localStorage.getItem('arr')));
-
-  //   arrToShoppingList.forEach(item => {
-  //     // apiFetchCate().then(data => console.log(data));
-  //     listEl.insertAdjacentElement('beforeend', item);
-  //   });
+  //   const inShoppingList = arrToShoppingList.some(
+  //     item => li.dataset.id === item.dataset.id
+  //   );
+  //   if (inShoppingList) {
+  //     return;
+  //   }
+  //   arrToShoppingList.push(li);
+  //   console.log(arrToShoppingList);
 
   // listEl.insertAdjacentElement('beforeend', arrToShoppingList[0])
   //   listEl.append(...arrToShoppingList);
@@ -74,16 +77,12 @@ function createMarkupTopBooks(books) {
     .join('');
 }
 
-// const listEl = document.querySelector('.js-listInShopping');
+// // const listEl = document.querySelector('.js-listInShopping');
 
-// apiFetchCate().then(data => {
-//   listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(data));
-// });
-
-function apiFetchCate() {
-  return fetch(
-    `https://books-backend.p.goit.global/books/category?category=Advice How-To and Miscellaneous`
-  ).then(resp => resp.json());
+function apiFetchCate(id) {
+  return fetch(`https://books-backend.p.goit.global/books/${id}`).then(resp =>
+    resp.json()
+  );
 }
 
 function createMarkupBooksInShopping(books) {
