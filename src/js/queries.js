@@ -1,11 +1,12 @@
 export { apiRequestTopBooks };
+export { hideLoader };
 
 function apiRequestTopBooks() {
   const BASE_URL = 'https://books-backend.p.goit.global/books/top-books';
   showLoader();
   return fetch(BASE_URL)
     .then(resp => {
-      hideLoader();
+      // hideLoader();
       if (!resp.ok) {
         showLoader();
         throw new Error(resp.statusText);
