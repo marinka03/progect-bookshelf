@@ -1,0 +1,13 @@
+body.light-theme {
+  background-color: $light-theme-main-background-color;
+  color: $black-color;
+}
+
+body.dark-theme {
+  background-color: $dark-theme-main-background-color;
+  color: $white-color;
+}
+
+.dark-theme_header {
+  background-color: $black-color;
+}

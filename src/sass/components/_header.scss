@@ -1,0 +1,211 @@
+.header {
+    width: 100%;
+    height: 64px;
+    border: $ligth-theme_modal-border-color;
+    background-color: $white-color;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+     
+    @include tablet {
+        height: 72px;
+    }
+
+//     @include pc {
+
+// }
+    &__nav{
+        display: flex;
+        align-items: center;
+        height: 64px;
+
+        @include tablet {
+            height: 72px;
+        }
+    }
+
+    &__logo-svg{
+        width: 109px;
+        height: 28px;
+    }
+    &__menu{
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+
+        @include tablet {
+            display: flex;
+            visibility: visible;
+            opacity: 1;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+            padding-left: 16px;
+            margin: 0px ;
+        }
+    @include pc {
+        padding-left: 16px;
+        }
+    }
+
+    &__home-box{
+        padding: 8px 16px;
+        
+        width: 72px;
+        height: 34px;
+        
+        background: #EAC645;
+        border-radius: 36px;
+    }
+    &__home{
+        font-weight: 500;
+        padding: 30px 0px;
+        font-size: 14px;
+        line-height: 0.77; 
+        letter-spacing: -0.04em;
+    }
+    &__shopping-box{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 0.77;
+        letter-spacing: -0.04em;
+    
+    }
+    &__shopping-box:hover{
+        padding: 7px 16px;
+        gap: 8px;
+        height: 34px;
+        background-color: #EAC645;
+        border-radius: 36px;
+    }
+    &__shopping-box:hover + .header-home-box{
+        // font-weight: 500;
+        // font-size: 14px;
+        // line-height: 18px;                       //МОЖЛИВО ЗНАДОБИТЬСЯ
+        // letter-spacing: -0.04em;
+        background-color: none;
+    }
+    
+    &__shopping{
+        display: flex;
+        padding: 30px 0px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 0.77;
+        letter-spacing: -0.04em;
+    }
+    &__wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: 100%;
+        gap: 14px;
+    }
+    &__sign-up{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 184px;
+        height: 48px;
+        border-radius: 18px;
+        border: 2px solid #111111;
+        color: $white-color;
+        background-color: $blue-color;
+        margin-right: 24px;
+        cursor: pointer;
+
+        &:hover,
+        &:focus{
+            box-shadow: rgb(176, 147, 147) 3px 1px 6px 0px;
+        }
+    }
+    &__svg-array{
+        stroke: $accent-color;
+    }
+ }
+
+.wrapper-logo{ 
+    padding: 18px 20px;
+    @include tablet {
+    padding: 18px 32px;
+    }
+    @include pc {
+    padding: 24px 24px;
+    }
+ }
+
+// .header-home-box:hover,
+// .header-home-box:focus{
+//     padding: 8px 16px;
+//     gap: 10px;                       //МОЖЛИВО ЗНАДОБИТЬСЯ
+//     width: 72px;
+//     height: 34px;
+    
+//     background: #EAC645;
+//     border-radius: 36px;
+    
+// }
+
+
+
+.switch-box{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#toggle {
+    opacity: 0;
+    touch-action: none;
+    
+    &:checked {
+      & ~ .slider-theme {
+        background: linear-gradient(180deg, #4F2EE8 0%, #686868 100%);;
+      }
+      & ~ .slider-theme:before {
+        background-color: $white-color;
+        box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+        transform: translate(19px, 0px);
+      }
+      & ~ .slide-block{
+        left: 0;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+}
+.slider-theme{
+    width: 40px;
+    height: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(180deg, #4F2EE8 0%, #DCDCDC 100%);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+    &:before {
+        position: absolute;
+        bottom: 1px;
+        left: 15px;
+        width: 18px;
+        height: 18px;
+
+        content: "";
+        border-radius: 50%;
+        background-color: $white-color;
+        transition: $transition;
+      }
+}
+
+.burger{
+    stroke: $black-color;
+    margin-right: 5px;
+    cursor: pointer;
+    @include tablet {
+        opacity: 0 ;
+        visibility: hidden;
+        display: none;
+    }
+}
