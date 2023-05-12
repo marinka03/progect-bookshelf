@@ -8,7 +8,7 @@
   fill: #4f2ee8;
   // border: 1px solid #4f2ee8;
   border-radius: 50%;
-  opacity: 0;
+  display: none;
   transition: 250ms;
   z-index: 101;
 }
@@ -20,6 +20,5 @@
 .go-top-show {
   display: block;
   z-index: 100;
-  opacity: 1;
   transition: 250ms;
 }

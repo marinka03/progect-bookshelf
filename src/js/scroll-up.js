@@ -1,7 +1,6 @@
 const gotopBTN = document.querySelector('.go-top');
 
 gotopBTN.addEventListener('click', onToTopBtn);
-
 function onToTopBtn() {
   if (window.pageYOffset > 0) {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -10,7 +9,6 @@ function onToTopBtn() {
 }
 
 window.addEventListener('scroll', trackScroll);
-
 function trackScroll() {
   const offset = window.pageYOffset;
   const coords = document.documentElement.clientHeight;
