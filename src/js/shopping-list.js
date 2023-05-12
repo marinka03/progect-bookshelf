@@ -3,11 +3,11 @@ const listEl = document.querySelector('.js-listInShopping');
 
 const arrToShoppingList = [];
 
-apiFetch().then(data =>
-  containerEl.insertAdjacentHTML('beforeend', createMarkupTopBooks(data))
-);
+// apiFetch().then(data =>
+//   containerEl.insertAdjacentHTML('beforeend', createMarkupTopBooks(data))
+// );
 
-containerEl.addEventListener('click', addToShoppingList);
+// containerEl.addEventListener('click', addToShoppingList);
 
 function addToShoppingList(evt) {
   evt.preventDefault();
