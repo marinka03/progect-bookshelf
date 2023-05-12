@@ -1,6 +1,6 @@
 let shoppingList = [
-    {
-      id: 1,
+  {
+    id: 1,
     title: 'Harry Potter',
     book_image: 'harry-potter.jpg',
     buy_links: [
@@ -17,8 +17,8 @@ let shoppingList = [
     age_group: 'Children',
     description: 'Fantasy novel about the boy wizard Harry Potter',
   },
-    {
-      id: 2,
+  {
+    id: 2,
     title: 'Lord of the Rings',
     book_image: 'lord-of-the-rings.jpg',
     buy_links: [
@@ -34,6 +34,40 @@ let shoppingList = [
     contributor: 'J.R.R. Tolkien',
     description: 'Epic fantasy adventure novel set in Middle-earth',
   },
+  {
+    id: 3,
+    title: 'Lord of the Rings',
+    book_image: 'lord-of-the-rings.jpg',
+    buy_links: [
+      {
+        name: 'Amazon',
+        url: 'https://www.amazon.com/Lord-Rings-Fellowship-Ultimate-Collectors/dp/B007ZQAKHU/ref=sr_1_2',
+      },
+      {
+        name: 'Audible',
+        url: 'https://www.audible.com/pd/The-Fellowship-of-the-Ring-Audiobook/B0099RKI5W',
+      },
+    ],
+    contributor: 'J.R.R. Tolkien',
+    description: 'Epic fantasy adventure novel set in Middle-earth',
+  },
+  {
+    id: 4,
+    title: 'Lord of the Rings',
+    book_image: 'lord-of-the-rings.jpg',
+    buy_links: [
+      {
+        name: 'Amazon',
+        url: 'https://www.amazon.com/Lord-Rings-Fellowship-Ultimate-Collectors/dp/B007ZQAKHU/ref=sr_1_2',
+      },
+      {
+        name: 'Audible',
+        url: 'https://www.audible.com/pd/The-Fellowship-of-the-Ring-Audiobook/B0099RKI5W',
+      },
+    ],
+    contributor: 'J.R.R. Tolkien',
+    description: 'Epic fantasy adventure novel set in Middle-earth',
+  }
 ];
 
 
