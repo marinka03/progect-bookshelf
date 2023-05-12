@@ -4,7 +4,7 @@
 // import 'swiper/css/navigation';
 import { funds } from './funds';
 
-const list_support = document.querySelector('.support-cont-wrapper');
+const list_support = document.querySelector('.support-wrapper');
 
 function createFondMarkup(arr) {
   const markup = arr
@@ -21,27 +21,10 @@ function createFondMarkup(arr) {
 
 list_support.insertAdjacentHTML('beforeend', createFondMarkup(funds));
 
-// const swiper = new Swiper('.swiper', {
-//   // Optional parameters
-//   direction: 'vertical',
-//   loop: true,
-//   slidesPerView: 4,
-
-//   // Navigation arrows
-//   navigation: {
-//     nextEl: '.slider__next',
-//   },
-
-//   // And if we need scrollbar
-//   //   scrollbar: {
-//   //     el: '.swiper-scrollbar',
-//   //   },
-// });
-//==================================
-new Swiper('.support-cont', {
+new Swiper('.support-container', {
   navigation: {
-    // nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-next',
+    // prevEl: '.swiper-button-prev',
   },
   slidesPerView: 4,
   spaceBetween: 20,
@@ -51,11 +34,13 @@ new Swiper('.support-cont', {
   breakpoints: {
     320: {
       slidesPerView: 4,
-      spaceBetween: 20,
     },
-    1440: {
+    768: {
       slidesPerView: 6,
-      spaceBetween: 20,
     },
+  },
+  scrollbar: {
+    el: '.swiper-scrollbar',
+    draggable: true,
   },
 });
