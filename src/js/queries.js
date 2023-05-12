@@ -14,7 +14,7 @@ function apiRequestTopBooks() {
       return resp.json();
     })
     .catch(error => {
-      showLoader();
+      hideLoader();
       console.error(error);
     });
 }
