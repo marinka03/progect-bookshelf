@@ -103,3 +103,5 @@ function createMarkupBooksInShopping(books) {
     )
     .join('');
 }
+
+export { array };
