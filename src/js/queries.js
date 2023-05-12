@@ -41,11 +41,11 @@ function hideLoader() {
 }
 
 // вызываем функцию apiRequestTopBooks() для получения данных из API
-apiRequestTopBooks().then(data => {
-  // вызываем функцию createMarkupTopBooks() для создания разметки на странице
-  const markup = createMarkupTopBooks(data);
-  // находим контейнер для разметки на странице
-  const container = document.querySelector('#top-books_container');
-  // вставляем разметку в контейнер
-  container.innerHTML = markup;
-});
+// apiRequestTopBooks().then(data => {
+//   // вызываем функцию createMarkupTopBooks() для создания разметки на странице
+//   const markup = createMarkupTopBooks(data);
+//   // находим контейнер для разметки на странице
+//   const container = document.querySelector('#top-books_container');
+//   // вставляем разметку в контейнер
+//   container.innerHTML = markup;
+// });
