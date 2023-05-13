@@ -9,4 +9,5 @@ import './js/support-ukraine';
 import './js/scroll-up';
 import './js/theme';
 import './js/category-list';
+import './js/login-modal';
 import './js/swiper';
