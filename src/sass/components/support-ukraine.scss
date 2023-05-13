@@ -1,7 +1,6 @@
 .support_title_box {
   display: flex;
-  justify-content: center;
-  align-content: center;
+  text-align: center;
   margin-bottom: 20px;
   gap: 12px;
 }
@@ -22,7 +21,7 @@
 .support_funds_element {
   display: flex;
   align-items: center;
-  height: 32px;
+  height: 40px;
   filter: brightness(0) invert(1);
   transition: border 250ms $cubic;
   &:hover {
@@ -39,8 +38,8 @@
 }
 
 .wrapper {
-  padding: 24px 58px 20px 40px;
-  width: 335px;
+  padding: 24px 0 20px 40px;
+  max-width: 335px;
   height: 352px;
   background: radial-gradient(
     183.6% 183.01% at 59.76% -23.42%,
@@ -51,16 +50,15 @@
   border-radius: 16px;
 
   @include tablet {
-    padding: 24px 79px 24px 40px;
+    padding: 24px 0 24px 40px;
     width: 356px;
     height: 490px;
   }
 }
 .support-container {
-  width: 159px;
-  height: 236px;
+  height: 188px;
   @include tablet {
-    height: 370px;
+    height: 292px;
   }
 }
 .block_body {
@@ -71,55 +69,19 @@
 }
 .wrapper .swiper-button-next {
   position: relative;
-  top: 250;
-  left: 120px;
-  @include tablet {
-    top: 380;
-  }
+  top: 75%;
+  left: 59%;
+}
+.wrapper .swiper-button-next:after,
+.wrapper .swiper-button-prev:after {
+  color: transparent;
 }
 
-//----------------------------------UL list
-
-// .support {
-//   padding: 24px 79px 24px 40px;
-//   width: 356px;
-//   background: radial-gradient(
-//     183.6% 183.01% at 59.76% -23.42%,
-//     $blue-color 18.03%,
-//     $white-color 100%
-//   );
-//   box-shadow: 0px 10px 10px rgba(245, 245, 247, 0.1);
-//   border-radius: 16px;
-
-//   &_title {
-//     font-family: '';
-//     margin-bottom: 40px;
-//     font-weight: 700;
-//     font-size: 28px;
-//     line-height: 1.14;
-//     letter-spacing: -0.04em;
-//     color: $white-color;
-//   }
-
-//   &_funds_element {
-//     display: flex;
-//     align-items: center;
-//     margin-bottom: 20px;
-
-//     // &:hover,
-//     // &:focus {
-//     // }
-//   }
-
-//   &_funds_number {
-//     font-size: 14px;
-//     line-height: 1.29;
-//     letter-spacing: -0.04em;
-//     color: $white-color;
-//   }
-
-//   &_funds_image {
-//     margin-left: 16px;
-//     filter: brightness(0) invert(1);
-//   }
-// }
+.swiper_icon {
+  position: relative;
+  top: 62%;
+  left: 58%;
+  @include tablet {
+    top: 67%;
+  }
+}
