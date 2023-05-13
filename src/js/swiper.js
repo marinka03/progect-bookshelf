@@ -24,9 +24,8 @@ list_support.insertAdjacentHTML('beforeend', createFondMarkup(funds));
 new Swiper('.support-container', {
   navigation: {
     nextEl: '.swiper-button-next',
-    // prevEl: '.swiper-button-prev',
+    prevEl: '.swiper-button-prev',
   },
-  // slidesPerView: 4,
   spaceBetween: 20,
   loop: true,
   freeMode: true,
@@ -38,5 +37,8 @@ new Swiper('.support-container', {
     768: {
       slidesPerView: 6,
     },
+  },
+  keyboard: {
+    enabled: true,
   },
 });
