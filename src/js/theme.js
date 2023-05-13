@@ -8,6 +8,8 @@ const STORAGE_KEY = 'themeKey';
 const checkBox = document.querySelector('#toggle');
 const body = document.querySelector('body');
 const header = document.querySelector('.header');
+const logoDark = document.querySelector('.header__logo-svg-dark');
+const logoLight = document.querySelector('header__logo-svg');
 
 checkBox.addEventListener('change', onChange);
 isTheme();
