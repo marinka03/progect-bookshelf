@@ -11,27 +11,20 @@ function createModal() {
 backdrop.style.display = "block";
 
 
-    // const input = modalContainer.insertAdjacentHTML("beforeend", `<div id-"form _content _container"›
-    // «div id-"form content_inner_container"
-    // <input type-"text™ id-"full name" placeholder-"Full name"› <input type="email" id-"email" placeholder= "Email", <input type= "password" id= "password" placeholder= "New Password"›
-    // <input type-"text" id-"favourite_song" placeholder-"The Best Song Ever")
-    // <input type-"text" id-"milk_ before_cereal" placeholder="Milk Before Cereal? ( Yes | No )"› <div id-"button_container")
-    // <button onclick-"login ()"›Login‹/button> <button onclick="register ()"›Register</button>
-    // </div>
-    // </div>`);
-    const modalTitle = document.createElement("h2");
-    modalTitle.textContent = "Заголовок модального вікна";
+   
+    // const modalTitle = document.createElement("h2");
+    // modalTitle.textContent = "Заголовок модального вікна";
   
-    const modalContent = document.createElement("p");
-    modalContent.textContent = "Тут може бути ваш контент.";
+    // const modalContent = document.createElement("p");
+    // modalContent.textContent = "Тут може бути ваш контент.";
   
     const closeButton = document.createElement("button");
     closeButton.textContent = "Закрити";
     closeButton.addEventListener("click", closeModal);
   
-    modalContainer.appendChild(modalTitle);
-    modalContainer.appendChild(modalContent);
-    modalContainer.appendChild(closeButton);
+    // modalContainer.appendChild(modalTitle);
+    // modalContainer.appendChild(modalContent);
+    // modalContainer.appendChild(closeButton);
   
     modalContainer.style.display = "block";
   }
