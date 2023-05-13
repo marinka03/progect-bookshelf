@@ -1,10 +1,7 @@
 import { apiRequestTopBooks } from './queries';
-import { hideLoader } from './queries';
 import { createMarkupTopBooks } from './create-markup-home';
 
-const mainTopBooksContainerEl = document.querySelector(
-  '.js-top-books-container'
-);
+const mainTopBooksContainerEl = document.querySelector('.js-top-books-container');
 
 apiRequestTopBooks()
   .then(data => {
