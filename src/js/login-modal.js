@@ -11,11 +11,11 @@ function createModal() {
 backdrop.style.display = "block";
 
 
-    // modalContainer.insertAdjacentHTML("beforeend", ` <div class="form">
+    // modalContainer.insertAdjacentHTML("beforeend", `<div class="form">
     // <div class="name"></div>
     
     // <label for="name">Name</label>
-    // <input type-"name"
+    // <input type="name"
     // name="name"
     // id="name"
     // placeholder="write your name">
@@ -36,7 +36,7 @@ backdrop.style.display = "block";
     // placeholder="write your password">
     // </div>
     // </div>
-    // <button id-"sighn-up">Sighn up</button>`)
+    // <button id="sighn-up">Sighn up</button>`)
 
 
     // const modalTitle = document.createElement("h2");
@@ -45,9 +45,10 @@ backdrop.style.display = "block";
     // const modalContent = document.createElement("p");
     // modalContent.textContent = "Тут може бути ваш контент.";
   
-    const closeButton = document.createElement("button");
-    closeButton.textContent = "Закрити";
-    closeButton.addEventListener("click", closeModal);
+    // const closeButton = document.createElement("button");
+    const closeButton = document.querySelector(".closeButton");
+
+    const close = closeButton.addEventListener("click", closeModal);
   
     // modalContainer.appendChild(modalTitle);
     // modalContainer.appendChild(modalContent);
@@ -55,10 +56,12 @@ backdrop.style.display = "block";
   
     modalContainer.style.display = "block";
   }
+  
+  
 
   function closeModal() {
     modalContainer.style.display = "none";
-    modalContainer.innerHTML = "";
+    // modalContainer.innerHTML = "";
     backdrop.style.display = "none";
   }
   
@@ -70,12 +73,15 @@ backdrop.style.display = "block";
   import { getDatabase } from "firebase/database";
  
 
-  import firebase from 'firebase/app'
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import 'firebase/auth';
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
+
 
 
 
@@ -87,7 +93,11 @@ import 'firebase/auth';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const sighnUpBtn = document.getElementById("sighn-up")
+const sighnInBtn = document.getElementById("sighn-in")
+const sighnOutBtn = document.getElementById("sighn-out")
 sighnUpBtn.addEventListener("click", register);
+sighnInBtn.addEventListener("click", login);
+sighnOutBtn.addEventListener("click", signOutUser);
 
 
 const firebaseConfig = {
@@ -107,44 +117,114 @@ const auth = getAuth(app);
 // firebase.initializeApp(firebaseConfig);
 // const database = firebase.database();
 // const auth = firebase.auth(app);
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-const database = getDatabase(app);
 
-let email = document.getElementById('email').value;
-let password = document.getElementById('password').value;
+// const database = getDatabase(app);
 
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const name = document.getElementById('name');
+console.log(email, password);
+
+// createUserWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     // Signed in 
+//     const user = userCredential.user;
    
-    console.log('Учетная запись успешно создана:', user);
+//     console.log('Учетная запись успешно создана:', user);
 
-    // const database_ref = database.ref()
+//     // const database_ref = database.ref()
 
-    // const user_data = {
-    //     email: email,
-    //     name: name,
-    //     last_login: Date.now(),
-    // }
-    // ...
-//     database_ref.child('users/' + user.uid).set(user_data)
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage)
-  });
+//     // const user_data = {
+//     //     email: email,
+//     //     name: name,
+//     //     last_login: Date.now(),
+//     // }
+//     // ...
+// //     database_ref.child('users/' + user.uid).set(user_data)
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // alert(errorMessage)
+//   });
 
   function register(){
-    createUserWithEmailAndPassword(auth, email, password);
+    const sighnUpEmail = email.value;
+    const sighnUpName = name.value;
+    const sighnUpPassword = password.value;
+    createUserWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
+    .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+       
+        alert('Учетная запись успешно создана:', sighnUpName);
+    
+        // const database_ref = database.ref()
+    
+        // const user_data = {
+        //     email: email,
+        //     name: name,
+        //     last_login: Date.now(),
+        // }
+        // ...
+    //     database_ref.child('users/' + user.uid).set(user_data)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // alert(errorMessage)
+        console.log(errorMessage + errorCode)
+      });
   }
 
-// email = document.getElementById('email').value;
-//     password = document.getElementById('password').value;
-//     name = document.getElementById('name').value;
+  function login(){
+    const sighnUpEmail = email.value;
+    const sighnUpName = name.value;
+    const sighnUpPassword = password.value;
+    signInWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
+    .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+       
+        alert('С возвращением:', sighnUpName);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // alert(errorMessage)
+        console.log(errorMessage + errorCode)
+      });
+  }
+   
+   
+  const userCard = document.querySelector('.user-info');
+//   console.log(userCard)
+  function checkCurentUser() {
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      userCard.textContent = 'user';
+   
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+}
+checkCurentUser();
 
+function signOutUser () {
+    signOut(auth).then(() => {
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
+}
 
 //   function validateemail(email) {
 // expression = /^[^@]+@\w+(\.\w+)+\w$/
