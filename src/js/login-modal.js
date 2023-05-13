@@ -11,7 +11,24 @@ function createModal() {
 backdrop.style.display = "block";
 
 
-   
+    modalContainer.insertAdjacentHTML("beforeend", ` <div class="form">
+
+    <div class="email"></div>
+    
+    <label for="email">Email</label>
+    <input type-"email"
+    name="email"
+    id="email"
+    placeholder="write your email">
+    <div class="pass">
+    <label for="password">password</label>
+     <input type="password" 
+     name= "password" 
+     id="password"
+    placeholder="write your password">
+    </div>
+    </div>
+    <button id-"submit-btn">Sighn up</button>`)
     // const modalTitle = document.createElement("h2");
     // modalTitle.textContent = "Заголовок модального вікна";
   
@@ -24,7 +41,7 @@ backdrop.style.display = "block";
   
     // modalContainer.appendChild(modalTitle);
     // modalContainer.appendChild(modalContent);
-    // modalContainer.appendChild(closeButton);
+    modalContainer.appendChild(closeButton);
   
     modalContainer.style.display = "block";
   }
