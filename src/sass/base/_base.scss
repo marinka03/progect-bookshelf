@@ -27,9 +27,11 @@ img {
 //   margin: -1px;
 // }
 .side-bar-container {
-  
+  margin: 0 auto;
+  flex-direction: column;
   @include tablet {
           display: flex;
+          flex-direction: row;
       }
             @include pc {
                 flex-direction: column;
@@ -37,12 +39,13 @@ img {
 }
 
 .global-container {
+  flex-direction: column;
     @include tablet {
         display: flex;
-        flex-direction: column;
       }
     
       @include pc {
         display: flex;
+        flex-direction: row;
       }
 }

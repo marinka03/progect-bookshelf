@@ -12,6 +12,9 @@
     @include mobile {
     max-width: 375px;
     }
+    // @include tablet{
+    //     margin: 0;
+    // }
 
     // @include tablet {
     //     // max-width: 768px;
