@@ -1,14 +1,14 @@
-const containerEl = document.querySelector('.js-container');
+const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
 
 const arrToShoppingList = [];
 const array = [];
 
-apiFetch().then(data =>
-  containerEl.insertAdjacentHTML('beforeend', createMarkupTopBooks(data))
-);
+// apiFetch().then(data =>
+//   containerEl.insertAdjacentHTML('beforeend', createMarkupTopBooks(data))
+// );
 
-containerEl.addEventListener('click', addToShoppingList);
+// containerEl.addEventListener('click', addToShoppingList);
 
 function addToShoppingList(evt) {
   evt.preventDefault();
@@ -53,29 +53,29 @@ function addToShoppingList(evt) {
   //   listEl.append(...arrToShoppingList);
 }
 
-function apiFetch() {
-  return fetch('https://books-backend.p.goit.global/books/top-books').then(
-    resp => resp.json()
-  );
-}
+// function apiFetch() {
+//   return fetch('https://books-backend.p.goit.global/books/top-books').then(
+//     resp => resp.json()
+//   );
+// }
 
-function createMarkupTopBooks(books) {
-  return books
-    .map(book => {
-      const booksArr = book.books
-        .map(
-          bookOne => `<li class='js-card' data-id=${bookOne._id}>
-				<h2>${book.list_name}</h2>
-				<img src="${bookOne.book_image}" alt="" width='180'>
-				<p>${bookOne.author}</p>
-				<button class='js-addToShopping'>Add to shopping list</button>
-			</li>`
-        )
-        .join('');
-      return `<ul>${booksArr}</ul>`;
-    })
-    .join('');
-}
+// function createMarkupTopBooks(books) {
+//   return books
+//     .map(book => {
+//       const booksArr = book.books
+//         .map(
+//           bookOne => `<li class='js-card' data-id=${bookOne._id}>
+// 				<h2>${book.list_name}</h2>
+// 				<img src="${bookOne.book_image}" alt="" width='180'>
+// 				<p>${bookOne.author}</p>
+// 				<button class='js-addToShopping'>Add to shopping list</button>
+// 			</li>`
+//         )
+//         .join('');
+//       return `<ul>${booksArr}</ul>`;
+//     })
+//     .join('');
+// }
 
 // // const listEl = document.querySelector('.js-listInShopping');
 

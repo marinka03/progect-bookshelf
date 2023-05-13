@@ -1,4 +1,5 @@
 import { apiRequestTopBooks } from './queries';
+import { hideLoader } from './queries';
 import { createMarkupTopBooks } from './create-markup-home';
 
 const mainTopBooksContainerEl = document.querySelector(
@@ -7,10 +8,8 @@ const mainTopBooksContainerEl = document.querySelector(
 
 apiRequestTopBooks()
   .then(data => {
-    mainTopBooksContainerEl.insertAdjacentHTML(
-      'beforeend',
-      createMarkupTopBooks(data)
-    );
+    markup = createMarkupTopBooks(data);
+    mainTopBooksContainerEl.innerHTML = markup;
     if (data.page !== data.total_pages) {
       paginationBtn.hidden = false;
     }
