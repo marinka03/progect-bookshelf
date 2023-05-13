@@ -1,5 +1,5 @@
+//import { hideLoader } from './queries';
 export { createMarkupTopBooks };
-import { hideLoader } from './queries';
 
 function createMarkupTopBooks(arr) {
   return arr
@@ -16,7 +16,7 @@ function createMarkupTopBooks(arr) {
 </li>`
         )
         .join('');
-      hideLoader();
+      //hideLoader();
 
       return `<ul class="top-books">
       <p class="top-books_category">${obj.list_name}</p>

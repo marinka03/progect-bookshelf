@@ -69,6 +69,9 @@
         justify-content: center;
         align-items: center;
         gap: 8px;
+        cursor: pointer;
+        height: 40px;
+        padding: 10px 16px;
         font-weight: 500;
         font-size: 14px;
         line-height: 0.77;
@@ -106,22 +109,30 @@
         gap: 14px;
     }
     &__sign-up{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        width: 184px;
-        height: 48px;
-        border-radius: 18px;
-        border: 2px solid #111111;
-        color: $white-color;
-        background-color: $blue-color;
-        margin-right: 24px;
-        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+        
 
         &:hover,
         &:focus{
             box-shadow: rgb(176, 147, 147) 3px 1px 6px 0px;
         }
+        @include tablet {
+            opacity: 1;
+            visibility: visible;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 184px;
+            height: 48px;
+            border-radius: 18px;
+            border: 2px solid #111111;
+            color: $white-color;
+            background-color: $blue-color;
+            margin-right: 24px;
+            cursor: pointer;
+        };
     }
     &__svg-array{
         stroke: $accent-color;
