@@ -5,7 +5,7 @@ const mainTopBooksContainerEl = document.querySelector('.js-top-books-container'
 
 apiRequestTopBooks()
   .then(data => {
-    markup = createMarkupTopBooks(data);
+    const markup = createMarkupTopBooks(data);
     mainTopBooksContainerEl.innerHTML = markup;
     if (data.page !== data.total_pages) {
       paginationBtn.hidden = false;
