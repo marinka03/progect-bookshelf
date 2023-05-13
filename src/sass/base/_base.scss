@@ -39,6 +39,7 @@ img {
 .global-container {
     @include tablet {
         display: flex;
+        flex-direction: column;
       }
     
       @include pc {
