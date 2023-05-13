@@ -207,7 +207,10 @@ console.log(email, password);
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
-      userCard.textContent = 'user';
+      userCard.textContent = 'loged in';
+// openModalButton.style.display = "none";
+    //   openModalButton.innerHTML = `<button type="button">You are in </button>`;
+      
    
       // ...
     } else {
@@ -221,6 +224,9 @@ checkCurentUser();
 function signOutUser () {
     signOut(auth).then(() => {
         // Sign-out successful.
+        userCard.textContent = 'Sighn up';
+        alert('bye');
+
       }).catch((error) => {
         // An error happened.
       });
