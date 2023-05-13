@@ -71,7 +71,7 @@ let shoppingList = [
 ];
 
 function generateCards() {
-  const cards = document.querySelector('.js-shopping-list-card');
+  const cards = document.querySelector('.js-listInShopping');
   shoppingList.forEach(book => {
     cards.insertAdjacentHTML('beforeend', generateCard(book));
   });
@@ -82,7 +82,7 @@ generateCards();
 function deleteBook(bookId) {
   shoppingList = shoppingList.filter(book => book.id !== bookId);
 
-  const cards = document.querySelector('.js-shopping-list-card');
+  const cards = document.querySelector('.js-listInShopping');
   cards.innerHTML = '';
   generateCards();
 }
@@ -91,31 +91,92 @@ window.deleteBook = deleteBook;
 
 function generateCard(book) {
   return `
-    <div class="container">
-      <div class="left">
+    <li class="shopping-list-card">
+      <div class="shopping-list-card__cover">
         <img src="${book.book_image}">
       </div>
-      <div class="right">
-        <h1>${book.title}</h1>
-        <p>Category: ${book.age_group || 'No category'}</p> 
-        <p>${book.description || 'No description'}</p>
-        <p>Author: ${book.contributor}</p>
-        <div class="buy-links">
+      <div class="shopping-list-card__content">
+        <h1 class="shopping-list-card__title">${book.title}</h1>
+        <p class="shopping-list-card__category">${
+          book.age_group || 'No category'
+        }</p> 
+<div class="shopping-list-card__wrapper">
+        <p class="shopping-list-card__desc">${
+          book.description || 'No description'
+        }</p>
+</div>
+<div class="shopping-list-card__cellar">       
+ <p class="shopping-list-card__author">${book.contributor}</p>
+        <ul class="shopping-list-card__links">
           ${book.buy_links
             .map(
-              link => `
+              link => `<li>
             <a href="${link.url}" target="_blank">
               <img src="${link.name.toLowerCase()}.png">
             </a>
           `
             )
             .join('')}
-        </div>
-        <button onclick="deleteBook(${
+        </ul></div>
+        <button class="shopping-list-card__button" onclick="deleteBook(${
           book.id
-        })">Delete from Shopping List</button>
+        })">
+        
+        <svg width="16" height="16" class="shopping-list-card__icon">
+        <use href="/icons.e58dda3e.svg#icon-trash"></use>
+        </svg>
+        
+        </button>
 
       </div>
-    </div>
   `;
 }
+
+// import { array } from './shopping-list.js';
+
+// let shoppingList = array;
+
+// function generateCards() {
+//   const cards = document.querySelector('.js-shopping-list-card');
+//   cards.innerHTML = '';
+
+//   shoppingList.forEach(book => {
+//     cards.insertAdjacentHTML('beforeend', generateCard(book));
+//   });
+// }
+
+// function deleteBook(bookId) {
+//   shoppingList = shoppingList.filter(book => book._id !== bookId);
+
+//   const cards = document.querySelector('.js-shopping-list-card');
+//   cards.innerHTML = '';
+//   generateCards();
+// }
+
+// window.deleteBook = deleteBook;
+
+// function generateCard(book) {
+//   return `
+//     <div class="container">
+//       <div class="left">
+//         <img src="${book.book_image}" alt="${book.title}">
+//       </div>
+//       <div class="right">
+//         <h1>${book.title}</h1>
+//         <p>List name: ${book.list_name || 'No list name'}</p>
+//         <p>${book.description || 'No description'}</p>
+//         <p>Author: ${book.author}</p>
+//         <div class="buy-links">
+//        				<a href="${book.amazon_product_url}">Amazon</a>
+// <a href="${book.buy_links[1].url}">Book1</a>
+// <a href="${book.buy_links[2].url}">Book2</a>
+//         </div>
+//         <button onclick="deleteBook(${
+//           book._id
+//         })">Delete from Shopping List</button>
+//       </div>
+//     </div>
+//   `;
+// }
+
+// generateCards();
