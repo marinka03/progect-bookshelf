@@ -12,6 +12,9 @@
     @include mobile {
     max-width: 375px;
     }
+    // @include tablet{
+    //     margin: 0;
+    // }
 
     // @include tablet {
     //     // max-width: 768px;
@@ -50,6 +53,8 @@
         line-height: 1.25;
         letter-spacing: -0.02em;
         color: $light-text-color;
+        padding: 5px;
+        border-radius: 3px;
         // $cubic: cubic-bezier(0.4, 0, 0.2, 1);
         //     $transition: transform $cubic 250ms;
 
@@ -59,6 +64,8 @@
             color: $black-color;
             background-color: $accent-color;
             cursor: pointer;
+            padding-left: 20px;
+            transition: padding-left 300ms ease-out;
         }
     }
 }
