@@ -1,5 +1,5 @@
 export { createMarkupTopBooks };
-// import { hideLoader } from './queries';
+import { hideLoader } from './queries';
 
 function createMarkupTopBooks(arr) {
   return arr

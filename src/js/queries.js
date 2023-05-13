@@ -1,16 +1,4 @@
-// export { apiRequestTopBooks };
-
-// function apiRequestTopBooks() {
-//   const BASE_URL = 'https://books-backend.p.goit.global/books/top-books';
-
-//   return fetch(BASE_URL).then(resp => {
-//     if (!resp.ok) {
-//       throw new Error(resp.statusText);
-//     }
-//     return resp.json();
-//   });
-// }
-export { apiRequestTopBooks };
+export { apiRequestTopBooks, hideLoader, showLoader };
 
 function apiRequestTopBooks() {
   const BASE_URL = 'https://books-backend.p.goit.global/books/top-books';
@@ -30,6 +18,28 @@ function apiRequestTopBooks() {
     });
 }
 
+function showLoader() {
+  const preloader = document.querySelector('#preloader');
+  preloader.classList.remove('hide');
+}
+
+function hideLoader() {
+  const preloader = document.querySelector('#preloader');
+  preloader.classList.add('hide');
+}
+// export { apiRequestTopBooks };
+
+// function apiRequestTopBooks() {
+//   const BASE_URL = 'https://books-backend.p.goit.global/books/top-books';
+
+//   return fetch(BASE_URL).then(resp => {
+//     if (!resp.ok) {
+//       throw new Error(resp.statusText);
+//     }
+//     return resp.json();
+//   });
+// }
+
 // function apiRequestTopBooks() {
 //   const BASE_URL = 'https://books-backend.p.goit.global/books/top-books';
 //   showLoader();
@@ -46,16 +56,6 @@ function apiRequestTopBooks() {
 //       showLoader();
 //       console.error(error);
 //     });
-
-function showLoader() {
-  const preloader = document.querySelector('#preloader');
-  preloader.classList.remove('hide');
-}
-
-function hideLoader() {
-  const preloader = document.querySelector('#preloader');
-  preloader.classList.add('hide');
-}
 
 // // вызываем функцию apiRequestTopBooks() для получения данных из API
 // apiRequestTopBooks().then(data => {
