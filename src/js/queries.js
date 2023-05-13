@@ -3,19 +3,18 @@ export { apiRequestTopBooks, hideLoader, showLoader };
 function apiRequestTopBooks() {
   const BASE_URL = 'https://books-backend.p.goit.global/books/top-books';
   showLoader();
-  return fetch(BASE_URL)
-    .then(resp => {
-      hideLoader();
-      if (!resp.ok) {
-        showLoader();
-        throw new Error(resp.statusText);
-      }
-      return resp.json();
-    })
-    .catch(error => {
+  return fetch(BASE_URL).then(resp => {
+    hideLoader();
+    if (!resp.ok) {
       showLoader();
-      console.error(error);
-    });
+      throw new Error(resp.statusText);
+    }
+    return resp.json();
+  });
+  // .catch(error => {
+  //   showLoader();
+  //   console.error(error);
+  // });
 }
 
 function showLoader() {
