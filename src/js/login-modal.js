@@ -19,11 +19,11 @@ backdrop.style.display = "block";
     // <button onclick-"login ()"›Login‹/button> <button onclick="register ()"›Register</button>
     // </div>
     // </div>`);
-    // const modalTitle = document.createElement("h2");
-    // modalTitle.textContent = "Заголовок модального вікна";
+    const modalTitle = document.createElement("h2");
+    modalTitle.textContent = "Заголовок модального вікна";
   
-    // const modalContent = document.createElement("p");
-    // modalContent.textContent = "Тут може бути ваш контент.";
+    const modalContent = document.createElement("p");
+    modalContent.textContent = "Тут може бути ваш контент.";
   
     const closeButton = document.createElement("button");
     closeButton.textContent = "Закрити";
