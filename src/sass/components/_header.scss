@@ -79,37 +79,30 @@
         gap: 8px;
         cursor: pointer;
         height: 40px;
-        padding: 10px 16px;
+        padding: 12px 16px;
         font-weight: 500;
         font-size: 14px;
         line-height: 0.77;
         letter-spacing: -0.04em;
     
+        &:hover{
+            padding: 8px 16px;
+            gap: 8px;
+            height: 34px;
+            background-color: #EAC645;
+            border-radius: 36px;
+        }
     }
-    &__shopping-box:hover{
-        padding: 7px 16px;
-        gap: 8px;
-        height: 34px;
-        background-color: #EAC645;
-        border-radius: 36px;
-    }
+
     
     &__shopping{
         display: flex;
         gap: 5px;
-        padding: 30px 0px;
+        padding: 0;
         font-weight: 500;
         font-size: 14px;
         line-height: 0.77;
         letter-spacing: -0.04em;
-
-        // &:hover{
-        //     padding: 7px 16px;
-        //     gap: 8px;                        //HOVER ON LINK
-        //     height: 34px;
-        //     background-color: #EAC645;
-        //     border-radius: 36px;
-        // }  
     }
     &__wrapper{
         display: flex;
@@ -150,15 +143,17 @@
  }
 
 .current-home{
+    padding: 8px 16px;
     background: #EAC645;
-    border-radius: 36px;
+    border-radius: 36px;//--------------------------HOME
+    
 }
 .current-shopping{
-    padding: 7px 16px;
-        gap: 8px;
-        height: 34px;
-        background-color: #EAC645;
-        border-radius: 36px;
+    padding: 8px 16px;
+    gap: 8px;
+    height: 34px;
+    background-color: #EAC645;
+    border-radius: 36px;//-----------------------SHOPPING LIST
 }
 .wrapper-logo{ 
     padding: 18px 20px;
