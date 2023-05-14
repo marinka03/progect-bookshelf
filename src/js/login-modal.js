@@ -402,11 +402,29 @@ function getAddedBooks() {
     if (books) {
       const addedBooks = Object.values(books);
       console.log('Массив добавленных книг:', addedBooks);
+      return addedBooks;
     } else {
       console.log('Нет добавленных книг.');
     }
   });
 }
+
+function removeBooks() {
+    const userId = auth.currentUser.uid; 
+  
+    const db = getDatabase();
+    const userRef = ref(db, 'users/' + userId + '/books' + bookId);
+  
+    onValue(userRef, (snapshot) => {
+      const books = snapshot.val();
+      if (books) {
+        const addedBooks = Object.values(books);
+        console.log('Массив добавленных книг:', addedBooks);
+      } else {
+        console.log('Нет добавленных книг.');
+      }
+    });
+  }
 
 
 
