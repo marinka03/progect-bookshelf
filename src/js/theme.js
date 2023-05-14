@@ -8,8 +8,8 @@ const STORAGE_KEY = 'themeKey';
 const checkBox = document.querySelector('#toggle');
 const body = document.querySelector('body');
 const header = document.querySelector('.header');
-const logoDark = document.querySelector('.header__logo-svg-dark');
-const logoLight = document.querySelector('header__logo-svg');
+const categoryListName = document.querySelector('.category-list-item');
+const headerLogoSvg = document.querySelector('.js-icon');
 
 checkBox.addEventListener('change', onChange);
 isTheme();
@@ -37,6 +37,7 @@ function isTheme() {
     const parseTheme = JSON.parse(saveTheme);
     if (parseTheme === 'dark-theme') {
       body.classList.add('dark-theme');
+      header.classList.add('dark-theme_header');
       checkBox.checked = true;
     }
   }
