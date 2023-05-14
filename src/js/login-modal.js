@@ -14,6 +14,8 @@ const sighnUpEmail = email.value;
 const sighnUpName = name.value;
 const sighnUpPassword = password.value;
 
+export {addbooktosl};
+
 console.log(modalContainer);
 
 function createModal() {
@@ -395,7 +397,7 @@ function checkId(){
     })}
 
 
-    function addbook(bookId) { 
+    function addbooktosl(bookId) { 
         // // const userId = user.uid;
         // // const sighnUpEmail = email.value;
         // // const sighnUpName = name.value;
