@@ -2,6 +2,17 @@ const modalContainer = document.querySelector(".modal");
 const openModalButton = document.querySelector(".header__sign-up");
 const backdrop = document.querySelector(".modal-overlay");
 
+const nameInput = document.querySelector(".name");
+const sighnUpOpt = document.getElementById("sighn-up-opt")
+const sighnInOpt = document.getElementById("sighn-in-opt")
+
+const form = document.querySelector(".form");
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const name = document.getElementById('name');
+const sighnUpEmail = email.value;
+const sighnUpName = name.value;
+const sighnUpPassword = password.value;
 
 console.log(modalContainer);
 
@@ -63,6 +74,7 @@ backdrop.style.display = "block";
     modalContainer.style.display = "none";
     // modalContainer.innerHTML = "";
     backdrop.style.display = "none";
+    form.reset();
   }
   
   openModalButton.addEventListener("click", createModal);
@@ -104,6 +116,30 @@ sighnInBtn.addEventListener("click", login);
 sighnOutBtn.addEventListener("click", signOutUser);
 
 
+
+sighnUpOpt.disabled = true;
+sighnInBtn.style.display = "none";
+
+
+sighnUpOpt.addEventListener("click", signupmodal);
+sighnInOpt.addEventListener("click", signinmodal);
+
+function signupmodal(){
+    sighnUpOpt.disabled = true;
+    sighnInOpt.disabled = false;
+    nameInput.style.display = "block";
+    sighnInBtn.style.display = "none";
+}
+
+
+function signinmodal(){
+    sighnUpOpt.disabled = false;
+    sighnInOpt.disabled = true;
+    nameInput.style.display = "none";
+    sighnInBtn.style.display = "block";
+    sighnUpBtn.style.display = "none";
+}
+
 // const firebaseConfig = {
 //   apiKey: "AIzaSyC6_3JGFTbHH7w50Kv4NMidw8vHUEsiuKI",
 //   authDomain: "book-list-2a4ef.firebaseapp.com",
@@ -139,10 +175,8 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 const database = getDatabase(app);
 // const database = getDatabase(app);
 
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const name = document.getElementById('name');
-console.log(email, password);
+
+
 
 // createUserWithEmailAndPassword(auth, email, password)
 //   .then((userCredential) => {
@@ -166,14 +200,12 @@ console.log(email, password);
 //     const errorMessage = error.message;
 //     // alert(errorMessage)
 //   });
-let globalUserId;
+// let globalUserId;
 
 
 
   function register(){
-    const sighnUpEmail = email.value;
-    const sighnUpName = name.value;
-    const sighnUpPassword = password.value;
+    
    
 
     createUserWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
@@ -181,13 +213,15 @@ let globalUserId;
         // Signed in 
         const user = userCredential.user;
         const userId = user.uid;
-        globalUserId = userId;
+        // globalUserId = userId;
+        
+
 
         writeUserData(userId, sighnUpName, sighnUpEmail);
     //  dbRef.child('users/' + userId).set(users_data)
         
         alert('Учетная запись успешно создана:', sighnUpName);
-    
+        closeModal()
         // const database_ref = database.ref()
     
         // const user_data = {
@@ -210,14 +244,16 @@ let globalUserId;
 
   function login(){
     const sighnUpEmail = email.value;
-    const sighnUpName = name.value;
+    // const sighnUpName = name.value;
     const sighnUpPassword = password.value;
-    signInWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
+    signInWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword)
     .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-       
-        alert('С возвращением:', sighnUpName);
+        // checkId()
+        // checkname()
+        alert('С возвращением!');
+        closeModal()
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -258,6 +294,7 @@ function signOutUser () {
         // Sign-out successful.
         userCard.textContent = 'Sighn up';
         alert('bye');
+        closeModal();
 
 
       }).catch((error) => {
@@ -309,7 +346,7 @@ function writeUserData(userId, name, email) {
     set(ref(db, 'users/' + userId), {
       username: name,
       email: email,
-    //   profile_picture : imageUrl
+    //   profile_picture : svg
     });
     alert('User saved')
   }
@@ -335,18 +372,17 @@ return onValue(ref(db, '/users/' + userId), (snapshot) => {
   // ...
  userCard.textContent = username;
   console.log(username)
+//   return username;
 
-}, {
-  onlyOnce: true
-});}
+},);}
 
 function checkId(){
     const userId = auth.currentUser.uid;
     return onValue(ref(db, '/users/' + userId), (snapshot) => {
-      const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    
+      const url = (snapshot.val() && snapshot.val().url) || 'Anonymous';
+    //   userCard.innerHTML = url;
       // ...
-     
+     console.log(url)
       console.log(userId)
     
     })}
