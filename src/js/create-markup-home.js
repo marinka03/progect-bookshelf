@@ -18,7 +18,7 @@ function createMarkupTopBooks(arr) {
       return `<ul class="top-books">
       <p class="top-books_category">${obj.list_name}</p>
       <div class="top-books_container">${booksMarkup}</div>
-      <a href="#" class="js-top-books_button top-books_button link" data-category='${obj.list_name}'>see more</a>
+      <div class="js-top-books_button top-books_button link" data-category='${obj.list_name}'>see more</div>
       </ul>`;
     })
     .join('');

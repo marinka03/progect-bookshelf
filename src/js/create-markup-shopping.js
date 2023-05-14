@@ -2,7 +2,7 @@ import amazonImg from '../images/amazon_link.png';
 import appleImg from '../images/apple_link.png';
 import bookshopImg from '../images/bookshop_link.png';
 import trash from '../images/trash.png';
-
+import { hideLoader } from './queries'
 
 let shoppingList = [
   {
@@ -210,3 +210,5 @@ function generateCard(book) {
 // }
 
 // generateCards();
+
+hideLoader();
