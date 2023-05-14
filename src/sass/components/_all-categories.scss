@@ -1,37 +1,104 @@
+.section-top-books {
+  margin-bottom: 72px;
+  margin-top: 40px;
+
+  @include tablet {
+    margin-top: 100px;
+  }
+
+  @include pc {
+    margin-left: 16px;
+    margin-top: 40px;
+  }
+}
+
 .title-top-books {
   font-weight: 700;
-  font-size: 48px;
-  line-height: 1.08;
+  font-size: 32px;
+  line-height: 38px;
+
   margin-bottom: 40px;
+
   & span {
     color: #4f2ee8;
+  }
+
+  @include tablet {
+    font-size: 48px;
+    line-height: 52px;
+  }
+}
+
+.top-books {
+  width: 335px;
+
+  @include tablet {
+    width: 704px;
+  }
+
+  @include pc {
+    width: 996px;
+    height: 426px;
   }
 }
 
 .top-books_book {
   padding: 0px;
   position: relative;
+
+  @include tablet {
+    width: 218px;
+  }
+  @include pc {
+    width: 180px;
+  }
 }
 
 .top-books_container {
-  display: flex;
-  gap: 24px;
-  width: 996px;
-  margin-bottom: 32px;
+  width: 100%;
+  height: 535px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  margin-bottom: 8px;
+
+  @include tablet {
+    display: flex;
+    gap: 25px;
+
+    // width: 704px;
+    height: auto;
+  }
+  @include pc {
+    gap: 24px;
+
+    width: 996px;
+    height: auto;
+    margin-bottom: 32px;
+  }
 }
 
 .top-books_category {
   font-size: 14px;
   line-height: 1.71;
+  text-transform: uppercase;
+
   color: #b4afaf;
+
   margin-bottom: 18px;
+  margin-top: 42px;
 }
 
 .top-books_list {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 180px;
+  margin-bottom: 8px;
+
+  @include pc {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .top-books_title {
@@ -41,6 +108,18 @@
   text-transform: uppercase;
   margin-top: 14px;
   margin-bottom: 4px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 335px;
+
+  @include tablet {
+    width: 218px;
+  }
+  @include pc {
+    width: 180px;
+  }
 }
 
 .top-books_author {
@@ -49,44 +128,74 @@
   line-height: 1.16;
   letter-spacing: -0.04em;
   color: #b4afaf;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  width: 335px;
+
+  @include tablet {
+    width: 218px;
+  }
+  @include pc {
+    width: 180px;
+  }
 }
 
 .top-books_button {
+  display: block;
+  display: flex;
+  align-items: center;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: -0.01em;
   text-transform: uppercase;
   padding: 14px 28px;
-  gap: 10px;
+  // gap: 10px;
   width: 124px;
   height: 46px;
   border: 2px solid #4f2ee8;
   border-radius: 40px;
+  float: right;
+  white-space: nowrap;
 }
 
 .top-books_image {
   display: block;
-  // width: 180px;
-  height: 256px;
+
+  width: 335px;
+  height: 485px;
+
   border-radius: 8px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   cursor: pointer;
+
+  @include tablet {
+    width: 218px;
+    height: 316px;
+  }
+
+  @include pc {
+    width: 180px;
+    height: 256px;
+  }
 }
 
 .top-books_quick-view {
   position: absolute;
-  width: 180px;
-  height: 70px;
+  width: 100%;
+  height: 135px;
   left: 0px;
-  top: 186px;
+  top: 350px;
   border-style: none;
 
   background: #eac645;
   border-radius: 0px 0px 8px 8px;
 
   font-weight: 500;
-  font-size: 14px;
+  font-size: 24px;
   line-height: 18px;
 
   letter-spacing: -0.04em;
@@ -95,6 +204,18 @@
   color: #111111;
   cursor: pointer;
   visibility: hidden;
+
+  @include tablet {
+    top: 228px;
+    height: 88px;
+    font-size: 14px;
+  }
+
+  @include pc {
+    top: 186px;
+    height: 70px;
+    font-size: 14px;
+  }
 }
 
 .top-books_book:hover .top-books_quick-view {
