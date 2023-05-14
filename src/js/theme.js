@@ -21,9 +21,9 @@ function onChange(e) {
     header.classList.add('dark-theme_header');
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.DARK));
   } else {
+    body.classList.add('ligth-theme');
     body.classList.remove('dark-theme');
     header.classList.remove('dark-theme_header');
-    body.classList.add('ligth-theme');
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.LIGHT));
   }
 }
