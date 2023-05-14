@@ -1,3 +1,4 @@
+import {hideLoader} from './queries'
 let shoppingList = [
   {
     id: 1,
@@ -200,3 +201,5 @@ function generateCard(book) {
 // }
 
 // generateCards();
+
+hideLoader();
