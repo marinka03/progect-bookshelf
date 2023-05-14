@@ -5,6 +5,10 @@
 import { funds } from './funds';
 
 const list_support = document.querySelector('.support-wrapper');
+// const disable = document.querySelector('.swiper-button-disabled');
+// const nextButton = document.querySelector('.swiper-button-next');
+// const nextIcon = document.querySelector('.swiper_icon-next');
+// const prevButton = document.querySelector('.swiper_icon-prev');
 
 function createFondMarkup(arr) {
   const markup = arr
@@ -42,3 +46,11 @@ new Swiper('.support-container', {
     enabled: true,
   },
 });
+
+// function disableButton() {
+//   if (nextButton.classList.contains('swiper-button-disabled')) {
+//     console.log('test');
+//     // nextIcon.style.disabled === true;
+//   }
+// }
+// disableButton(nextButton);
