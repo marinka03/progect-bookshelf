@@ -6,12 +6,12 @@ const array = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
 listEl.innerHTML = createMarkupBooksInShopping(array);
 // const btnDelete = document.querySelector('.js-li-shopping');
 
-apiFetch().then(data =>
-  containerEl.insertAdjacentHTML('beforeend', createMarkupTopBooks(data))
-);
+// apiFetch().then(data =>
+//   containerEl.insertAdjacentHTML('beforeend', createMarkupTopBooks(data))
+// );
 
-containerEl.addEventListener('click', addToShoppingList);
-listEl.addEventListener('click', onClickBtnDelete);
+// containerEl.addEventListener('click', addToShoppingList);
+// listEl.addEventListener('click', onClickBtnDelete);
 
 function onClickBtnDelete(evt) {
   if (evt.target.classList.contains('js-delete')) {
