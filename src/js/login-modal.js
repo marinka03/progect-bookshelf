@@ -209,7 +209,9 @@ const includeBook = document.querySelector(".checking");
 
 
   function register(){
-    
+    const sighnUpEmail = email.value;
+const sighnUpName = name.value;
+const sighnUpPassword = password.value;
    
 
     createUserWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
