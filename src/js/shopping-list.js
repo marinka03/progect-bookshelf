@@ -1,3 +1,5 @@
+import { hideLoader } from "./queries";
+hideLoader();
 const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
 
