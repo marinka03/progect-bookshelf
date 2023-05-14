@@ -157,25 +157,44 @@ function generateCard(book) {
 
 // function generateCard(book) {
 //   return `
-//     <div class="container">
-//       <div class="left">
-//         <img src="${book.book_image}" alt="${book.title}">
+//     <li class="shopping-list-card" data-bookId='${obj._id}'> 
+//       <div class="shopping-list-card__cover">
+//         <img src="${book.book_image}">
 //       </div>
-//       <div class="right">
-//         <h1>${book.title}</h1>
-//         <p>List name: ${book.list_name || 'No list name'}</p>
-//         <p>${book.description || 'No description'}</p>
-//         <p>Author: ${book.author}</p>
-//         <div class="buy-links">
-//        				<a href="${book.amazon_product_url}">Amazon</a>
-// <a href="${book.buy_links[1].url}">Book1</a>
-// <a href="${book.buy_links[2].url}">Book2</a>
-//         </div>
-//         <button onclick="deleteBook(${
+// <div class="shopping-list-card__content">
+//         <h1 class="shopping-list-card__title">${book.title}</h1>
+//         <p class="shopping-list-card__category">${
+//           book.list_name || 'No list name'
+//         }</p>
+// <div class="shopping-list-card__wrapper">
+//         <p class="shopping-list-card__desc">${
+//           book.description || 'No description'
+//         }</p>
+// </div>
+// <div class="shopping-list-card__cellar">
+//         <p class="shopping-list-card__author">${book.contributor}</p>
+//         <ul class="shopping-list-card__links">
+//           <li>          
+//            <a href="${book.amazon_product_url}"><img src="amazon.png"></a>
+//           </li> 
+//           <li>
+//            <a href="${
+//              book.buy_links[1].url
+//            }"><img src="book1.png"></a>             
+//           </li>
+//           <li>
+//            <a href="${book.buy_links[2].url}"><img src="book2.png"></a>
+//           </li>                  
+//         </ul></div>
+//         <button class="shopping-list-card__button" onclick="deleteBook(${
 //           book._id
-//         })">Delete from Shopping List</button>
+//         })">
+//         <svg width="16" height="16" class="shopping-list-card__icon">
+//         <use href="/icons.e58dda3e.svg#icon-trash"></use>
+//         </svg>
+//         </button>
 //       </div>
-//     </div>
+// </li>
 //   `;
 // }
 
