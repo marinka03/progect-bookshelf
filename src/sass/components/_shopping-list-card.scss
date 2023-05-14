@@ -1,0 +1,128 @@
+.shopping-list-card {
+    position: relative;
+    margin-bottom: 20px;
+    
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 14px;
+gap: 48px;
+isolation: isolate;
+
+background: #FFFFFF;
+border: 2px solid rgba(79, 46, 232, 0.4);
+border-radius: 16px;
+
+
+&__content {
+    width: 100%;
+}
+
+&__title {
+
+    font-size: 16px;
+line-height: 1.125;
+/* identical to box height, or 112% */
+
+letter-spacing: -0.04em;
+text-transform: uppercase;
+
+margin-bottom: 4px;
+
+}
+
+&__category {
+
+    padding-bottom: 8px;
+
+    font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 1.175;
+
+letter-spacing: 0.03em;
+
+color: #B4AFAF;
+
+}
+
+&__cellar {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+&__wrapper {
+    height: 68px;
+    overflow: hidden;
+
+}
+
+&__links {
+    display: flex;
+    gap: 8px;
+
+}
+
+&__desc {
+
+    width: 193px;
+    max-height: 68px;
+
+    font-weight: 400;
+font-size: 14px;
+line-height: 1.29;
+
+
+letter-spacing: -0.04em;
+
+color: #111111;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+
+      display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; 
+  white-space: pre-wrap; 
+
+  overflow-wrap: break-word;
+
+  @include tablet {
+    width: 508px;
+  }
+
+  @include pc {
+    width: 808px;
+  }
+}
+
+&__author {
+    font-style: italic;
+    font-size: 12px;
+    line-height: 1.17;
+    color: #B4AFAF;
+
+}
+
+&__icon {
+    fill: white;
+
+}
+
+&__button {
+    right: 14px;
+    top: 14px;
+    position: absolute;
+
+
+    background: #4F2EE8;
+  border-radius: 50%;
+      border-color: transparent;
+      padding: 8px;
+
+      display: flex;
+
+}
+}

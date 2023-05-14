@@ -12,3 +12,4 @@ import './js/theme';
 import './js/category-list';
 import './js/login-modal';
 import './js/swiper';
+import './js/create-modal';
