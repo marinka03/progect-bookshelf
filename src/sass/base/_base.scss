@@ -25,6 +25,7 @@ img {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   margin: -1px;
+  z-index: 0;
 }
 .side-bar-container {
   margin: 0 auto;
@@ -32,9 +33,11 @@ img {
   @include tablet {
     display: flex;
     flex-direction: row;
+    padding-top: 40px;
   }
   @include pc {
     flex-direction: column;
+    padding-top: 0px;
   }
 }
 
