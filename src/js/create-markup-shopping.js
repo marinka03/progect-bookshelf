@@ -1,3 +1,9 @@
+import amazonImg from '../images/amazon_link.png';
+import appleImg from '../images/apple_link.png';
+import bookshopImg from '../images/bookshop_link.png';
+import trash from '../images/trash.png';
+
+
 let shoppingList = [
   {
     id: 1,
@@ -108,23 +114,27 @@ function generateCard(book) {
 <div class="shopping-list-card__cellar">       
  <p class="shopping-list-card__author">${book.contributor}</p>
         <ul class="shopping-list-card__links">
-          ${book.buy_links
-            .map(
-              link => `<li>
-            <a href="${link.url}" target="_blank">
-              <img src="${link.name.toLowerCase()}.png">
-            </a>
-          `
-            )
-            .join('')}
+                   <li>
+              <a class="seller__link shopping-list-card__amazon" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Amazon">
+                <img src="${amazonImg}" alt="amazon" />
+              </a>
+            </li>
+            <li>
+              <a class="seller__link shopping-list-card__book" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Apple-books">
+                <img src="${appleImg}" alt="apple-books" />
+              </a>
+            </li>
+            <li>
+              <a class="seller__link shopping-list-card__book" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Bookshop">
+                <img src="${bookshopImg}" alt="bookshop" />
+              </a>
+            </li>
         </ul></div>
         <button class="shopping-list-card__button" onclick="deleteBook(${
           book.id
         })">
         
-        <svg width="16" height="16" class="shopping-list-card__icon">
-        <use href="./images/icons/icons.svg#icon-trash"></use>
-        </svg>
+        <img src="${trash}" width="16" height="16" class="shopping-list-card__icon" alt="Remove">
         
         </button>
 
