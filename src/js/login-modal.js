@@ -129,6 +129,7 @@ function signupmodal(){
     sighnInOpt.disabled = false;
     nameInput.style.display = "block";
     sighnInBtn.style.display = "none";
+    sighnUpBtn.style.display = "block";
 }
 
 
