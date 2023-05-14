@@ -106,7 +106,7 @@
         //     height: 34px;
         //     background-color: #EAC645;
         //     border-radius: 36px;
-        // }
+        // }  
     }
     &__wrapper{
         display: flex;
@@ -145,6 +145,7 @@
         stroke: $accent-color;
     }
  }
+
 .current-home{
     background: #EAC645;
     border-radius: 36px;
@@ -214,14 +215,29 @@
         transition: $transition;
       }
 }
-
+.burger-box{
+    margin-left: 15px;
+}
 .burger{
     stroke: $black-color;
     margin-right: 5px;
     cursor: pointer;
+
+    // z-index: 2;
+    // opacity: 1;
+    // width: 28px;
+    // height: 28px;
+    // visibility: visible;
+
     @include tablet {
         opacity: 0 ;
         visibility: hidden;
         display: none;
     }
+}
+
+.icon-close{
+    stroke: $black-color;
+    margin-right: 5px;
+    cursor: pointer;
 }
