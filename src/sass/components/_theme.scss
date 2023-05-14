@@ -1,4 +1,4 @@
-body.light-theme {
+.light-theme {
   background-color: $light-theme-main-background-color;
   color: $black-color;
 }
@@ -6,8 +6,13 @@ body.light-theme {
 body.dark-theme {
   background-color: $dark-theme-main-background-color;
   color: $white-color;
+  fill: $white-color;
 }
 
 .dark-theme_header {
   background-color: $black-color;
 }
+
+// .dark-theme-category-list_item {
+//   color: rgba(255, 255, 255, 0.6);
+// }
