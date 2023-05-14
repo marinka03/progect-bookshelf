@@ -94,7 +94,7 @@ import 'firebase/auth';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAuth, signOut } from "firebase/auth";
 // import { getDatabase } from "firebase/database";
-import { getDatabase, ref, set, child, update, remove, get, onValue } from "firebase/database";
+import { getDatabase, ref, set, child, update, remove, get, onValue, transaction } from "firebase/database";
 
 
 
@@ -201,6 +201,10 @@ const database = getDatabase(app);
 //     // alert(errorMessage)
 //   });
 // let globalUserId;
+
+const includeBook = document.querySelector(".checking");
+      console.log(includeBook);
+      includeBook.addEventListener("click", addbook)
 
 
 
@@ -388,15 +392,32 @@ function checkId(){
     })}
 
 
-    function addBook(bookId) {
-    
-        // const userId = user.uid;
-        // const sighnUpEmail = email.value;
-        // const sighnUpName = name.value;
-        set(ref(db, 'users/' + userId), {
-          username: name,
-          email: email,
-        //   profile_picture : imageUrl
-        });
-        alert('User saved')
+    function addbook(bookId) { 
+        // // const userId = user.uid;
+        // // const sighnUpEmail = email.value;
+        // // const sighnUpName = name.value;
+        // set(ref(db, 'users/' + userId), {
+        //   username: name,
+        //   email: email,
+        // //   profile_picture : imageUrl
+        // });
+        // alert('User saved')
+        const userId = auth.currentUser.uid; // Здесь нужно указать идентификатор пользователя
+const book = 'Новая книга';
+
+
+const db = getDatabase();
+const userRef = ref(db, 'users/' + userId + '/books');
+const bookList = ['Книга 1', 'Книга 2', 'Книга 3'];
+
+
+set(userRef, bookList)
+  .then(() => {
+    console.log('Список книг успешно добавлен в базу данных для пользователя.');
+  })
+  .catch((error) => {
+    console.error('Ошибка при добавлении списка книг в базу данных:', error);
+  });
       }
+
+      
