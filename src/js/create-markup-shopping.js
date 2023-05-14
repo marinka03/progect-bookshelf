@@ -123,7 +123,7 @@ function generateCard(book) {
         })">
         
         <svg width="16" height="16" class="shopping-list-card__icon">
-        <use href="/icons.e58dda3e.svg#icon-trash"></use>
+        <use href="./images/icons/icons.svg#icon-trash"></use>
         </svg>
         
         </button>
