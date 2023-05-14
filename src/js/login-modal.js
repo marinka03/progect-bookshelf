@@ -203,9 +203,9 @@ const database = getDatabase(app);
 //   });
 // let globalUserId;
 
-const includeBook = document.querySelector(".checking");
-      console.log(includeBook);
-      includeBook.addEventListener("click", addbook)
+// const includeBook = document.querySelector(".checking");
+//       console.log(includeBook);
+//       includeBook.addEventListener("click", addbook)
 
 
 
