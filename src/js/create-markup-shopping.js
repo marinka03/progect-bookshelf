@@ -145,10 +145,11 @@ function generateCard(book) {
 //   });
 // }
 
-// function deleteBook(bookId) {
+// function deleteBook(event) {
+//   const bookElement = event.target.closest('.shopping-list-card');
+//   const bookId = bookElement.dataset.bookId;
 //   shoppingList = shoppingList.filter(book => book._id !== bookId);
-
-//   const cards = document.querySelector('.js-shopping-list-card');
+//   const cards = document.querySelector('.js-listInShopping');
 //   cards.innerHTML = '';
 //   generateCards();
 // }
@@ -157,7 +158,7 @@ function generateCard(book) {
 
 // function generateCard(book) {
 //   return `
-//     <li class="shopping-list-card" data-bookId='${obj._id}'> 
+//     <li class="shopping-list-card" data-bookId='${book._id}'> 
 //       <div class="shopping-list-card__cover">
 //         <img src="${book.book_image}">
 //       </div>
