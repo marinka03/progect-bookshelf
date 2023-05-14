@@ -26,7 +26,10 @@
     background-repeat: no-repeat;
     width: 100vw;
     height: 100vh;
-    z-index: 5;
+    position: fixed;
+    bottom: 0px;
+    top: 64px;
+    z-index: 101;
     
 }
 

@@ -1,6 +1,9 @@
 .header {
     width: 100%;
     height: 64px;
+    position: sticky;
+    z-index: 10;
+    top: 0;
     border: $ligth-theme_modal-border-color;
     background-color: $white-color;
     border-bottom-left-radius: 8px;
