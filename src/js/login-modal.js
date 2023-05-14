@@ -5,11 +5,14 @@ const backdrop = document.querySelector(".modal-overlay");
 const nameInput = document.querySelector(".name");
 const sighnUpOpt = document.getElementById("sighn-up-opt")
 const sighnInOpt = document.getElementById("sighn-in-opt")
+const menu = document.querySelector('.header__menu')
 
 const form = document.querySelector(".form");
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const name = document.getElementById('name');
+window.addEventListener('keydown', onEscKeyPress);
+
 const sighnUpEmail = email.value;
 const sighnUpName = name.value;
 const sighnUpPassword = password.value;
@@ -34,12 +37,18 @@ backdrop.style.display = "block";
     modalContainer.style.display = "block";
   }
   
+  function onEscKeyPress(event) {
+    if (event.code === 'Escape') {
+      closeModal();
+    }
+  }
   
 
   function closeModal() {
     modalContainer.style.display = "none";
     // modalContainer.innerHTML = "";
     backdrop.style.display = "none";
+    // window.removeEventListener('keydown', onEscKeyPress);
     form.reset();
   }
   
@@ -254,15 +263,17 @@ const sighnUpPassword = password.value;
       checkname()
       checkId()
       getAddedBooks()
-   
+      menu.style.display = "flex";
       // ...
     } else {
       // User is signed out
-      // ...
+     menu.style.display = "none";
     }
   });
 }
 checkCurentUser();
+
+
 
 function signOutUser () {
     signOut(auth).then(() => {
