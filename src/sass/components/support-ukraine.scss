@@ -72,16 +72,31 @@
   top: 75%;
   left: 59%;
 }
+
+.wrapper .swiper-button-prev {
+  position: relative;
+  top: 80%;
+  left: 20%;
+}
 .wrapper .swiper-button-next:after,
 .wrapper .swiper-button-prev:after {
   color: transparent;
 }
 
-.swiper_icon {
+.swiper_icon-next {
   position: relative;
-  top: 62%;
+  top: 56%;
   left: 58%;
   @include tablet {
-    top: 67%;
+    top: 66%;
+  }
+}
+
+.swiper_icon-prev {
+  position: relative;
+  top: 56%;
+  left: 8%;
+  @include tablet {
+    top: 66%;
   }
 }
