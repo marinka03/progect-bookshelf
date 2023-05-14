@@ -70,7 +70,7 @@ backdrop.style.display = "block";
 
 
   // Import the functions you need from the SDKs you need
-  import { getDatabase } from "firebase/database";
+  
  
 
 import { initializeApp } from "firebase/app";
@@ -81,6 +81,10 @@ import 'firebase/auth';
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAuth, signOut } from "firebase/auth";
+// import { getDatabase } from "firebase/database";
+import { getDatabase, ref, set, child, update, remove, get, onValue } from "firebase/database";
+
+
 
 
 
@@ -100,26 +104,39 @@ sighnInBtn.addEventListener("click", login);
 sighnOutBtn.addEventListener("click", signOutUser);
 
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyC6_3JGFTbHH7w50Kv4NMidw8vHUEsiuKI",
+//   authDomain: "book-list-2a4ef.firebaseapp.com",
+//   projectId: "book-list-2a4ef",
+//   storageBucket: "book-list-2a4ef.appspot.com",
+//   messagingSenderId: "150834791024",
+//   appId: "1:150834791024:web:ed6d52dbf29190ef7d6ab5",
+//   measurementId: "G-WET36RWZYC"
+// };
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC6_3JGFTbHH7w50Kv4NMidw8vHUEsiuKI",
-  authDomain: "book-list-2a4ef.firebaseapp.com",
-  projectId: "book-list-2a4ef",
-  storageBucket: "book-list-2a4ef.appspot.com",
-  messagingSenderId: "150834791024",
-  appId: "1:150834791024:web:ed6d52dbf29190ef7d6ab5",
-  measurementId: "G-WET36RWZYC"
-};
+    apiKey: "AIzaSyBcrgHRI8n8PGmp66vE4dbqzvZDKE7S3nw",
+    authDomain: "book-list7.firebaseapp.com",
+    projectId: "book-list7",
+    storageBucket: "book-list7.appspot.com",
+    messagingSenderId: "822015975293",
+    appId: "1:822015975293:web:ba97db769cb5eb5d8bf614",
+    databaseURL: "https://book-list7-default-rtdb.europe-west1.firebasedatabase.app"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getDatabase();
+const dbRef = ref(getDatabase());
 // firebase.initializeApp(firebaseConfig);
 // const database = firebase.database();
 // const auth = firebase.auth(app);
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
+const database = getDatabase(app);
 // const database = getDatabase(app);
 
 const email = document.getElementById('email');
@@ -149,16 +166,26 @@ console.log(email, password);
 //     const errorMessage = error.message;
 //     // alert(errorMessage)
 //   });
+let globalUserId;
+
+
 
   function register(){
     const sighnUpEmail = email.value;
     const sighnUpName = name.value;
     const sighnUpPassword = password.value;
+   
+
     createUserWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
     .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-       
+        const userId = user.uid;
+        globalUserId = userId;
+
+        writeUserData(userId, sighnUpName, sighnUpEmail);
+    //  dbRef.child('users/' + userId).set(users_data)
+        
         alert('Учетная запись успешно создана:', sighnUpName);
     
         // const database_ref = database.ref()
@@ -170,6 +197,7 @@ console.log(email, password);
         // }
         // ...
     //     database_ref.child('users/' + user.uid).set(user_data)
+  
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -177,6 +205,7 @@ console.log(email, password);
         // alert(errorMessage)
         console.log(errorMessage + errorCode)
       });
+      
   }
 
   function login(){
@@ -206,11 +235,14 @@ console.log(email, password);
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      userCard.textContent = 'loged in';
+      
+  
+    //   userCard.textContent = 'loged in';
 // openModalButton.style.display = "none";
     //   openModalButton.innerHTML = `<button type="button">You are in </button>`;
-      
+    
+      checkname()
+      checkId()
    
       // ...
     } else {
@@ -226,6 +258,7 @@ function signOutUser () {
         // Sign-out successful.
         userCard.textContent = 'Sighn up';
         alert('bye');
+
 
       }).catch((error) => {
         // An error happened.
@@ -263,3 +296,71 @@ function signOutUser () {
 //            return true
 //         }
 //       }
+
+
+// const userId = auth.currentUser.uid;
+
+
+function writeUserData(userId, name, email) {
+    
+    // const userId = user.uid;
+    // const sighnUpEmail = email.value;
+    // const sighnUpName = name.value;
+    set(ref(db, 'users/' + userId), {
+      username: name,
+      email: email,
+    //   profile_picture : imageUrl
+    });
+    alert('User saved')
+  }
+
+
+// function checkData(globalUserId){
+//     get(child(dbRef, `users/${globalUserId}`)).then((snapshot) => {
+//         if (snapshot.exists()) {
+//           console.log(snapshot.val());
+//         } else {
+//           console.log("No data available");
+//         }
+//       }).catch((error) => {
+//         console.error(error);
+//       });
+// }
+
+function checkname(){
+const userId = auth.currentUser.uid;
+return onValue(ref(db, '/users/' + userId), (snapshot) => {
+  const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+
+  // ...
+ userCard.textContent = username;
+  console.log(username)
+
+}, {
+  onlyOnce: true
+});}
+
+function checkId(){
+    const userId = auth.currentUser.uid;
+    return onValue(ref(db, '/users/' + userId), (snapshot) => {
+      const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    
+      // ...
+     
+      console.log(userId)
+    
+    })}
+
+
+    function addBook(bookId) {
+    
+        // const userId = user.uid;
+        // const sighnUpEmail = email.value;
+        // const sighnUpName = name.value;
+        set(ref(db, 'users/' + userId), {
+          username: name,
+          email: email,
+        //   profile_picture : imageUrl
+        });
+        alert('User saved')
+      }
