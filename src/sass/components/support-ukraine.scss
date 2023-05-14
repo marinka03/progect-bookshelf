@@ -72,12 +72,18 @@
   top: 75%;
   left: 59%;
 }
+
+.wrapper .swiper-button-prev {
+  position: relative;
+  top: 80%;
+  left: 20%;
+}
 .wrapper .swiper-button-next:after,
 .wrapper .swiper-button-prev:after {
   color: transparent;
 }
 
-.swiper_icon {
+.swiper_icon-next {
   position: relative;
   top: 62%;
   left: 58%;
@@ -85,3 +91,22 @@
     top: 67%;
   }
 }
+
+.swiper_icon-prev {
+  position: relative;
+  top: 62%;
+  left: 8%;
+  @include tablet {
+    top: 67%;
+  }
+}
+
+.swiper_icon-prev.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+
+// .support_button_hidden{
+
+// }

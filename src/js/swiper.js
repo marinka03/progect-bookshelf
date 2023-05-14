@@ -27,7 +27,7 @@ new Swiper('.support-container', {
     prevEl: '.swiper-button-prev',
   },
   spaceBetween: 20,
-  loop: true,
+  // loop: true,
   freeMode: true,
   direction: 'vertical',
   breakpoints: {
