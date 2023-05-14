@@ -10,10 +10,11 @@
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
     <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
+    
   </head>
   <body>
     <include src="./partials/sections/header.html"></include>
+    <include src="./partials/sections/menu.html" ></include>
     <include src="./partials/sections/scroll-up.html"></include>
     <include src="./partials/sections/loader.html"></include>
 
@@ -28,5 +29,23 @@
       </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- 
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script> -->
+
+  <!-- <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js'
+
+    // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js'
+
+    // Add Firebase products that you want to use
+    import { getauth } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js'
+    import { getdatabase } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js'
+  </script> -->
+
+    <script type="module" src="./index.js"></script>
   </body>
 </html>

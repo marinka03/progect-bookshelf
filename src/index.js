@@ -1,4 +1,5 @@
 import './js/queries';
+import './js/menu';
 import './js/home';
 import './js/create-markup-home';
 // import './js/shopping-list';
