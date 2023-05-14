@@ -224,6 +224,7 @@ const sighnUpPassword = password.value;
         const userId = user.uid;
         // globalUserId = userId;
         
+        // const userImg = randomImg();
 
 
         writeUserData(userId, sighnUpName, sighnUpEmail);
@@ -391,7 +392,7 @@ function checkId(){
       const url = (snapshot.val() && snapshot.val().url) || 'Anonymous';
     //   userCard.innerHTML = url;
       // ...
-     console.log(url)
+    //  console.log(url)
       console.log(userId)
     
     })}
