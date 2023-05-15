@@ -90,3 +90,6 @@ function onClickIconClose(evt){
 // src="./images/menu_mob_image.png"
 // alt="Books"
 // /> */}
+
+// const btnUserHomePage = document.querySelector(".header__sign-up");
+
