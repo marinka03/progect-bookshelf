@@ -7,7 +7,7 @@ const sighnUpOpt = document.getElementById('sighn-up-opt');
 const sighnInOpt = document.getElementById('sighn-in-opt');
 const menu = document.querySelector('.header__menu');
 
-import {buttonModalRemoveBook} from './create-modal'
+// import {buttonModalRemoveBook} from './create-modal'
 
 const form = document.querySelector('.form');
 const email = document.getElementById('email');
@@ -415,11 +415,12 @@ document.body.addEventListener('click', function (event) {
     console.log('bookId :>> ', bookId);
     addbooktosl(bookId);
   }
-  if (event.target.classList.contains('modal__btn-remove')) {
+  if (event.target.classList.contains('modalbtn-remove')) {
     // выполнить функцию для элемента с классом 'modal__btn-add'
-  //   bookId = event.target.getAttribute('data-bookId');
-    removeee();
+    bookId = event.target.getAttribute('data-bookId');
+    // removeee();
   //   addbooktosl(bookId);
+  removeBook(bookId);
   }
 });
 
