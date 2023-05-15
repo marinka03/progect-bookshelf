@@ -80,21 +80,23 @@ color: $very-light-text-color;
 &__cellar {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 
 }
 
 &__wrapper {
     height: 68px;
     overflow: hidden;
+    margin-bottom: 23px;
 
-    @include tablet
-    { 
-        margin-bottom: 100px;
-    }
+    // @include tablet
+    // { 
+    //     margin-bottom: 100px;
+    // }
 
-    @include pc {
-        margin-bottom: 250px;
-    }
+    // @include pc {
+    //     margin-bottom: 250px;
+    // }
 
 }
 
@@ -175,17 +177,30 @@ color: $black-color;
 }
 
 &__author {
+    max-width: 97px;
     font-style: italic;
     font-size: 12px;
     line-height: 1.17;
     color: $very-light-text-color;
 
+
+      text-overflow: ellipsis; 
+  white-space: nowrap; 
+  overflow: hidden; 
+
 }
 
 &__image {
 
-    border-radius: 8px;
+    max-width: none;
 
+    border-radius: 8px;
+    width: 100px;
+    height: 142px;
+    @include tablet {
+        width: 116px;
+        height: 165px;
+    }
 
 }
 
