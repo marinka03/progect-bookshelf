@@ -420,17 +420,7 @@ document.body.addEventListener('click', function (event) {
   }
 });
 
-
-
-
-// const buttonModalRemoveBook = document.querySelector('.modalbtn-remove');
-// buttonModalRemoveBook.addEventListener('click', removeee)
-
-
-
-const bookList = [];
-
-
+const bookList = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
 function getAddedBooks() {
   const userId = auth.currentUser.uid;
 
@@ -450,6 +440,7 @@ function getAddedBooks() {
             return;
           }
           bookList.push(data);
+          localStorage.setItem('shopping-list', JSON.stringify(bookList));
           console.log(bookList);
         });
       });
