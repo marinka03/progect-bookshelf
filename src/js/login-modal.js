@@ -377,32 +377,34 @@ function checkId() {
 }
 
 function addbooktosl(bookId) {
-  const userId = auth.currentUser.uid;
-
-  const db = getDatabase();
-  const userBooksRef = ref(db, 'users/' + userId + '/books');
-
-  const bookRef = child(userBooksRef, bookId);
-  get(bookRef)
-    .then(snapshot => {
-      if (snapshot.exists()) {
-        // Книга уже существует в списке
-        alert('Книга уже добавлена в список');
-      } else {
-        // Книги нет в списке, добавляем ее
-        set(bookRef, true)
-          .then(() => {
-            alert('Книга успешно добавлена в список');
+    const userId = auth.currentUser.uid;
+  
+    const db = getDatabase();
+    const userBooksRef = ref(db, 'users/' + userId + '/books');
+  
+    const bookRef = child(userBooksRef, bookId);
+    get(bookRef)
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          // Книга уже существует в списке
+          alert('Книга уже добавлена в список');
+        } else {
+          // Книги нет в списке, добавляем ее
+          update(userBooksRef, {
+            [bookId]: bookId
           })
-          .catch(error => {
-            console.error('Ошибка при добавлении книги в список:', error);
-          });
-      }
-    })
-    .catch(error => {
-      console.error('Ошибка при проверке наличия книги в списке:', error);
-    });
-}
+            .then(() => {
+              alert('Книга успешно добавлена в список');
+            })
+            .catch(error => {
+              console.error('Ошибка при добавлении книги в список:', error);
+            });
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка при проверке наличия книги в списке:', error);
+      });
+  }
 
 document.body.addEventListener('click', function (event) {
   if (event.target.classList.contains('modal__btn-add')) {
