@@ -122,7 +122,8 @@ async function renderBookById(bookId) {
     <button class="btn modal__btn-add" type="button"
     data-bookId='${bookId}'>${bookInStorage ? 'remove from the shopping list' : 'add to shopping list'}</button>
     <button class="btn modalbtn-remove" data-bookId='${bookId}' type="button">remove from the shopping list</button>
-    <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>`;
+    <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>
+    <p class="modal__btn-need-login">First you need to login</p>`;
 
     // <button class="btn modal__btn-remove" type="button">remove from the shopping list</button>
     //   <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>

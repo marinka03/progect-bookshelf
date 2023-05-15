@@ -276,7 +276,7 @@ function logOutBtn() {
     sighnOutBtn.style.display = 'none';
     buttonClicked = false;
   } else {
-    sighnOutBtn.style.display = 'block';
+    sighnOutBtn.style.display = 'flex';
     buttonClicked = true;
   }
 }
@@ -409,7 +409,8 @@ function addbooktosl(bookId) {
 }
 
 document.body.addEventListener('click', function (event) {
-  if (event.target.classList.contains('modal__btn-add')) {
+  console.log('curent');
+    if (event.target.classList.contains('modal__btn-add')) {
     // выполнить функцию для элемента с классом 'modal__btn-add'
     bookId = event.target.getAttribute('data-bookId');
     console.log('bookId :>> ', bookId);
