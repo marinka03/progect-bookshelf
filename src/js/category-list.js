@@ -3,9 +3,7 @@ import { apiRequestCategory } from './queries';
 
 
 const categoryListEl = document.querySelector('.category-list');
-const categoryConteiner = document.querySelector('.js-top-books-container');
-const categoryTitle = document.querySelector('h1')
-console.dir(categoryTitle)
+const categoryConteiner = document.querySelector('.js-section-top-books');
 const allCategoryEl = document.querySelector('.all-category');
 
 
@@ -16,16 +14,9 @@ categoryListEl.addEventListener('click', async (e) => {
         .then(data => {
             console.log(data);
             const MarkupCategory = createMarkupCategory(data);
-            categoryConteiner.innerHTML = MarkupCategory;
-            categoryTitle.innerText = `${e.target.textContent}`;
+            categoryConteiner.innerHTML = `<h1 class="title-top-books">${e.target.textContent}</h1><div class="js-top-books-container">${MarkupCategory}</div>;` ;
         })
         .catch(err => console.log(err));
-
-
-    // const data = await apiRequestByCategory(categoryRequest);
-    // categoryConteiner.innerHTML = createMarkupCategory(data);
-    // categoryTitle.innerText = `${e.target.textContent}`
-    // console.log(data);
 });
 
 
