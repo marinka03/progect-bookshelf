@@ -4,7 +4,8 @@ import { checkCurentUser } from './login-modal';
 import { bookList } from './login-modal';
 setTimeout(() => {
   console.log('jvnnre', bookList);
-  listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
+  //   listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
+  listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
 }, 5000);
 hideLoader();
 const containerEl = document.querySelector('.js-container-list');
@@ -20,7 +21,7 @@ const array = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
 // );
 
 // containerEl.addEventListener('click', addToShoppingList);
-// listEl.addEventListener('click', onClickBtnDelete);
+listEl.addEventListener('click', onClickBtnDelete);
 
 function onClickBtnDelete(evt) {
   if (evt.target.classList.contains('js-delete')) {
@@ -30,12 +31,14 @@ function onClickBtnDelete(evt) {
     // const masShop = array.filter(item => item._id !== id);
     // console.log(masShop);
     // listEl.innerHTML = createMarkupBooksInShopping(masShop);
-    const index = array.findIndex(item => item._id === id);
-    console.log(array[index]);
-    array.splice(index, 1);
-    console.log(array);
-    localStorage.setItem('shopping-list', JSON.stringify(array));
-    listEl.innerHTML = createMarkupBooksInShopping(array);
+
+    const index = bookList.findIndex(item => item._id === id);
+    console.log(bookList[index]);
+    bookList.splice(index, 1);
+    console.log(bookList);
+    // localStorage.setItem('shopping-list', JSON.stringify(bookList));
+    // listEl.innerHTML = createMarkupBooksInShopping(bookList);
+    listEl.innerHTML = generateCard(bookList);
   }
 }
 
@@ -59,13 +62,13 @@ function addToShoppingList(evt) {
     }
     array.push(data);
     console.log(array);
-    localStorage.setItem('shopping-list', JSON.stringify(array));
+    // localStorage.setItem('shopping-list', JSON.stringify(array));
     listEl.innerHTML = createMarkupBooksInShopping(array);
   });
 
-  const mas = document.querySelectorAll('.js-card');
+//   const mas = document.querySelectorAll('.js-card');
 
-  const findEl = [...mas].find(item => item.dataset.id === id);
+//   const findEl = [...mas].find(item => item.dataset.id === id);
 
   //   const inShoppingList = arrToShoppingList.some(
   //     item => item.dataset.id === findEl.dataset.id
@@ -150,6 +153,60 @@ function createMarkupBooksInShopping(books) {
 				<a href="${book.buy_links[1].url}">Book1</a>
 				<a href="${book.buy_links[2].url}">Book2</a>
 			</li>`
+    )
+    .join('');
+}
+
+function generateCard(books) {
+  return books
+    .map(
+      book =>
+        `
+    <li class="shopping-list-card js-li-shopping" data-id=${book._id}>
+      <div class="shopping-list-card__cover">
+        <img src="${book.book_image}" width='116'>
+      </div>
+      <div class="shopping-list-card__content">
+        <h1 class="shopping-list-card__title">${book.title}</h1>
+        <p class="shopping-list-card__category">${
+          book.age_group || 'No category'
+        }</p> 
+<div class="shopping-list-card__wrapper">
+        <p class="shopping-list-card__desc">${
+          book.description || 'No description'
+        }</p>
+</div>
+<div class="shopping-list-card__cellar">       
+ <p class="shopping-list-card__author">${book.contributor}</p>
+        <ul class="shopping-list-card__links">
+                   <li>
+              <a class="seller__link shopping-list-card__amazon" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Amazon">
+                <img src="${book.title}" alt="amazon" />
+              </a>
+            </li>
+            <li>
+              <a class="seller__link shopping-list-card__book" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Apple-books">
+                <img src="${book.title}" alt="apple-books" />
+              </a>
+            </li>
+            <li>
+              <a class="seller__link shopping-list-card__book" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Bookshop">
+                <img src="${book.title}" alt="bookshop" />
+              </a>
+            </li>
+        </ul></div>
+        <button class="shopping-list-card__button" onclick="deleteBook(${
+          book.id
+        })">
+        
+        <img src="${
+          book.title
+        }" width="16" height="16" class="js-delete shopping-list-card__icon" alt="Remove">
+        
+        </button>
+
+      </div>
+  `
     )
     .join('');
 }
