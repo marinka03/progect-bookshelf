@@ -423,7 +423,7 @@ document.body.addEventListener('click', function (event) {
   console.log('curent');
     if (event.target.classList.contains('modal__btn-add')) {
     // выполнить функцию для элемента с классом 'modal__btn-add'
-    bookId = event.target.getAttribute('data-bookId');
+   const bookId = event.target.getAttribute('data-bookId');
     console.log('bookId :>> ', bookId);
     addbooktosl(bookId);
   }
