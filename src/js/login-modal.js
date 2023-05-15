@@ -60,14 +60,11 @@ function closeModal() {
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from 'firebase/app';
-// import { getAnalytics } from "firebase/analytics";
-import { getAuth } from 'firebase/auth';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
 import 'firebase/auth';
 
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getAuth, signOut } from 'firebase/auth';
-// import { getDatabase } from "firebase/database";
+import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+
 import {
   getDatabase,
   ref,
@@ -76,9 +73,7 @@ import {
   update,
   remove,
   get,
-  onValue,
-  push,
-  once,
+  onValue
 } from 'firebase/database';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -431,9 +426,7 @@ document.body.addEventListener('click', function (event) {
 // const buttonModalRemoveBook = document.querySelector('.modalbtn-remove');
 // buttonModalRemoveBook.addEventListener('click', removeee)
 
-function removeee() {
-    console.log('cliiiiick')
-}
+
 
 const bookList = [];
 
