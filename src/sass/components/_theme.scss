@@ -11,8 +11,9 @@ body.dark-theme {
 
 .dark-theme_header {
   background-color: $black-color;
+  color: $white-color;
 }
 
-// .dark-theme-category-list_item {
-//   color: rgba(255, 255, 255, 0.6);
-// }
+.dark-theme-category-list_item {
+  color: rgba(255, 255, 255, 0.6);
+}
