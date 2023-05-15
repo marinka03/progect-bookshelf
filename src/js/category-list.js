@@ -9,15 +9,24 @@ console.dir(categoryTitle)
 const allCategoryEl = document.querySelector('.all-category');
 
 
-// allCategoryEl.addEventListener('click',   );
-// categoryListEl.addEventListener('click', async (e) => {
-//     // if (e.target.tagName === 'UL') return;
-//     const categoryRequest = e.target.textContent;
-//     const data = await apiRequestByCategory(categoryRequest);
-//     categoryConteiner.innerHTML = createMarkupCategory(data);
-//     categoryTitle.innerText = `${e.target.textContent}`
-//     console.log(data);
-// });
+categoryListEl.addEventListener('click', async (e) => {
+
+    const categoryRequest = e.target.textContent;
+    apiRequestCategory(categoryRequest)
+        .then(data => {
+            console.log(data);
+            const MarkupCategory = createMarkupCategory(data);
+            categoryConteiner.innerHTML = MarkupCategory;
+            categoryTitle.innerText = `${e.target.textContent}`;
+        })
+        .catch(err => console.log(err));
+
+
+    // const data = await apiRequestByCategory(categoryRequest);
+    // categoryConteiner.innerHTML = createMarkupCategory(data);
+    // categoryTitle.innerText = `${e.target.textContent}`
+    // console.log(data);
+});
 
 
 
