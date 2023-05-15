@@ -33,6 +33,7 @@ img {
   flex-direction: column;
   @include tablet {
     display: flex;
+    gap: 32px;
     flex-direction: row;
     padding-top: 40px;
   }

@@ -1,73 +1,73 @@
-
 .category-container {
-    // position: relative;
-    // max-width: 375px;
-    margin: 0 auto;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    // outline: solid 2px tomato;
+  // position: relative;
+  // max-width: 375px;
+  margin: 0 auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  // outline: solid 2px tomato;
 
-    @include mobile {
+  @include mobile {
     max-width: 375px;
-    }
-    // @include tablet{
-    //     margin: 0;
-    // }
+  }
+  // @include tablet{
+  //     margin: 0;
+  // }
 
-    // @include tablet {
-    //     // max-width: 768px;
-    //     padding-top: 72px;
-    //     padding-bottom: 140px;
-        padding-left: 47px;
-        padding-right: 47px;
-    // }
+  // @include tablet {
+  //     // max-width: 768px;
+  //     padding-top: 72px;
+  //     padding-bottom: 140px;
+  padding-left: 47px;
+  padding-right: 47px;
+  // }
 
-    // @include pc {
-    //     // max-width: 1440px;
-    //     padding-top: 72px;
-    //     padding-bottom: 190px;
-    //     padding-left: 85px;
-    //     padding-right: 85px;
-    // }
+  // @include pc {
+  //     // max-width: 1440px;
+  //     padding-top: 72px;
+  //     padding-bottom: 190px;
+  //     padding-left: 85px;
+  //     padding-right: 85px;
+  // }
 }
 
 .isActive {
-    text-transform: uppercase;
-        font-weight: 700;
-        color: $blue-color;
-        cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: $blue-color;
+  cursor: pointer;
 }
-.category-list{
-    display: block;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    height: 230px; // t- i d-472px;
-    width: 335px; //  d- 356px;
-    overflow: scroll;
-    color: $light-text-color;
+.category-list {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 230px; // t- i d-472px;
+  width: 335px; //  d- 356px;
+  overflow: scroll;
 
-    &_item {
-        font-size: 16px;
-        line-height: 1.25;
-        letter-spacing: -0.02em;
-        
-        padding: 5px;
-        border-radius: 3px;
-        // $cubic: cubic-bezier(0.4, 0, 0.2, 1);
-        //     $transition: transform $cubic 250ms;
+  &_item {
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    padding: 5px;
+    border-radius: 3px;
+    // $cubic: cubic-bezier(0.4, 0, 0.2, 1);
+    //     $transition: transform $cubic 250ms;
 
-        &:hover {
-            text-transform: uppercase;
-            font-weight: 700;
-            color: $black-color;
-            background-color: $accent-color;
-            cursor: pointer;
-            padding-left: 20px;
-            transition: padding-left 300ms ease-out;
-        }
+    &:hover {
+      text-transform: uppercase;
+      font-weight: 700;
+      color: $black-color;
+      background-color: $accent-color;
+      cursor: pointer;
+      padding-left: 20px;
+      transition: padding-left 300ms ease-out;
     }
+  }
 }
 
+.light-theme-color-item {
+  color: $light-text-color;
+}
