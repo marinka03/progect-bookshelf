@@ -8,8 +8,10 @@ const STORAGE_KEY = 'themeKey';
 const checkBox = document.querySelector('#toggle');
 const body = document.querySelector('body');
 const header = document.querySelector('.header');
-const categoryListName = document.querySelector('.category-list-item');
-const headerLogoSvg = document.querySelector('.js-icon');
+const categoryListName = document.querySelector('.category-list');
+const headerHome = document.querySelector('.header__home');
+const headerShopping = document.querySelector('.header__shopping');
+const currentHome = document.querySelector('.current-home');
 
 checkBox.addEventListener('change', onChange);
 isTheme();
@@ -19,11 +21,21 @@ function onChange(e) {
     body.classList.remove('ligth-theme');
     body.classList.add('dark-theme');
     header.classList.add('dark-theme_header');
+    headerHome.classList.add('dark-theme_header-hover');
+    headerShopping.classList.add('dark-theme_header-hover');
+    currentHome.classList.add('dark-theme-cuttent-page');
+    categoryListName.classList.remove('light-theme-color-item');
+    categoryListName.classList.add('dark-theme-category-list_item');
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.DARK));
   } else {
     body.classList.add('ligth-theme');
     body.classList.remove('dark-theme');
     header.classList.remove('dark-theme_header');
+    headerHome.classList.remove('dark-theme_header-hover');
+    headerShopping.classList.remove('dark-theme_header-hover');
+    categoryListName.classList.remove('dark-theme-category-list_item');
+    categoryListName.classList.add('light-theme-color-item');
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.LIGHT));
   }
 }
@@ -38,6 +50,10 @@ function isTheme() {
     if (parseTheme === 'dark-theme') {
       body.classList.add('dark-theme');
       header.classList.add('dark-theme_header');
+      headerHome.classList.add('dark-theme_header-hover');
+      headerShopping.classList.add('dark-theme_header-hover');
+      categoryListName.classList.remove('light-theme-color-item');
+      categoryListName.classList.add('dark-theme-category-list_item');
       checkBox.checked = true;
     }
   }

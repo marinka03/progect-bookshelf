@@ -3,15 +3,12 @@ import { createMarkupTopBooks } from './create-markup-home';
 import { apiRequestCategory } from './queries';
 import { createMarkupCategory } from './create-markup-category-books';
 
-const mainTopBooksContainerEl = document.querySelector(
-  '.js-top-books-container'
-);
-const mainHomeContainerEl = document.querySelector('.section-top-books');
+const mainHomeContainerEl = document.querySelector('.js-section-top-books');
 
 apiRequestTopBooks()
   .then(data => {
     const MarkupTopBooks = createMarkupTopBooks(data);
-    mainTopBooksContainerEl.innerHTML = MarkupTopBooks;
+    mainHomeContainerEl.innerHTML = MarkupTopBooks;
 
     if (data.page !== data.total_pages) {
       paginationBtn.hidden = false;

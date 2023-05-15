@@ -6,6 +6,7 @@ body {
   text-decoration: none;
   cursor: pointer;
   color: inherit;
+  fill: inherit;
 }
 
 img {
@@ -32,6 +33,7 @@ img {
   flex-direction: column;
   @include tablet {
     display: flex;
+    gap: 32px;
     flex-direction: row;
     padding-top: 40px;
   }

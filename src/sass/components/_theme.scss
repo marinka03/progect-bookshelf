@@ -13,6 +13,19 @@ body.dark-theme {
   background-color: $black-color;
 }
 
-// .dark-theme-category-list_item {
-//   color: rgba(255, 255, 255, 0.6);
-// }
+.dark-theme_header-hover {
+  color: $white-color;
+  fill: $white-color;
+  &:hover,
+  &:focus {
+    color: $black-color;
+    fill: $black-color;
+  }
+}
+
+.dark-theme-cuttent-page {
+  color: $black-color;
+}
+.dark-theme-category-list_item {
+  color: rgba(255, 255, 255, 0.6);
+}

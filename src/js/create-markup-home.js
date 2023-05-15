@@ -1,7 +1,7 @@
 export { createMarkupTopBooks };
 
 function createMarkupTopBooks(arr) {
-  return arr
+  const markup = arr
     .map(obj => {
       const booksMarkup = obj.books
         .map(
@@ -15,11 +15,13 @@ function createMarkupTopBooks(arr) {
 </li>`
         )
         .join('');
-      return `<ul class="top-books">
+      return `
+      <ul class="top-books">
       <p class="top-books_category">${obj.list_name}</p>
       <div class="top-books_container">${booksMarkup}</div>
       <div class="js-top-books_button top-books_button link" data-category='${obj.list_name}'>see more</div>
       </ul>`;
     })
     .join('');
+  return `<h1 class="title-top-books">Best Sellers <span>Books</span></h1><div class="js-top-books-container">${markup}</div>`;
 }
