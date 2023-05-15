@@ -191,6 +191,11 @@ function register() {
       // const userImg = randomImg();
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
+    //   const userinfo = {
+    //     name: sighnUpName,
+    //     email: sighnUpEmail,
+    //   }
+      
       //  dbRef.child('users/' + userId).set(users_data)
 
       alert('Учетная запись успешно создана:', sighnUpName);
@@ -242,6 +247,17 @@ function checkCurentUser() {
       checkname();
       checkId();
       getAddedBooks();
+
+      const userinfo = {
+        name: sighnUpName,
+        email: sighnUpEmail,
+        
+      }
+
+
+      addToLocalStorage('user', userinfo);
+
+
       menu.style.display = 'flex';
       sihbUpSvg.style.display = 'none';
       sihnInSvg.style.display = 'block';
@@ -500,6 +516,19 @@ function removeBook(bookId) {
       .catch(error => {
         console.error('Ошибка при проверке наличия книги в списке:', error);
       });
+  }
+
+  function addToLocalStorage(key, value) {
+    const existingData = localStorage.getItem(key);
+    let data = [];
+    
+    if (existingData) {
+      data = JSON.parse(existingData);
+    }
+    
+    data.push(value);
+    
+    localStorage.setItem(key, JSON.stringify(data));
   }
 
 //   removeBook(643282b1e85766588626a0dc);
