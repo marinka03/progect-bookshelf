@@ -4,6 +4,7 @@ import bookshopImg from '../images/bookshop_link.png';
 import { addbooktosl } from './login-modal';
 import storageServises from './storage-servises';
 
+
 const bookQuikWiew = document.querySelector('.main');
 const modalElement = document.querySelector('.modal_pop-up__container');
 const modalInfo = document.querySelector('.modal_pop-up__description');
@@ -32,6 +33,14 @@ async function onOpenModal(evt) {
   window.addEventListener('keydown', onEscKeyPress);
 
   await renderBookById(bookId);
+
+
+  // const buttonModalRemoveBook = document.querySelector('.modalbtn-remove');
+  // buttonModalRemoveBook.addEventListener('click', removeee)
+  
+  // function removeee() {
+  //     console.log('cliiiiick')
+  // }
 
   // await 
 
@@ -111,7 +120,9 @@ async function renderBookById(bookId) {
        </div>
     </div>
     <button class="btn modal__btn-add" type="button"
-    data-bookId='${bookId}'>${bookInStorage ? 'remove from the shopping list' : 'add to shopping list'}</button>`;
+    data-bookId='${bookId}'>${bookInStorage ? 'remove from the shopping list' : 'add to shopping list'}</button>
+    <button class="btn modalbtn-remove" type="button">remove from the shopping list</button>
+    <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>`;
 
     // <button class="btn modal__btn-remove" type="button">remove from the shopping list</button>
     //   <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>
