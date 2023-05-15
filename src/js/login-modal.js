@@ -414,7 +414,11 @@ document.body.addEventListener('click', function (event) {
     addbooktosl(bookId);
   }
 });
+
+
 const bookList = [];
+
+
 function getAddedBooks() {
   const userId = auth.currentUser.uid;
 
@@ -451,21 +455,49 @@ function apiFetchCate(id) {
     resp.json()
   );
 }
+// function removeBook(bookId) {
+//   const userId = auth.currentUser.uid;
+//   //   const userId = globalUserId;
+
+//   const db = getDatabase();
+//   const bookRef = ref(db, 'users/' + userId + '/books' + bookId);
+
+//   remove(bookRef)
+//     .then(() => {
+//       alert('book deleted');
+//     })
+//     .catch(error => {
+//       console.error('some problem...', error);
+//     });
+// }
+
 function removeBook(bookId) {
-  const userId = auth.currentUser.uid;
-  //   const userId = globalUserId;
-
-  const db = getDatabase();
-  const bookRef = ref(db, 'users/' + userId + '/books' + bookId);
-
-  remove(bookRef)
-    .then(() => {
-      alert('book deleted');
-    })
-    .catch(error => {
-      console.error('some problem...', error);
-    });
-}
+    const userId = auth.currentUser.uid;
+  
+    const db = getDatabase();
+    const userBooksRef = ref(db, 'users/' + userId + '/books');
+    const bookRef = child(userBooksRef, bookId);
+  
+    get(bookRef)
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          // Книга существует в списке, удаляем ее
+          remove(bookRef)
+            .then(() => {
+              alert('Книга успешно удалена из списка');
+            })
+            .catch(error => {
+              console.error('Ошибка при удалении книги из списка:', error);
+            });
+        } else {
+          // Книги нет в списке
+          alert('Книги нет в списке');
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка при проверке наличия книги в списке:', error);
+      });
+  }
 
 //   removeBook(643282b1e85766588626a0dc);
 
