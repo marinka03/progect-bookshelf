@@ -268,8 +268,9 @@
     border-radius: 18px;
     outline: auto;
     // transition: top 5s ease-out;
-    animation-duration: 3s;
+    animation-duration: 1s;
   animation-name: slidein;
+//   transition: animation-name ;
 
 }
 
@@ -280,9 +281,9 @@
         width: 0%;
     }
     75% {
-        font-size: 300%;
+        font-size: 150%;
         margin-left: 25%;
-        width: 120%;
+        width: 110%;
       }
     to {
       top: 45px;
