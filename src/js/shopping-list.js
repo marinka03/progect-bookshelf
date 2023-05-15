@@ -90,22 +90,6 @@ function addToShoppingList(evt) {
   //   listEl.append(...arrToShoppingList);
 }
 
-function addTo(arrayId) {
-  arrayId.map(item => {
-    apiFetchCate(item).then(data => {
-      //   const inShoppingList = array.some(item => li.dataset.id === item._id);
-      //   if (inShoppingList) {
-      //     return;
-      //   }
-      //   array.push(data);
-      //   console.log(array);
-      //   localStorage.setItem('shopping-list', JSON.stringify(array));
-      console.log(data);
-      //   listEl.innerHTML = createMarkupBooksInShopping(array);
-    });
-  });
-}
-
 function apiFetch() {
   return fetch('https://books-backend.p.goit.global/books/top-books').then(
     resp => resp.json()
