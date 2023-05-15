@@ -39,4 +39,20 @@ export const refs = {
   burger: document.querySelector('.burger-box'),
   iconClose: document.querySelector('.close-box'),
   burgerMenu: document.querySelector('.burger-menu'),
+
+  //scroll-up
+  gotopBTN: document.querySelector('.go-top'),
+
+  //shopping-list
+  containerEl: document.querySelector('.js-container-list'),
+  listEl: document.querySelector('.js-listInShopping'),
+
+  //support
+  list_support: document.querySelector('.support-wrapper'),
+
+  //theme
+  checkBox: document.querySelector('#toggle'),
+  body: document.querySelector('body'),
+  header: document.querySelector('.header'),
+  categoryListName: document.querySelector('.category-list'),
 };
