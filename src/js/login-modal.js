@@ -55,8 +55,6 @@ function closeModal() {
   form.reset();
 }
 
-
-
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from 'firebase/app';
@@ -78,6 +76,7 @@ import {
   get,
   onValue,
   push,
+  once,
 } from 'firebase/database';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -243,7 +242,6 @@ const userCard = document.querySelector('.user-info');
 function checkCurentUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
-      
       checkname();
       checkId();
       getAddedBooks();
@@ -264,26 +262,21 @@ function checkCurentUser() {
       sihbUpSvg.style.display = 'block';
       sihnInSvg.style.display = 'none';
       userImg.style.display = 'none';
-
     }
   });
 }
 checkCurentUser();
 
-  let buttonClicked = false;
+let buttonClicked = false;
 
-function logOutBtn(){
-  
-    if (buttonClicked) {
-        sighnOutBtn.style.display = 'none'; 
-        buttonClicked = false;
-      } else {
-        sighnOutBtn.style.display = 'block'; 
-        buttonClicked = true;
-    }
-       
-      
-    
+function logOutBtn() {
+  if (buttonClicked) {
+    sighnOutBtn.style.display = 'none';
+    buttonClicked = false;
+  } else {
+    sighnOutBtn.style.display = 'block';
+    buttonClicked = true;
+  }
 }
 
 function signOutUser() {
@@ -293,8 +286,9 @@ function signOutUser() {
       userCard.textContent = 'Sighn up';
       alert('bye');
       closeModal();
-    }).then(() => {
-        sighnOutBtn.style.display = 'none';
+    })
+    .then(() => {
+      sighnOutBtn.style.display = 'none';
     })
     .catch(error => {
       // An error happened.
@@ -383,31 +377,34 @@ function checkId() {
 }
 
 function addbooktosl(bookId) {
-    const userId = auth.currentUser.uid;
-  
-    const db = getDatabase();
-    const userBooksRef = ref(db, 'users/' + userId + '/books');
-  
-    get(userBooksRef, bookId)
-      .then(snapshot => {
-        if (snapshot.exists()) {
-          // Книга уже существует в списке
-          alert('Книга уже добавлена в список');
-        } else {
-          // Книги нет в списке, добавляем ее
-          push(userBooksRef, bookId)
-            .then(() => {
-              alert('Книга успешно добавлена в список');
-            })
-            .catch(error => {
-              console.error('Ошибка при добавлении книги в список:', error);
-            });
-        }
-      })
-      .catch(error => {
-        console.error('Ошибка при проверке наличия книги в списке:', error);
-      });
-  }
+  const userId = auth.currentUser.uid;
+
+  const db = getDatabase();
+  const userBooksRef = ref(db, 'users/' + userId + '/books');
+
+  const bookRef = child(userBooksRef, bookId);
+  get(bookRef)
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        // Книга уже существует в списке
+        alert('Книга уже добавлена в список');
+      } else {
+        // Книги нет в списке, добавляем ее
+        update(userBooksRef, {
+          [bookId]: bookId,
+        })
+          .then(() => {
+            alert('Книга успешно добавлена в список');
+          })
+          .catch(error => {
+            console.error('Ошибка при добавлении книги в список:', error);
+          });
+      }
+    })
+    .catch(error => {
+      console.error('Ошибка при проверке наличия книги в списке:', error);
+    });
+}
 
 document.body.addEventListener('click', function (event) {
   if (event.target.classList.contains('modal__btn-add')) {
@@ -417,7 +414,7 @@ document.body.addEventListener('click', function (event) {
     addbooktosl(bookId);
   }
 });
-
+const bookList = [];
 function getAddedBooks() {
   const userId = auth.currentUser.uid;
 
@@ -429,7 +426,17 @@ function getAddedBooks() {
     if (books) {
       const addedBooks = Object.values(books);
       console.log('Массив добавленных книг:', addedBooks);
-      
+      addedBooks.map(item => {
+        console.log(item);
+        apiFetchCate(item).then(data => {
+          const inShoppingList = bookList.some(number => item === number._id);
+          if (inShoppingList) {
+            return;
+          }
+          bookList.push(data);
+          console.log(bookList);
+        });
+      });
       return addedBooks;
     } else {
       console.log('no books found');
@@ -437,9 +444,16 @@ function getAddedBooks() {
   });
 }
 
+export { bookList };
+
+function apiFetchCate(id) {
+  return fetch(`https://books-backend.p.goit.global/books/${id}`).then(resp =>
+    resp.json()
+  );
+}
 function removeBook(bookId) {
   const userId = auth.currentUser.uid;
-//   const userId = globalUserId;
+  //   const userId = globalUserId;
 
   const db = getDatabase();
   const bookRef = ref(db, 'users/' + userId + '/books' + bookId);
@@ -458,4 +472,3 @@ function removeBook(bookId) {
 // const includeBook = document.querySelector(".checking");
 //     //   console.log(includeBook);
 //       includeBook.addEventListener("click",  removeBook("643282b1e85766588626a0dc", globalUserId));
-
