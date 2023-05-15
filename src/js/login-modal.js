@@ -423,7 +423,7 @@ document.body.addEventListener('click', function (event) {
   console.log('curent');
     if (event.target.classList.contains('modal__btn-add')) {
     // выполнить функцию для элемента с классом 'modal__btn-add'
-    bookId = event.target.getAttribute('data-bookId');
+   const bookId = event.target.getAttribute('data-bookId');
     console.log('bookId :>> ', bookId);
     addbooktosl(bookId);
   }
@@ -521,7 +521,7 @@ function removeBook(bookId) {
   function addToLocalStorage(key, value) {
     const existingData = localStorage.getItem(key);
     let data = [];
-    if (!localStorage.getItem("key")) {
+    
     if (existingData) {
       data = JSON.parse(existingData);
     }
@@ -529,7 +529,6 @@ function removeBook(bookId) {
     data.push(value);
     
     localStorage.setItem(key, JSON.stringify(data));
-}
   }
 
 //   removeBook(643282b1e85766588626a0dc);
