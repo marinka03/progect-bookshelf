@@ -83,7 +83,7 @@ function generateCards() {
   });
 }
 
-generateCards();
+// generateCards();
 
 function deleteBook(bookId) {
   shoppingList = shoppingList.filter(book => book.id !== bookId);
