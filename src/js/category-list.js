@@ -9,9 +9,6 @@ apiRequestCategoriesList()
             'beforeend',
             createMarkupCategList(data)
         );
-        // if (data.page !== data.total_pages) {
-        //     paginationBtn.hidden = false;
-        // }
     })
     .catch(err => console.log(err));
 
