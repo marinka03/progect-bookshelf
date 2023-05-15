@@ -2,12 +2,13 @@ import { hideLoader } from './queries';
 import { getAddedBooks } from './login-modal';
 import { checkCurentUser } from './login-modal';
 import { bookList } from './login-modal';
+import { generateCard } from './create-markup-shopping';
 setTimeout(() => {
   console.log('jvnnre', bookList);
   //   listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
   listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
-}, 5000);
-hideLoader();
+}, 3000);
+// hideLoader();
 const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
 
@@ -36,7 +37,7 @@ function onClickBtnDelete(evt) {
     console.log(bookList[index]);
     bookList.splice(index, 1);
     console.log(bookList);
-    // localStorage.setItem('shopping-list', JSON.stringify(bookList));
+    localStorage.setItem('shopping-list', JSON.stringify(bookList));
     // listEl.innerHTML = createMarkupBooksInShopping(bookList);
     listEl.innerHTML = generateCard(bookList);
   }
@@ -66,9 +67,9 @@ function addToShoppingList(evt) {
     listEl.innerHTML = createMarkupBooksInShopping(array);
   });
 
-//   const mas = document.querySelectorAll('.js-card');
+  //   const mas = document.querySelectorAll('.js-card');
 
-//   const findEl = [...mas].find(item => item.dataset.id === id);
+  //   const findEl = [...mas].find(item => item.dataset.id === id);
 
   //   const inShoppingList = arrToShoppingList.some(
   //     item => item.dataset.id === findEl.dataset.id
@@ -141,58 +142,60 @@ function createMarkupBooksInShopping(books) {
     .join('');
 }
 
-function generateCard(books) {
-  return books
-    .map(
-      book =>
-        `
-    <li class="shopping-list-card js-li-shopping" data-id=${book._id}>
-      <div class="shopping-list-card__cover">
-        <img src="${book.book_image}" width='116'>
-      </div>
-      <div class="shopping-list-card__content">
-        <h1 class="shopping-list-card__title">${book.title}</h1>
-        <p class="shopping-list-card__category">${
-          book.age_group || 'No category'
-        }</p> 
-<div class="shopping-list-card__wrapper">
-        <p class="shopping-list-card__desc">${
-          book.description || 'No description'
-        }</p>
-</div>
-<div class="shopping-list-card__cellar">       
- <p class="shopping-list-card__author">${book.contributor}</p>
-        <ul class="shopping-list-card__links">
-                   <li>
-              <a class="seller__link shopping-list-card__amazon" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Amazon">
-                <img src="${book.title}" alt="amazon" />
-              </a>
-            </li>
-            <li>
-              <a class="seller__link shopping-list-card__book" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Apple-books">
-                <img src="${book.title}" alt="apple-books" />
-              </a>
-            </li>
-            <li>
-              <a class="seller__link shopping-list-card__book" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Bookshop">
-                <img src="${book.title}" alt="bookshop" />
-              </a>
-            </li>
-        </ul></div>
-        <button class="shopping-list-card__button" onclick="deleteBook(${
-          book.id
-        })">
-        
-        <img src="${
-          book.title
-        }" width="16" height="16" class="js-delete shopping-list-card__icon" alt="Remove">
-        
-        </button>
+// function generateCard(books) {
+//   return books
+//     .map(
+//       book =>
+//         `
+//     <li class="shopping-list-card js-li-shopping" data-id=${book._id}>
+//       <div class="shopping-list-card__cover">
+//         <img src="${book.book_image}" width='116'>
+//       </div>
+//       <div class="shopping-list-card__content">
+//         <h1 class="shopping-list-card__title">${book.title}</h1>
+//         <p class="shopping-list-card__category">${
+//           book.age_group || 'No category'
+//         }</p>
+// <div class="shopping-list-card__wrapper">
+//         <p class="shopping-list-card__desc">${
+//           book.description || 'No description'
+//         }</p>
+// </div>
+// <div class="shopping-list-card__cellar">
+//  <p class="shopping-list-card__author">${book.contributor}</p>
+//         <ul class="shopping-list-card__links">
+//                    <li>
+//               <a class="seller__link shopping-list-card__amazon" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Amazon">
+//                 <img src="${book.title}" alt="amazon" />
+//               </a>
+//             </li>
+//             <li>
+//               <a class="seller__link shopping-list-card__book" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Apple-books">
+//                 <img src="${book.title}" alt="apple-books" />
+//               </a>
+//             </li>
+//             <li>
+//               <a class="seller__link shopping-list-card__book" href=# target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Bookshop">
+//                 <img src="${book.title}" alt="bookshop" />
+//               </a>
+//             </li>
+//         </ul></div>
+//         <button class="shopping-list-card__button" onclick="deleteBook(${
+//           book.id
+//         })">
 
-      </div>
-  `
-    )
-    .join('');
-}
+//         <img src="${
+//           book.title
+//         }" width="16" height="16" class="js-delete shopping-list-card__icon" alt="Remove">
+
+//         </button>
+
+//       </div>
+//   `
+//     )
+//     .join('');
+// }
 
 export { array };
+
+hideLoader();

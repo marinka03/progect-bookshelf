@@ -5,33 +5,29 @@ import trash from '../images/trash.png';
 import { hideLoader } from './queries';
 import { bookList } from './login-modal';
 
-setTimeout(() => {
-  listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
-}, 5000);
-
+// setTimeout(() => {
+//   listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
+// }, 5000);
 
 const listEl = document.querySelector('.js-listInShopping');
-
-
-
 
 let shoppingList = bookList;
 console.log(bookList, 'asdkjasldj');
 
 function deleteBook(bookId) {
-  const cardToDelete = document.querySelector(`.shopping-list-card[data-bookId="${bookId}"]`);
+  const cardToDelete = document.querySelector(
+    `.shopping-list-card[data-bookId="${bookId}"]`
+  );
   cardToDelete.remove();
-  
+
   shoppingList = shoppingList.filter(book => book._id !== bookId);
-  
 }
 
 window.deleteBook = deleteBook;
 
-
 function generateCard(books) {
- return books.map(
-    book => {
+  return books
+    .map(book => {
       return `
     <li class="shopping-list-card" data-bookId='${book._id}'> 
       <div class="shopping-list-card__cover">
@@ -86,10 +82,10 @@ function generateCard(books) {
     </li>`;
     })
     .join('');
-  
-
 }
 
 generateCard(bookList);
 
 hideLoader();
+
+export { generateCard };
