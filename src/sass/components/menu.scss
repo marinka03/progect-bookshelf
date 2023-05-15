@@ -20,13 +20,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    @include tablet{
+        display: none;
+    }
 }
 .burger-menu{
     background: radial-gradient(183.6% 183.01% at 59.76% -23.42%, #4F2EE8 18.03%, #FFFFFF 100%);
     background-repeat: no-repeat;
     width: 100vw;
     height: 100vh;
-    z-index: 5;
+    position: fixed;
+    bottom: 0px;
+    top: 64px;
+    z-index: 101;
     
 }
 
