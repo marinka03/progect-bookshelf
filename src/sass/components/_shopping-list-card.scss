@@ -6,10 +6,10 @@
 flex-direction: row;
 align-items: flex-start;
 padding: 14px;
-gap: 48px;
+gap: 14px;
 isolation: isolate;
 
-background: #FFFFFF;
+background: $white-color;
 border: 2px solid rgba(79, 46, 232, 0.4);
 border-radius: 16px;
 
@@ -19,7 +19,31 @@ border-radius: 16px;
     width: 100%;
 }
 
+&__index {
+
+    overflow: hidden;
+    width: 144px;
+
+    @include tablet {
+        overflow: auto;
+        width: 100%;
+    }
+}
+
 &__title {
+
+
+          display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; 
+  white-space: pre-wrap; 
+
+  overflow-wrap: break-word;
+
+      overflow: hidden;
+    text-overflow: ellipsis;
+
+    
 
     font-size: 16px;
 line-height: 1.125;
@@ -43,19 +67,36 @@ line-height: 1.175;
 
 letter-spacing: 0.03em;
 
-color: #B4AFAF;
+color: $very-light-text-color;
+
+
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  overflow: hidden; 
+
 
 }
 
 &__cellar {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 
 }
 
 &__wrapper {
     height: 68px;
     overflow: hidden;
+    margin-bottom: 23px;
+
+    // @include tablet
+    // { 
+    //     margin-bottom: 100px;
+    // }
+
+    // @include pc {
+    //     margin-bottom: 250px;
+    // }
 
 }
 
@@ -100,10 +141,20 @@ color: #B4AFAF;
 font-size: 14px;
 line-height: 1.29;
 
+      display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; 
+  white-space: pre-wrap; 
+
+  overflow-wrap: break-word;
+
+      overflow: hidden;
+    text-overflow: ellipsis;
+
 
 letter-spacing: -0.04em;
 
-color: #111111;
+color: $black-color;
 
     overflow: hidden;
     text-overflow: ellipsis;
@@ -126,25 +177,42 @@ color: #111111;
 }
 
 &__author {
+    max-width: 97px;
     font-style: italic;
     font-size: 12px;
     line-height: 1.17;
-    color: #B4AFAF;
+    color: $very-light-text-color;
+
+
+      text-overflow: ellipsis; 
+  white-space: nowrap; 
+  overflow: hidden; 
 
 }
 
-&__icon {
-    fill: white;
+&__image {
+
+    max-width: none;
+
+    border-radius: 8px;
+    width: 100px;
+    height: 142px;
+    @include tablet {
+        width: 116px;
+        height: 165px;
+    }
 
 }
+
 
 &__button {
     right: 14px;
     top: 14px;
     position: absolute;
+    cursor: pointer;
 
 
-    background: #4F2EE8;
+    background: $blue-color;
   border-radius: 50%;
       border-color: transparent;
       padding: 8px;
