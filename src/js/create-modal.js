@@ -32,6 +32,8 @@ const bookDescription = document.querySelector('.no-description');
 const backdrop = document.querySelector('.backdrop_pop-up');
 const closeModalBtn = document.querySelector('.modal_pop-up__close-btn');
 
+// const SHOP_LIST_KEY = 'selected-books';
+
 bookQuikWiew.addEventListener('click', onOpenModal);
 closeModalBtn.addEventListener('click', onCloseModal);
 

@@ -100,3 +100,10 @@
     top: 66%;
   }
 }
+
+.hidden {
+  display: none;
+  @include pc {
+    display: block;
+  }
+}
