@@ -26,8 +26,8 @@ function onChange(e) {
     body.classList.add('ligth-theme');
     body.classList.remove('dark-theme');
     header.classList.remove('dark-theme_header');
-    categoryListName.classList.add('light-theme-color-item');
     categoryListName.classList.remove('dark-theme-category-list_item');
+    categoryListName.classList.add('light-theme-color-item');
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.LIGHT));
   }
 }
@@ -42,6 +42,8 @@ function isTheme() {
     if (parseTheme === 'dark-theme') {
       body.classList.add('dark-theme');
       header.classList.add('dark-theme_header');
+      categoryListName.classList.remove('light-theme-color-item');
+      categoryListName.classList.add('dark-theme-category-list_item');
       checkBox.checked = true;
     }
   }
