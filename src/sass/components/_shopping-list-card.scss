@@ -188,6 +188,11 @@ color: $black-color;
   white-space: nowrap; 
   overflow: hidden; 
 
+  @include tablet
+  {
+    max-width: none;
+  }
+
 }
 
 &__image {
