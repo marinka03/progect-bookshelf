@@ -23,7 +23,7 @@ allCategoryCreate();
 document.body.addEventListener('click', function (event) {
   if (event.target.classList.contains('js-top-books_button')) {
     // выполнить функцию для элемента с классом 'js-top-books_button'
-    category = event.target.getAttribute('data-category');
+    const category = event.target.getAttribute('data-category');
     apiRequestCategory(category)
       .then(data => {
         console.log('data :>> ', data);
