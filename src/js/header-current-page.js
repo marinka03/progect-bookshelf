@@ -1,24 +1,14 @@
 const homeCurrentPage = document.querySelector(".header__home-box");
 const shoppingCurrentPage = document.querySelector(".header__shopping-box");
 
-homeCurrentPage.addEventListener("click", onClickHome);
+// homeCurrentPage.addEventListener("click", onClickHome);
 // shoppingCurrentPage.addEventListener("click", onClickShopping);
 
-function onClickHome(evt){
-    const elem = evt.target;
+// function onClickHome(evt){
+//     const elem = evt.target;
 
-    // if(!elem.className.includes('current-home')) {
-    //     elem.className = elem.className.replace('', 'current-home');
-    // }else{
-console.log(window.location.pathname);
-    // }
-    // if(window.location.pathname === "/index.html"){
-
-    // }
-}
-// function onClickShopping(evt){
-
-//     console.log(window.location.pathname);
+// console.log(window.location.pathname);
+   
 // }
 
 
@@ -26,8 +16,19 @@ function initialize(){
     if(window){
         const page = window.location.pathname;
         console.log(page);
+        if(page === "/shopping-list.html"){
+            shoppingCurrentPage.classList.add("current-shopping")
+            homeCurrentPage.classList.remove("current-home")
+        }
+        if(page === "/index.html"){
+            homeCurrentPage.classList.add("current-home")
+            shoppingCurrentPage.classList.remove("current-shopping")
+            
+        }
     }
 }
 initialize();
-//  header.classList.add('dark-theme_header');
-    // localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.DARK));
+
+
+// /shopping-list.html
+// /index.html

@@ -15,56 +15,20 @@ const sighnUpName = name.value;
 const sighnUpPassword = password.value;
 
 export {addbooktosl};
+export {checkCurentUser};
+export {getAddedBooks};
 
 console.log(modalContainer);
 
 function createModal() {
-    // modalContainer.classList.add("modal");
 
 backdrop.style.display = "block";
 
-
-    // modalContainer.insertAdjacentHTML("beforeend", `<div class="form">
-    // <div class="name"></div>
-    
-    // <label for="name">Name</label>
-    // <input type="name"
-    // name="name"
-    // id="name"
-    // placeholder="write your name">
-
-
-    // <div class="email"></div>
-    
-    // <label for="email">Email</label>
-    // <input type-"email"
-    // name="email"
-    // id="email"
-    // placeholder="write your email">
-    // <div class="pass">
-    // <label for="password">password</label>
-    //  <input type="password" 
-    //  name= "password" 
-    //  id="password"
-    // placeholder="write your password">
-    // </div>
-    // </div>
-    // <button id="sighn-up">Sighn up</button>`)
-
-
-    // const modalTitle = document.createElement("h2");
-    // modalTitle.textContent = "Заголовок модального вікна";
-  
-    // const modalContent = document.createElement("p");
-    // modalContent.textContent = "Тут може бути ваш контент.";
-  
-    // const closeButton = document.createElement("button");
     const closeButton = document.querySelector(".closeButton");
 
     const close = closeButton.addEventListener("click", closeModal);
   
-    // modalContainer.appendChild(modalTitle);
-    // modalContainer.appendChild(modalContent);
+   
     modalContainer.appendChild(closeButton);
   
     modalContainer.style.display = "block";
@@ -96,7 +60,7 @@ import 'firebase/auth';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAuth, signOut } from "firebase/auth";
 // import { getDatabase } from "firebase/database";
-import { getDatabase, ref, set, child, update, remove, get, onValue, transaction } from "firebase/database";
+import { getDatabase, ref, set, child, update, remove, get, onValue, push} from "firebase/database";
 
 
 
@@ -224,6 +188,7 @@ const sighnUpPassword = password.value;
         const userId = user.uid;
         // globalUserId = userId;
         
+        // const userImg = randomImg();
 
 
         writeUserData(userId, sighnUpName, sighnUpEmail);
@@ -288,6 +253,7 @@ const sighnUpPassword = password.value;
     
       checkname()
       checkId()
+      getAddedBooks()
    
       // ...
     } else {
@@ -391,38 +357,58 @@ function checkId(){
       const url = (snapshot.val() && snapshot.val().url) || 'Anonymous';
     //   userCard.innerHTML = url;
       // ...
-     console.log(url)
+    //  console.log(url)
       console.log(userId)
     
     })}
 
 
     function addbooktosl(bookId) { 
-        // // const userId = user.uid;
-        // // const sighnUpEmail = email.value;
-        // // const sighnUpName = name.value;
-        // set(ref(db, 'users/' + userId), {
-        //   username: name,
-        //   email: email,
-        // //   profile_picture : imageUrl
-        // });
-        // alert('User saved')
+       
         const userId = auth.currentUser.uid; // Здесь нужно указать идентификатор пользователя
-const book = 'Новая книга';
-
 
 const db = getDatabase();
 const userRef = ref(db, 'users/' + userId + '/books');
-const bookList = ['Книга 1', 'Книга 2', 'Книга 3'];
+const book = bookId;
 
 
-set(userRef, bookList)
+push(userRef, book)
   .then(() => {
-    console.log('Список книг успешно добавлен в базу данных для пользователя.');
+ alert('book added:' + `${book}`)
   })
   .catch((error) => {
     console.error('Ошибка при добавлении списка книг в базу данных:', error);
   });
       }
+
+      document.body.addEventListener('click', function (event) {
+        if (event.target.classList.contains('modal__btn-add')) {
+          // выполнить функцию для элемента с классом 'modal__btn-add'
+          bookId = event.target.getAttribute('data-bookId');
+          console.log('bookId :>> ', bookId);
+          addbooktosl(bookId)
+        }
+      });
+
+      
+function getAddedBooks() {
+  const userId = auth.currentUser.uid; 
+
+  const db = getDatabase();
+  const userRef = ref(db, 'users/' + userId + '/books');
+
+  onValue(userRef, (snapshot) => {
+    const books = snapshot.val();
+    if (books) {
+      const addedBooks = Object.values(books);
+      console.log('Массив добавленных книг:', addedBooks);
+    } else {
+      console.log('Нет добавленных книг.');
+    }
+  });
+}
+
+
+
 
       

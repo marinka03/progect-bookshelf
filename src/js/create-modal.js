@@ -23,17 +23,20 @@ async function onOpenModal(evt) {
   .getAttribute('data-bookId');
   bookItem = bookId;
   console.log(bookId);
-  
+
+
   backdrop.classList.remove('backdrop_pop-up--is-hidden');
   backdrop.addEventListener('click', handleBackdropClick);
   closeModalBtn.addEventListener('click', onCloseModal);
   window.addEventListener('keydown', onEscKeyPress);
 
-
   await renderBookById(bookId);
 
-  const addAAbook = document.querySelector('.modal__btn-add');
-  addAAbook.addEventListener('click', addbooktosl(bookId));
+  // await 
+
+  // const addAAbook = document.querySelector('.modal__btn-add');
+  // addAAbook.addEventListener('click', addbooktosl(bookId));
+  
 }
 
 function onCloseModal() {
@@ -102,7 +105,8 @@ async function renderBookById(bookId) {
        </ul>
        </div>
     </div>
-    <button class="btn modal__btn-add" type="button">add to shopping list</button>`;
+    <button class="btn modal__btn-add" type="button"
+    data-bookId='${bookId}'>add to shopping list</button>`;
 
     // <button class="btn modal__btn-remove" type="button">remove from the shopping list</button>
     //   <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>

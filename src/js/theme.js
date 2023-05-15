@@ -8,6 +8,8 @@ const STORAGE_KEY = 'themeKey';
 const checkBox = document.querySelector('#toggle');
 const body = document.querySelector('body');
 const header = document.querySelector('.header');
+const categoryListName = document.querySelector('.category-list-item');
+const headerLogoSvg = document.querySelector('.js-icon');
 
 checkBox.addEventListener('change', onChange);
 isTheme();
@@ -19,9 +21,9 @@ function onChange(e) {
     header.classList.add('dark-theme_header');
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.DARK));
   } else {
+    body.classList.add('ligth-theme');
     body.classList.remove('dark-theme');
     header.classList.remove('dark-theme_header');
-    body.classList.add('ligth-theme');
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.LIGHT));
   }
 }
@@ -35,6 +37,7 @@ function isTheme() {
     const parseTheme = JSON.parse(saveTheme);
     if (parseTheme === 'dark-theme') {
       body.classList.add('dark-theme');
+      header.classList.add('dark-theme_header');
       checkBox.checked = true;
     }
   }
