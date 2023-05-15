@@ -1,6 +1,6 @@
 import { createMarkupCategory } from './create-markup-category-books';
-import { createMarkupTopBooks } from './create-markup-home'
-import { apiRequestTopBooks } from './queries';
+import { apiRequestCategory } from './queries';
+
 
 const categoryListEl = document.querySelector('.category-list');
 const categoryConteiner = document.querySelector('.js-top-books-container');
@@ -10,14 +10,14 @@ const allCategoryEl = document.querySelector('.all-category');
 
 
 // allCategoryEl.addEventListener('click',   );
-categoryListEl.addEventListener('click', async (e) => {
-    // if (e.target.tagName === 'UL') return;
-    const categoryRequest = e.target.textContent;
-    data = await apiRequestByCategory(categoryRequest);
-    categoryConteiner.innerHTML = createMarkupCategory(data);
-    categoryTitle.innerText = `${e.target.textContent}`
-    // console.log(data);
-});
+// categoryListEl.addEventListener('click', async (e) => {
+//     // if (e.target.tagName === 'UL') return;
+//     const categoryRequest = e.target.textContent;
+//     const data = await apiRequestByCategory(categoryRequest);
+//     categoryConteiner.innerHTML = createMarkupCategory(data);
+//     categoryTitle.innerText = `${e.target.textContent}`
+//     console.log(data);
+// });
 
 
 
