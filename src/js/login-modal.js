@@ -78,6 +78,7 @@ import {
   get,
   onValue,
   push,
+  once
 } from 'firebase/database';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -382,32 +383,34 @@ function checkId() {
   });
 }
 
+
 function addbooktosl(bookId) {
     const userId = auth.currentUser.uid;
-  
+    
     const db = getDatabase();
     const userBooksRef = ref(db, 'users/' + userId + '/books');
-  
-    get(userBooksRef, bookId)
-      .then(snapshot => {
-        if (snapshot.exists()) {
-          // Книга уже существует в списке
-          alert('Книга уже добавлена в список');
-        } else {
-          // Книги нет в списке, добавляем ее
-          push(userBooksRef, bookId)
-            .then(() => {
-              alert('Книга успешно добавлена в список');
-            })
-            .catch(error => {
-              console.error('Ошибка при добавлении книги в список:', error);
-            });
-        }
-      })
-      .catch(error => {
-        console.error('Ошибка при проверке наличия книги в списке:', error);
-      });
-  }
+    
+    const bookRef = child(userBooksRef, bookId);
+    get(bookRef)
+    .then(snapshot => {
+    if (snapshot.exists()) {
+    // Книга уже существует в списке
+    alert('Книга уже добавлена в список');
+    } else {
+    // Книги нет в списке, добавляем ее
+    set(bookRef, true)
+    .then(() => {
+    alert('Книга успешно добавлена в список');
+    })
+    .catch(error => {
+    console.error('Ошибка при добавлении книги в список:', error);
+    });
+    }
+    })
+    .catch(error => {
+    console.error('Ошибка при проверке наличия книги в списке:', error);
+    });
+    }
 
 document.body.addEventListener('click', function (event) {
   if (event.target.classList.contains('modal__btn-add')) {
