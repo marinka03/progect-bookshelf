@@ -47,12 +47,13 @@
     height: 230px; // t- i d-472px;
     width: 335px; //  d- 356px;
     overflow: scroll;
+    color: $light-text-color;
 
     &_item {
         font-size: 16px;
         line-height: 1.25;
         letter-spacing: -0.02em;
-        color: $light-text-color;
+        
         padding: 5px;
         border-radius: 3px;
         // $cubic: cubic-bezier(0.4, 0, 0.2, 1);
