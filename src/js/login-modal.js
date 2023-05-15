@@ -11,7 +11,12 @@ const form = document.querySelector('.form');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const name = document.getElementById('name');
+const sihbUpSvg = document.querySelector('.header__svg-array');
+const sihnInSvg = document.querySelector('.header__svg-array-down');
+sihnInSvg.style.display = 'none';
 
+const userImg = document.querySelector('.user-img');
+userImg.style.display = 'none';
 
 const sighnUpEmail = email.value;
 const sighnUpName = name.value;
@@ -50,7 +55,7 @@ function closeModal() {
   form.reset();
 }
 
-openModalButton.addEventListener('click', createModal);
+
 
 // Import the functions you need from the SDKs you need
 
@@ -87,6 +92,7 @@ const sighnOutBtn = document.getElementById('sighn-out');
 sighnUpBtn.addEventListener('click', register);
 sighnInBtn.addEventListener('click', login);
 sighnOutBtn.addEventListener('click', signOutUser);
+sighnOutBtn.style.display = 'none';
 
 sighnUpOpt.disabled = true;
 sighnInBtn.style.display = 'none';
@@ -242,14 +248,43 @@ function checkCurentUser() {
       checkId();
       getAddedBooks();
       menu.style.display = 'flex';
+      sihbUpSvg.style.display = 'none';
+      sihnInSvg.style.display = 'block';
+      userImg.style.display = 'block';
+
+      openModalButton.removeEventListener('click', createModal);
+      openModalButton.addEventListener('click', logOutBtn);
+      sighnOutBtn.style.display = 'none';
+
       // ...
     } else {
       // User is signed out
+      openModalButton.addEventListener('click', createModal);
       menu.style.display = 'none';
+      sihbUpSvg.style.display = 'block';
+      sihnInSvg.style.display = 'none';
+      userImg.style.display = 'none';
+
     }
   });
 }
 checkCurentUser();
+
+  let buttonClicked = false;
+
+function logOutBtn(){
+  
+    if (buttonClicked) {
+        sighnOutBtn.style.display = 'none'; 
+        buttonClicked = false;
+      } else {
+        sighnOutBtn.style.display = 'block'; 
+        buttonClicked = true;
+    }
+       
+      
+    
+}
 
 function signOutUser() {
   signOut(auth)
@@ -258,6 +293,8 @@ function signOutUser() {
       userCard.textContent = 'Sighn up';
       alert('bye');
       closeModal();
+    }).then(() => {
+        sighnOutBtn.style.display = 'none';
     })
     .catch(error => {
       // An error happened.
@@ -346,20 +383,31 @@ function checkId() {
 }
 
 function addbooktosl(bookId) {
-  const userId = auth.currentUser.uid;
-
-  const db = getDatabase();
-  const userRef = ref(db, 'users/' + userId + '/books');
-  const book = bookId;
-
-  push(userRef, book)
-    .then(() => {
-      alert('book added:' + `${book}`);
-    })
-    .catch(error => {
-      console.error('Ошибка при добавлении списка книг в базу данных:', error);
-    });
-}
+    const userId = auth.currentUser.uid;
+  
+    const db = getDatabase();
+    const userBooksRef = ref(db, 'users/' + userId + '/books');
+  
+    get(userBooksRef, bookId)
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          // Книга уже существует в списке
+          alert('Книга уже добавлена в список');
+        } else {
+          // Книги нет в списке, добавляем ее
+          push(userBooksRef, bookId)
+            .then(() => {
+              alert('Книга успешно добавлена в список');
+            })
+            .catch(error => {
+              console.error('Ошибка при добавлении книги в список:', error);
+            });
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка при проверке наличия книги в списке:', error);
+      });
+  }
 
 document.body.addEventListener('click', function (event) {
   if (event.target.classList.contains('modal__btn-add')) {
@@ -381,6 +429,7 @@ function getAddedBooks() {
     if (books) {
       const addedBooks = Object.values(books);
       console.log('Массив добавленных книг:', addedBooks);
+      
       return addedBooks;
     } else {
       console.log('no books found');
