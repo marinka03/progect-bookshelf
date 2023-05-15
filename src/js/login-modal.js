@@ -11,7 +11,7 @@ const form = document.querySelector('.form');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const name = document.getElementById('name');
-window.addEventListener('keydown', onEscKeyPress);
+
 
 const sighnUpEmail = email.value;
 const sighnUpName = name.value;
@@ -33,6 +33,7 @@ function createModal() {
   modalContainer.appendChild(closeButton);
 
   modalContainer.style.display = 'block';
+  window.addEventListener('keydown', onEscKeyPress);
 }
 
 function onEscKeyPress(event) {
@@ -45,7 +46,7 @@ function closeModal() {
   modalContainer.style.display = 'none';
   // modalContainer.innerHTML = "";
   backdrop.style.display = 'none';
-  // window.removeEventListener('keydown', onEscKeyPress);
+  window.removeEventListener('keydown', onEscKeyPress);
   form.reset();
 }
 
