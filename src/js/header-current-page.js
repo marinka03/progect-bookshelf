@@ -1,7 +1,7 @@
 const homeCurrentPage = document.querySelector(".header__home-box");
 const shoppingCurrentPage = document.querySelector(".header__shopping-box");
 
-function initialize(){
+function initPageState(){
     if(window){
         const page = window.location.pathname;
 
@@ -15,4 +15,4 @@ function initialize(){
         }
     }
 }
-initialize();
+initPageState();
