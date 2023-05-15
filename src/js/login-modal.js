@@ -7,6 +7,8 @@ const sighnUpOpt = document.getElementById('sighn-up-opt');
 const sighnInOpt = document.getElementById('sighn-in-opt');
 const menu = document.querySelector('.header__menu');
 
+// import {buttonModalRemoveBook} from './create-modal'
+
 const form = document.querySelector('.form');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
@@ -58,14 +60,11 @@ function closeModal() {
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from 'firebase/app';
-// import { getAnalytics } from "firebase/analytics";
-import { getAuth } from 'firebase/auth';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
 import 'firebase/auth';
 
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getAuth, signOut } from 'firebase/auth';
-// import { getDatabase } from "firebase/database";
+import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+
 import {
   getDatabase,
   ref,
@@ -74,9 +73,7 @@ import {
   update,
   remove,
   get,
-  onValue,
-  push,
-  once,
+  onValue
 } from 'firebase/database';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -194,6 +191,11 @@ function register() {
       // const userImg = randomImg();
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
+    //   const userinfo = {
+    //     name: sighnUpName,
+    //     email: sighnUpEmail,
+    //   }
+      
       //  dbRef.child('users/' + userId).set(users_data)
 
       alert('Учетная запись успешно создана:', sighnUpName);
@@ -245,6 +247,17 @@ function checkCurentUser() {
       checkname();
       checkId();
       getAddedBooks();
+
+      const userinfo = {
+        name: sighnUpName,
+        email: sighnUpEmail,
+        
+      }
+
+
+      addToLocalStorage('user', userinfo);
+
+
       menu.style.display = 'flex';
       sihbUpSvg.style.display = 'none';
       sihnInSvg.style.display = 'block';
@@ -274,7 +287,7 @@ function logOutBtn() {
     sighnOutBtn.style.display = 'none';
     buttonClicked = false;
   } else {
-    sighnOutBtn.style.display = 'block';
+    sighnOutBtn.style.display = 'flex';
     buttonClicked = true;
   }
 }
@@ -407,14 +420,23 @@ function addbooktosl(bookId) {
 }
 
 document.body.addEventListener('click', function (event) {
-  if (event.target.classList.contains('modal__btn-add')) {
+  console.log('curent');
+    if (event.target.classList.contains('modal__btn-add')) {
     // выполнить функцию для элемента с классом 'modal__btn-add'
     bookId = event.target.getAttribute('data-bookId');
     console.log('bookId :>> ', bookId);
     addbooktosl(bookId);
   }
+  if (event.target.classList.contains('modalbtn-remove')) {
+    // выполнить функцию для элемента с классом 'modal__btn-add'
+    bookId = event.target.getAttribute('data-bookId');
+    // removeee();
+  //   addbooktosl(bookId);
+  removeBook(bookId);
+  }
 });
-const bookList = [];
+
+const bookList = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
 function getAddedBooks() {
   const userId = auth.currentUser.uid;
 
@@ -434,6 +456,7 @@ function getAddedBooks() {
             return;
           }
           bookList.push(data);
+          localStorage.setItem('shopping-list', JSON.stringify(bookList));
           console.log(bookList);
         });
       });
@@ -451,21 +474,62 @@ function apiFetchCate(id) {
     resp.json()
   );
 }
+// function removeBook(bookId) {
+//   const userId = auth.currentUser.uid;
+//   //   const userId = globalUserId;
+
+//   const db = getDatabase();
+//   const bookRef = ref(db, 'users/' + userId + '/books' + bookId);
+
+//   remove(bookRef)
+//     .then(() => {
+//       alert('book deleted');
+//     })
+//     .catch(error => {
+//       console.error('some problem...', error);
+//     });
+// }
+
 function removeBook(bookId) {
-  const userId = auth.currentUser.uid;
-  //   const userId = globalUserId;
+    const userId = auth.currentUser.uid;
+  
+    const db = getDatabase();
+    const userBooksRef = ref(db, 'users/' + userId + '/books');
+    const bookRef = child(userBooksRef, bookId);
+  
+    get(bookRef)
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          // Книга существует в списке, удаляем ее
+          remove(bookRef)
+            .then(() => {
+              alert('Книга успешно удалена из списка');
+            })
+            .catch(error => {
+              console.error('Ошибка при удалении книги из списка:', error);
+            });
+        } else {
+          // Книги нет в списке
+          alert('Книги нет в списке');
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка при проверке наличия книги в списке:', error);
+      });
+  }
 
-  const db = getDatabase();
-  const bookRef = ref(db, 'users/' + userId + '/books' + bookId);
-
-  remove(bookRef)
-    .then(() => {
-      alert('book deleted');
-    })
-    .catch(error => {
-      console.error('some problem...', error);
-    });
-}
+  function addToLocalStorage(key, value) {
+    const existingData = localStorage.getItem(key);
+    let data = [];
+    
+    if (existingData) {
+      data = JSON.parse(existingData);
+    }
+    
+    data.push(value);
+    
+    localStorage.setItem(key, JSON.stringify(data));
+  }
 
 //   removeBook(643282b1e85766588626a0dc);
 
