@@ -4,26 +4,7 @@ import bookshopImg from '../images/bookshop_link.png';
 import { addbooktosl } from './login-modal';
 import storageServises from './storage-servises';
 
-
-import { initializeApp } from 'firebase/app';
-
-import 'firebase/auth';
-
-import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
-
-import {
-  getDatabase,
-  ref,
-  set,
-  child,
-  update,
-  remove,
-  get,
-  onValue
-} from 'firebase/database';
-
-import {checkCurentUser} from './login-modal'
-
+export {onCloseModal}
 
 const bookQuikWiew = document.querySelector('.main');
 const modalElement = document.querySelector('.modal_pop-up__container');
@@ -167,10 +148,22 @@ async function renderBookById(bookId) {
     
     modalElement.innerHTML = markup;
 
-    // const removeBtn = document.querySelector('.modalbtn-remove')
-    // const NoLoginTxt = document.querySelector('.modal__btn-need-login')
+    const removeBtn = document.querySelector('.modalbtn-remove')
+    const NoLoginTxt = document.querySelector('.modal__btn-need-login');
+    const addABook = document.querySelector('.modal__btn-add')
 
-    // checkUserIn();
+    function checkUserIn(bookId){
+      const userDataString = getUserData();
+      userDataString.books.map((book) => {
+        if(book === bookId){
+          removeBtn.style.display = 'block';
+          addABook.style.display = 'none';
+        } 
+      })
+    }
+
+    checkUserIn(bookId);
+
     // removeBtn.addEventListener('click', removeBook(bookId));
 
     const linksShops = document.querySelectorAll('.modal__link');
@@ -179,6 +172,17 @@ async function renderBookById(bookId) {
     console.log(error);
   }
 }
+
+function getUserData() {
+  const userDataString = localStorage.getItem('userdata');
+  if (userDataString) {
+    const userData = JSON.parse(userDataString);
+    return userData;
+  } else {
+    return null;
+  }
+}
+console.log(getUserData())
 
 function onLinksClick(links) {
   for (let i = 0; i < links.length; i++) {
