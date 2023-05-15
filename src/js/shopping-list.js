@@ -1,4 +1,8 @@
-import { hideLoader } from "./queries";
+import { hideLoader } from './queries';
+import { getAddedBooks } from './login-modal';
+import { checkCurentUser } from './login-modal';
+import { bookList } from './login-modal';
+checkCurentUser();
 hideLoader();
 const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
@@ -38,6 +42,10 @@ function addToShoppingList(evt) {
     return;
   }
 
+  getAddedBooks();
+
+  iterateArray(getAddedBooks());
+
   const li = evt.target.closest('.js-card');
   const id = li.dataset.id;
 
@@ -74,6 +82,27 @@ function addToShoppingList(evt) {
 
   // listEl.insertAdjacentElement('beforeend', arrToShoppingList[0])
   //   listEl.append(...arrToShoppingList);
+}
+// setTimeout(() => {
+//   const arrayId = getAddedBooks();
+//   console.log(arrayId);
+//   addTo(arrayId);
+// }, 10000);
+console.log(bookList);
+function addTo(arrayId) {
+  arrayId.map(item => {
+    apiFetchCate(item).then(data => {
+      //   const inShoppingList = array.some(item => li.dataset.id === item._id);
+      //   if (inShoppingList) {
+      //     return;
+      //   }
+      //   array.push(data);
+      //   console.log(array);
+      //   localStorage.setItem('shopping-list', JSON.stringify(array));
+      console.log(data);
+      //   listEl.innerHTML = createMarkupBooksInShopping(array);
+    });
+  });
 }
 
 function apiFetch() {
