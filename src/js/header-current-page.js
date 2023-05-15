@@ -5,11 +5,11 @@ function initPageState(){
     if(window){
         const page = window.location.pathname;
 
-        if(page === "/shopping-list.html"){
+        if(page.includes("/shopping-list")){
             shoppingCurrentPage.classList.add("current-shopping")
             homeCurrentPage.classList.remove("current-home")
         }
-        if(page === "/index.html"){
+        if(page.includes("/index")){
             homeCurrentPage.classList.add("current-home")
             shoppingCurrentPage.classList.remove("current-shopping")
         }
