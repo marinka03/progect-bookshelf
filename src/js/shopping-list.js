@@ -122,24 +122,24 @@ function apiFetchCate(id) {
   );
 }
 
-// function createMarkupBooksInShopping(books) {
-//   return books
-//     .map(
-//       book =>
-//         `<li class='js-li-shopping' data-id='${book._id}'>
-// 				<img src="${book.book_image}" alt="${book.title}" width='116'>
-// 				<h2>${book.title}</h2>
-// 				<h3>${book.list_name}</h3>
-// 				<p>${book.description}</p>
-// 				<h3>${book.author}</h3>
-// 				<button class='js-delete'>Delete</button>
-// 				<a href="${book.amazon_product_url}">Amazon</a>
-// 				<a href="${book.buy_links[1].url}">Book1</a>
-// 				<a href="${book.buy_links[2].url}">Book2</a>
-// 			</li>`
-//     )
-//     .join('');
-// }
+function createMarkupBooksInShopping(books) {
+  return books
+    .map(
+      book =>
+        `<li class='js-li-shopping' data-id='${book._id}'>
+				<img src="${book.book_image}" alt="${book.title}" width='116'>
+				<h2>${book.title}</h2>
+				<h3>${book.list_name}</h3>
+				<p>${book.description}</p>
+				<h3>${book.author}</h3>
+				<button class='js-delete'>Delete</button>
+				<a href="${book.amazon_product_url}">Amazon</a>
+				<a href="${book.buy_links[1].url}">Book1</a>
+				<a href="${book.buy_links[2].url}">Book2</a>
+			</li>`
+    )
+    .join('');
+}
 
 function generateCard(books) {
   return books
