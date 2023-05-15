@@ -255,7 +255,7 @@ function checkCurentUser() {
       }
 
 
-      addToLocalStorage('user', userinfo);
+      addToLocalStorage(userId, userinfo);
 
 
       menu.style.display = 'flex';
@@ -521,7 +521,7 @@ function removeBook(bookId) {
   function addToLocalStorage(key, value) {
     const existingData = localStorage.getItem(key);
     let data = [];
-    
+    if (!localStorage.getItem("key")) {
     if (existingData) {
       data = JSON.parse(existingData);
     }
@@ -529,6 +529,7 @@ function removeBook(bookId) {
     data.push(value);
     
     localStorage.setItem(key, JSON.stringify(data));
+}
   }
 
 //   removeBook(643282b1e85766588626a0dc);
