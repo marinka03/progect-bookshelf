@@ -2,14 +2,17 @@ import { hideLoader } from './queries';
 import { getAddedBooks } from './login-modal';
 import { checkCurentUser } from './login-modal';
 import { bookList } from './login-modal';
-checkCurentUser();
+setTimeout(() => {
+  console.log('jvnnre', bookList);
+  listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
+}, 5000);
 hideLoader();
 const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
 
 const arrToShoppingList = [];
 const array = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
-listEl.innerHTML = createMarkupBooksInShopping(array);
+// listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
 // const btnDelete = document.querySelector('.js-li-shopping');
 
 // apiFetch().then(data =>
@@ -83,12 +86,7 @@ function addToShoppingList(evt) {
   // listEl.insertAdjacentElement('beforeend', arrToShoppingList[0])
   //   listEl.append(...arrToShoppingList);
 }
-// setTimeout(() => {
-//   const arrayId = getAddedBooks();
-//   console.log(arrayId);
-//   addTo(arrayId);
-// }, 10000);
-console.log(bookList);
+
 function addTo(arrayId) {
   arrayId.map(item => {
     apiFetchCate(item).then(data => {
