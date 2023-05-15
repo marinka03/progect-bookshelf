@@ -6,7 +6,7 @@
 flex-direction: row;
 align-items: flex-start;
 padding: 14px;
-gap: 48px;
+gap: 14px;
 isolation: isolate;
 
 background: $white-color;
@@ -19,7 +19,31 @@ border-radius: 16px;
     width: 100%;
 }
 
+&__index {
+
+    overflow: hidden;
+    width: 144px;
+
+    @include tablet {
+        overflow: auto;
+        width: 100%;
+    }
+}
+
 &__title {
+
+
+          display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; 
+  white-space: pre-wrap; 
+
+  overflow-wrap: break-word;
+
+      overflow: hidden;
+    text-overflow: ellipsis;
+
+    
 
     font-size: 16px;
 line-height: 1.125;
@@ -45,6 +69,12 @@ letter-spacing: 0.03em;
 
 color: $very-light-text-color;
 
+
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  overflow: hidden; 
+
+
 }
 
 &__cellar {
@@ -56,6 +86,15 @@ color: $very-light-text-color;
 &__wrapper {
     height: 68px;
     overflow: hidden;
+
+    @include tablet
+    { 
+        margin-bottom: 100px;
+    }
+
+    @include pc {
+        margin-bottom: 250px;
+    }
 
 }
 
@@ -100,6 +139,16 @@ color: $very-light-text-color;
 font-size: 14px;
 line-height: 1.29;
 
+      display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; 
+  white-space: pre-wrap; 
+
+  overflow-wrap: break-word;
+
+      overflow: hidden;
+    text-overflow: ellipsis;
+
 
 letter-spacing: -0.04em;
 
@@ -130,6 +179,13 @@ color: $black-color;
     font-size: 12px;
     line-height: 1.17;
     color: $very-light-text-color;
+
+}
+
+&__image {
+
+    border-radius: 8px;
+
 
 }
 
