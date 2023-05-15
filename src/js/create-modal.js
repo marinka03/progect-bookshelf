@@ -4,6 +4,27 @@ import bookshopImg from '../images/bookshop_link.png';
 import { addbooktosl } from './login-modal';
 import storageServises from './storage-servises';
 
+
+import { initializeApp } from 'firebase/app';
+
+import 'firebase/auth';
+
+import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+
+import {
+  getDatabase,
+  ref,
+  set,
+  child,
+  update,
+  remove,
+  get,
+  onValue
+} from 'firebase/database';
+
+import {checkCurentUser} from './login-modal'
+
+
 const bookQuikWiew = document.querySelector('.main');
 const modalElement = document.querySelector('.modal_pop-up__container');
 const modalInfo = document.querySelector('.modal_pop-up__description');
@@ -33,6 +54,14 @@ async function onOpenModal(evt) {
 
   await renderBookById(bookId);
 
+
+  // const buttonModalRemoveBook = document.querySelector('.modalbtn-remove');
+  // buttonModalRemoveBook.addEventListener('click', removeee)
+  
+  // function removeee() {
+  //     console.log('cliiiiick')
+  // }
+
   // await 
 
   // const addAAbook = document.querySelector('.modal__btn-add');
@@ -60,6 +89,21 @@ function handleBackdropClick(event) {
     onCloseModal();
   }
 }
+
+// function checkUserIn() {
+//   onAuthStateChanged(auth, user => {
+//     if (user) {
+//       // checkname();
+//       // checkId();
+//       // getAddedBooks();
+      
+
+//       // ...
+//     } else {
+//       NoLoginTxt.style.display = 'block';
+//     }
+//   });
+// }
 
 async function renderBookById(bookId) {
   modalElement.innerHTML = '';
@@ -111,12 +155,21 @@ async function renderBookById(bookId) {
        </div>
     </div>
     <button class="btn modal__btn-add" type="button"
-    data-bookId='${bookId}'>${bookInStorage ? 'remove from the shopping list' : 'add to shopping list'}</button>`;
+    data-bookId='${bookId}'>${bookInStorage ? 'remove from the shopping list' : 'add to shopping list'}</button>
+    <button class="btn modalbtn-remove" data-bookId='${bookId}' type="button">remove from the shopping list</button>
+    <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>
+    <p class="modal__btn-need-login">First you need to login</p>`;
 
     // <button class="btn modal__btn-remove" type="button">remove from the shopping list</button>
     //   <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>
     
     modalElement.innerHTML = markup;
+
+    // const removeBtn = document.querySelector('.modalbtn-remove')
+    // const NoLoginTxt = document.querySelector('.modal__btn-need-login')
+
+    // checkUserIn();
+    // removeBtn.addEventListener('click', removeBook(bookId));
 
     const linksShops = document.querySelectorAll('.modal__link');
     onLinksClick(linksShops);
