@@ -412,7 +412,7 @@ document.body.addEventListener('click', function (event) {
     addbooktosl(bookId);
   }
 });
-
+const bookList = [];
 function getAddedBooks() {
   const userId = auth.currentUser.uid;
 
@@ -424,7 +424,10 @@ function getAddedBooks() {
     if (books) {
       const addedBooks = Object.values(books);
       console.log('Массив добавленных книг:', addedBooks);
-
+      addedBooks.map(item => {
+        console.log(item);
+        apiFetchCate(item).then(data => console.log(data));
+      });
       return addedBooks;
     } else {
       console.log('no books found');
@@ -432,6 +435,11 @@ function getAddedBooks() {
   });
 }
 
+function apiFetchCate(id) {
+  return fetch(`https://books-backend.p.goit.global/books/${id}`).then(resp =>
+    resp.json()
+  );
+}
 function removeBook(bookId) {
   const userId = auth.currentUser.uid;
   //   const userId = globalUserId;

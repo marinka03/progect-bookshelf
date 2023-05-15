@@ -83,12 +83,7 @@ function addToShoppingList(evt) {
   // listEl.insertAdjacentElement('beforeend', arrToShoppingList[0])
   //   listEl.append(...arrToShoppingList);
 }
-// setTimeout(() => {
-//   const arrayId = getAddedBooks();
-//   console.log(arrayId);
-//   addTo(arrayId);
-// }, 10000);
-console.log(bookList);
+
 function addTo(arrayId) {
   arrayId.map(item => {
     apiFetchCate(item).then(data => {
