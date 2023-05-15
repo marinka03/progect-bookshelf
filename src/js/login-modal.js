@@ -377,34 +377,34 @@ function checkId() {
 }
 
 function addbooktosl(bookId) {
-    const userId = auth.currentUser.uid;
-  
-    const db = getDatabase();
-    const userBooksRef = ref(db, 'users/' + userId + '/books');
-  
-    const bookRef = child(userBooksRef, bookId);
-    get(bookRef)
-      .then(snapshot => {
-        if (snapshot.exists()) {
-          // Книга уже существует в списке
-          alert('Книга уже добавлена в список');
-        } else {
-          // Книги нет в списке, добавляем ее
-          update(userBooksRef, {
-            [bookId]: bookId
+  const userId = auth.currentUser.uid;
+
+  const db = getDatabase();
+  const userBooksRef = ref(db, 'users/' + userId + '/books');
+
+  const bookRef = child(userBooksRef, bookId);
+  get(bookRef)
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        // Книга уже существует в списке
+        alert('Книга уже добавлена в список');
+      } else {
+        // Книги нет в списке, добавляем ее
+        update(userBooksRef, {
+          [bookId]: bookId,
+        })
+          .then(() => {
+            alert('Книга успешно добавлена в список');
           })
-            .then(() => {
-              alert('Книга успешно добавлена в список');
-            })
-            .catch(error => {
-              console.error('Ошибка при добавлении книги в список:', error);
-            });
-        }
-      })
-      .catch(error => {
-        console.error('Ошибка при проверке наличия книги в списке:', error);
-      });
-  }
+          .catch(error => {
+            console.error('Ошибка при добавлении книги в список:', error);
+          });
+      }
+    })
+    .catch(error => {
+      console.error('Ошибка при проверке наличия книги в списке:', error);
+    });
+}
 
 document.body.addEventListener('click', function (event) {
   if (event.target.classList.contains('modal__btn-add')) {
@@ -428,7 +428,14 @@ function getAddedBooks() {
       console.log('Массив добавленных книг:', addedBooks);
       addedBooks.map(item => {
         console.log(item);
-        apiFetchCate(item).then(data => console.log(data));
+        apiFetchCate(item).then(data => {
+          const inShoppingList = bookList.some(number => item === number._id);
+          if (inShoppingList) {
+            return;
+          }
+          bookList.push(data);
+          console.log(bookList);
+        });
       });
       return addedBooks;
     } else {
@@ -436,6 +443,8 @@ function getAddedBooks() {
     }
   });
 }
+
+export { bookList };
 
 function apiFetchCate(id) {
   return fetch(`https://books-backend.p.goit.global/books/${id}`).then(resp =>
