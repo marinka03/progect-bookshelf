@@ -255,7 +255,7 @@ function checkCurentUser() {
       }
 
 
-      addToLocalStorage(userId, userinfo);
+      addToLocalStorage('user', userinfo);
 
 
       menu.style.display = 'flex';
