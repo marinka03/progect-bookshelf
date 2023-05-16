@@ -28,7 +28,7 @@ export { addbooktosl, removeBook };
 export { checkCurentUser };
 export { getAddedBooks };
 
-import {onCloseModal} from "./create-modal"
+// import {onCloseModal} from "./create-modal"
 
 console.log(modalContainer);
 
@@ -306,7 +306,7 @@ function signOutUser() {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
-      userCard.textContent = 'Sighn up';
+      userCard.textContent = 'Sign up';
       alert('bye');
       closeModal();
       clearUserData();
