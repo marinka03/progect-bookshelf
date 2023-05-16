@@ -114,15 +114,7 @@ function signinmodal() {
   sighnUpBtn.style.display = 'none';
 }
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyC6_3JGFTbHH7w50Kv4NMidw8vHUEsiuKI",
-//   authDomain: "book-list-2a4ef.firebaseapp.com",
-//   projectId: "book-list-2a4ef",
-//   storageBucket: "book-list-2a4ef.appspot.com",
-//   messagingSenderId: "150834791024",
-//   appId: "1:150834791024:web:ed6d52dbf29190ef7d6ab5",
-//   measurementId: "G-WET36RWZYC"
-// };
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBcrgHRI8n8PGmp66vE4dbqzvZDKE7S3nw',
@@ -134,6 +126,16 @@ const firebaseConfig = {
   databaseURL:
     'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
 };
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAc6ZeZFNKDr2KsntnTRa9jOsvNY3-ClBY",
+//   authDomain: "book-list-final.firebaseapp.com",
+//   projectId: "book-list-final",
+//   storageBucket: "book-list-final.appspot.com",
+//   messagingSenderId: "57582328129",
+//   appId: "1:57582328129:web:0ab4019b98f2dac7ace9c0",
+//   databaseURL:'https://book-list-final-default-rtdb.europe-west1.firebasedatabase.app'
+// };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
