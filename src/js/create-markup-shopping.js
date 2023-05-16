@@ -3,7 +3,7 @@ import appleImg from '../images/apple_link.png';
 import bookshopImg from '../images/bookshop_link.png';
 import trash from '../images/trash.png';
 import { hideLoader } from './queries';
-import { bookList } from './login-modal';
+// import { bookList } from './login-modal';
 
 // setTimeout(() => {
 //   listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
