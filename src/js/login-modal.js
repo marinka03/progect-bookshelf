@@ -1,5 +1,5 @@
 const modalContainer = document.querySelector('.modal');
-const openModalButton = document.querySelector('#header__sign-up');
+const openModalButton = document.getElementById('header__sign-up');
 const backdrop = document.querySelector('.modal-overlay');
 
 const nameInput = document.querySelector('.name');
