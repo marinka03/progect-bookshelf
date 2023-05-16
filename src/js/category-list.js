@@ -69,7 +69,9 @@ function changeActiveCategory() {
   const activeCategory = document.querySelector('.active-category');
   const liEl = document.querySelectorAll('.category-list_item');
 
-  activeCategory.classList.remove('active-category');
+  if (activeCategory) {
+    activeCategory.classList.remove('active-category');
+  }
 
   liEl.forEach(el => {
     const category = el.getAttribute('data-category');
