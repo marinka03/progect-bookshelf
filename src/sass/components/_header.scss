@@ -266,24 +266,19 @@
     border-radius: 50%;
 }
 .sign-out-header{
-    width: 182px;     //---------------------BTN
+    width: 182px;  
     height: 48px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    // margin-top: 3px;
+    justify-content: space-around;
+    cursor: pointer;
     background-color: $white-color;
     font-weight: 500;
     position: absolute;
     top: 58px;
-    // right: 22px;
-    // margin: 0;
     border-radius: 18px;
     border: 2px solid #111111;
-    transition: all 0.5s ;
-    // animation-duration: 0.200s;
-    // animation-name: slidein;
-
+    transition: all 0.5s ease-out;
 }
 
 // @keyframes slidein {
