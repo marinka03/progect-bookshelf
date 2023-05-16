@@ -3,7 +3,7 @@ import appleImg from '../images/apple_link.png';
 import bookshopImg from '../images/bookshop_link.png';
 import storageServises from './storage-servises';
 
-export { onCloseModal };
+// export {onCloseModal}
 
 import { initializeApp } from 'firebase/app';
 
@@ -60,7 +60,7 @@ export async function onOpenModal(evt) {
 
   await renderBookById(bookId);
 
-  // const buttonModalRemoveBook = document.querySelector('.modalbtn-remove');
+  // const buttonModalRemoveBook = document.querySelector('.modal__btn-remove');
   // buttonModalRemoveBook.addEventListener('click', removeee)
 
   // function removeee() {
@@ -163,7 +163,7 @@ async function renderBookById(bookId) {
     data-bookId='${bookId}'>${
       bookInStorage ? 'remove from the shopping list' : 'add to shopping list'
     }</button>
-    <button class="btn modalbtn-remove" data-bookId='${bookId}' type="button">remove from the shopping list</button>
+    <button class="btn modal__btn-remove" data-bookId='${bookId}' type="button">remove from the shopping list</button>
     <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>
     <p class="modal__btn-need-login">First you need to login</p>`;
 
@@ -172,7 +172,7 @@ async function renderBookById(bookId) {
 
     modalElement.innerHTML = markup;
 
-    const removeBtn = document.querySelector('.modalbtn-remove');
+    const removeBtn = document.querySelector('.modal__btn-remove');
     const NoLoginTxt = document.querySelector('.modal__btn-need-login');
     const addABook = document.querySelector('.modal__btn-add');
     const congratulationMsg = document.querySelector('.modal__btn-text');
@@ -184,9 +184,9 @@ async function renderBookById(bookId) {
       removeBtn.style.display = 'block';
       addABook.style.display = 'none';
       congratulationMsg.style.display = 'block';
-      // setTimeout(() =>{
-      //   congratulationMsg.style.display = 'none';
-      //  }, 3000)
+      setTimeout(() => {
+        congratulationMsg.style.display = 'none';
+      }, 6500);
     });
 
     removeBtn.addEventListener('click', event => {
