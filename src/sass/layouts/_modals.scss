@@ -12,7 +12,7 @@
     overflow-y: scroll;
 
     transition-property: opacity;
-    transition-duration: 250ms ease-in-out;
+    transition-duration: 250ms;
     transition-timing-function: cubic-bezier(.4, 0, .2, 1);
     
     @media screen and (width <=767px) {
@@ -27,7 +27,7 @@
     .modal_pop-up {
         transform: translate(-50%, -50%) scale(0.7);
 
-        @media screen and (max-width: 335px) {
+        @media screen and (max-width: 767px) {
             transform: translate(0, 0) scale(0.7);
         }
     }
@@ -44,10 +44,11 @@
     border-radius: 18px;
     position: relative;
 
+    
     @include tablet {
         min-height: 465px;
         max-height: 501px;
-
+        
         margin: 0;
         padding: 40px;
         width: 579px;
@@ -55,9 +56,9 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) scale(1);
-
-        transition-property: opacity;
-        transition-duration: 250ms ease-in-out;
+        
+        transition-property: transform;
+        transition-duration: 250ms;
         transition-timing-function: cubic-bezier(.4, 0, .2, 1);
         
     }
@@ -190,6 +191,7 @@
     display: flex;
     gap: 20px;
     align-items: center;
+    mix-blend-mode: luminosity;
 }
 
 .seller__link {
@@ -204,7 +206,7 @@
 .modal__btn-remove {
     display: block;
     margin: 0 auto;
-    padding: 14px 10px;
+    padding: 14px 28px;
     cursor: pointer;
 
     font-size: 18px;
@@ -281,11 +283,71 @@
 
 .modal__btn-need-login {
     display: none;
+    text-align: center;
 }
 .modal__btn-remove {
     display: none;
 }
 
 .modal__btn-text {
+    text-align: center;
     display: none;
+    margin-top: 8px;
+    width: 242px;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: calc(12 / 10);
+    letter-spacing: -0.04em;
+    color: rgba(17, 17, 17, 0.5);
+
+    @include tablet {
+            width: 324px;
+        }
 }
+
+
+
+// modal pop-up
+
+.dark-theme .modal_pop-up {
+  background-color: $dark-theme-main-background-color;
+  border-color: $white-color;
+  transition: 250ms;
+}
+
+.dark-theme .modal_pop-up__close-icon {
+  stroke: $white-color;
+}
+
+.dark-theme .modal_pop-up__close-icon:hover {
+  stroke: $blue-color;
+}
+
+.dark-theme .book__title {
+  color: $white-color;
+}
+
+.dark-theme .book__author {
+  color: #B4AFAF;
+}
+
+.dark-theme .book__description, 
+.dark-theme .no-description, 
+.dark-theme .modal__btn-add,
+.dark-theme .modal__btn-remove {
+  color: $white-color;
+}
+
+.dark-theme .seller__list {
+  filter: invert(1);
+  mix-blend-mode: luminosity;
+}
+
+.dark-theme .modal__btn-text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
