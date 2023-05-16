@@ -17,15 +17,8 @@ const modalPopUp = document.querySelector('.modal_pop-up');
 const burger = document.querySelector('.burger');
 const iconClose = document.querySelector('.icon-close');
 const main = document.querySelector('main');
-// const activeCategory = document.querySelector('.active-category');
-
-// if (activeCategory) {
-//   activeCategory.classList.remove('active-category');
-// }
 
 checkBox.addEventListener('change', onChange);
-
-// isTheme();
 
 function onChange(e) {
   if (e.target.checked) {
@@ -33,14 +26,14 @@ function onChange(e) {
     body.classList.add('dark-theme');
     header.classList.add('dark-theme_header');
     // headerHome.classList.add('dark-theme_header-hover');
-    headerShopping.classList.add('dark-theme_header-hover');
-    if (headerHome.classList.contains('current-home')) {
-      currentHome.classList.add('dark-theme-curent-page');
-    }
+    // headerShopping.classList.add('dark-theme_header-hover');
+    // if (headerHome.classList.contains('current-home')) {
+    //   currentHome.classList.add('dark-theme-curent-page');
+    // }
     // currentShopping.classList.add('dark-theme-curent-page');
-    if (headerHome.classList.contains('current-home')) {
-      headerShopping.classList.add('dark-theme_header-hover');
-    }
+    // if (headerHome.classList.contains('current-home')) {
+    //   headerShopping.classList.add('dark-theme_header-hover');
+    // }
     // if (currentShopping.classList.contains('dark-theme-curent-page')) {
     //   headerHome.classList.add('dark-theme_header-hover');
     // }
@@ -50,8 +43,8 @@ function onChange(e) {
     //   main.classList.contains('global-container') ||
     //   categoryListName.classList.contains('light-theme-color-item')
     // ) {
-    categoryListName.classList.remove('light-theme-color-item');
-    categoryListName.classList.add('dark-theme-category-list_item');
+    // categoryListName.classList.remove('light-theme-color-item');
+    // categoryListName.classList.add('dark-theme-category-list_item');
     // }
 
     // if (body.classList.contains('dark-theme')) {
@@ -68,8 +61,8 @@ function onChange(e) {
     burger.classList.remove('dark-burger-box');
     iconClose.classList.remove('dark-burger-box');
     headerShopping.classList.remove('dark-theme_header-hover');
-    categoryListName.classList.remove('dark-theme-category-list_item');
-    categoryListName.classList.add('light-theme-color-item');
+    // categoryListName.classList.remove('dark-theme-category-list_item');
+    // categoryListName.classList.add('light-theme-color-item');
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.LIGHT));
   }
 }
@@ -90,10 +83,10 @@ function isTheme() {
       }
       burger.classList.add('dark-burger-box');
       iconClose.classList.remove('dark-burger-box');
-      headerShopping.classList.add('dark-theme_header-hover');
+      // headerShopping.classList.add('dark-theme_header-hover');
       // if (main.classList.contains('global-container')) {
-      categoryListName.classList.remove('light-theme-color-item');
-      categoryListName.classList.add('dark-theme-category-list_item');
+      // categoryListName.classList.remove('light-theme-color-item');
+      // categoryListName.classList.add('dark-theme-category-list_item');
       // }
 
       checkBox.checked = true;
