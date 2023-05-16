@@ -9,6 +9,8 @@ import { generateCard } from './create-markup-shopping';
 //   listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
 // }, 3000);
 // hideLoader();
+import shoppping_list from '../images/shopping_list.png';
+
 import amazonImg from '../images/amazon_link.png';
 import appleImg from '../images/apple_link.png';
 import bookshopImg from '../images/bookshop_link.png';
@@ -47,12 +49,25 @@ import { async } from '@firebase/util';
 hideLoader();
 const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
-
+const emptyWrapper = document.querySelector('.js-wrapper-empty-page');
+console.log(emptyWrapper);
 // const arrToShoppingList = [];
 const localStorageEL = JSON.parse(localStorage.getItem('userdata')) ?? {};
 console.log(localStorageEL.books);
 // listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
 // const btnDelete = document.querySelector('.js-li-shopping');
+
+const empty = emptyWrapper;
+
+if (!localStorageEL.books.length) {
+  console.log(localStorageEL.books);
+  console.log('1');
+  emptyWrapper.style.display = 'block';
+} else {
+  console.log('2');
+  emptyWrapper.style.display = 'none';
+}
+
 const array = [];
 localStorageEL.books.forEach(item => {
   apiFetchCate(item).then(data => {
@@ -85,8 +100,8 @@ function onClickBtnDelete(evt) {
     // console.log(bookList[index]);
     // bookList.splice(index, 1);
     // console.log(bookList);
-	//   localStorage.setItem('shopping-list', JSON.stringify(bookList));
-	  
+    //   localStorage.setItem('shopping-list', JSON.stringify(bookList));
+
     const index = array.findIndex(item => item._id === id);
     console.log(array[index]);
     array.splice(index, 1);
@@ -104,6 +119,18 @@ function onClickBtnDelete(evt) {
     console.log('vjn;evo;n;e');
     removeBook(id);
     listEl.innerHTML = generateCard(array);
+
+    if (!array.length) {
+      console.log(emptyWrapper.style.display);
+      //   emptyWrapper.style.display = 'block';
+      console.log(emptyWrapper.style.display);
+      console.log(emptyWrapper);
+      console.log(empty);
+      console.log('1');
+      //   addABook.style.display = 'none';
+      //   listEl.insertAdjacentElement('beforeend', emptyWrapper);
+      listEl.innerHTML = `<div class="wrapper-empty-page js-wrapper-empty-page"><p class="wrapper-empty-page_description js-descr-empty">This page is empty, add some books and proceed to order.</p><img class="js-image-empty" src="${shoppping_list}" alt="This page is empty" /></div>`;
+    }
   }
 }
 
