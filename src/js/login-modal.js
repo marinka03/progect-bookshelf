@@ -453,7 +453,7 @@ function addbooktosl(bookId) {
 //   }
 // });
 
-const bookList = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
+// const bookList = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
 
 
 function getAddedBooks() {
@@ -467,18 +467,18 @@ function getAddedBooks() {
     if (books) {
       const addedBooks = Object.values(books);
       console.log('Массив добавленных книг:', addedBooks);
-      addedBooks.map(item => {
-        console.log(item);
-        apiFetchCate(item).then(data => {
-          const inShoppingList = bookList.some(number => item === number._id);
-          if (inShoppingList) {
-            return;
-          }
-          bookList.push(data);
-          localStorage.setItem('shopping-list', JSON.stringify(bookList));
-          console.log(bookList);
-        });
-      });
+    //   addedBooks.map(item => {
+    //     console.log(item);
+    //     apiFetchCate(item).then(data => {
+    //       const inShoppingList = bookList.some(number => item === number._id);
+    //       if (inShoppingList) {
+    //         return;
+    //       }
+    //       bookList.push(data);
+    //       localStorage.setItem('shopping-list', JSON.stringify(bookList));
+    //       console.log(bookList);
+    //     });
+    //   });
       saveUserBooks(addedBooks)
       return addedBooks;
     } else {
@@ -487,13 +487,15 @@ function getAddedBooks() {
   });
 }
 
-export { bookList };
+// export { bookList };
 
-function apiFetchCate(id) {
-  return fetch(`https://books-backend.p.goit.global/books/${id}`).then(resp =>
-    resp.json()
-  );
-}
+// function apiFetchCate(id) {
+//   return fetch(`https://books-backend.p.goit.global/books/${id}`).then(resp =>
+//     resp.json()
+//   );
+// }
+
+
 // function removeBook(bookId) {
 //   const userId = auth.currentUser.uid;
 //   //   const userId = globalUserId;

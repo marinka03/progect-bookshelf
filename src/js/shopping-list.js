@@ -3,19 +3,66 @@ import { getAddedBooks } from './login-modal';
 import { checkCurentUser } from './login-modal';
 import { bookList } from './login-modal';
 import { generateCard } from './create-markup-shopping';
-setTimeout(() => {
-  console.log('jvnnre', bookList);
-  //   listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
-  listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
-}, 3000);
+// setTimeout(() => {
+//   console.log('jvnnre', bookList);
+//   //   listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
+//   listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
+// }, 3000);
 // hideLoader();
+import amazonImg from '../images/amazon_link.png';
+import appleImg from '../images/apple_link.png';
+import bookshopImg from '../images/bookshop_link.png';
+import trash from '../images/trash.png';
+
+import { initializeApp } from 'firebase/app';
+
+import 'firebase/auth';
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
+
+import {
+  getDatabase,
+  ref,
+  set,
+  child,
+  update,
+  remove,
+  get,
+  onValue,
+} from 'firebase/database';
+
+import { addbooktosl, removeBook } from './login-modal';
+import { async } from '@firebase/util';
+
+// setTimeout(() => {
+//   console.log('jvnnre', bookList);
+//   //   listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
+//   listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
+// }, 5000);
+hideLoader();
 const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
 
-const arrToShoppingList = [];
-const array = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
+// const arrToShoppingList = [];
+const localStorageEL = JSON.parse(localStorage.getItem('userdata')) ?? {};
+console.log(localStorageEL.books);
 // listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
 // const btnDelete = document.querySelector('.js-li-shopping');
+const array = [];
+localStorageEL.books.forEach(item => {
+  apiFetchCate(item).then(data => {
+    console.log(data);
+    array.push(data);
+    listEl.insertAdjacentHTML('beforeend', generateCardochki(data));
+  });
+});
+// console.log(array);
+// listEl.insertAdjacentHTML('beforeend', generateCard(array));
 
 // apiFetch().then(data =>
 //   containerEl.insertAdjacentHTML('beforeend', createMarkupTopBooks(data))
@@ -26,6 +73,7 @@ listEl.addEventListener('click', onClickBtnDelete);
 
 function onClickBtnDelete(evt) {
   if (evt.target.classList.contains('js-delete')) {
+    console.log('5');
     const li = evt.target.closest('.js-li-shopping');
     const id = li.dataset.id;
     console.log(id);
@@ -33,13 +81,29 @@ function onClickBtnDelete(evt) {
     // console.log(masShop);
     // listEl.innerHTML = createMarkupBooksInShopping(masShop);
 
-    const index = bookList.findIndex(item => item._id === id);
-    console.log(bookList[index]);
-    bookList.splice(index, 1);
-    console.log(bookList);
-    localStorage.setItem('shopping-list', JSON.stringify(bookList));
+    // const index = bookList.findIndex(item => item._id === id);
+    // console.log(bookList[index]);
+    // bookList.splice(index, 1);
+    // console.log(bookList);
+	//   localStorage.setItem('shopping-list', JSON.stringify(bookList));
+	  
+    const index = array.findIndex(item => item._id === id);
+    console.log(array[index]);
+    array.splice(index, 1);
+    console.log(array);
+
+    // localStorage.setItem('shopping-list', JSON.stringify(bookList));
     // listEl.innerHTML = createMarkupBooksInShopping(bookList);
-    listEl.innerHTML = generateCard(bookList);
+
+    // listEl.innerHTML = generateCard(array);
+    // const arr = array.map(item => item._id);
+    // localStorageEL.books = arr;
+    // console.log(localStorageEL);
+    // localStorage.setItem('userdata', JSON.stringify(localStorageEL));
+    // console.log(array);
+    console.log('vjn;evo;n;e');
+    removeBook(id);
+    listEl.innerHTML = generateCard(array);
   }
 }
 
@@ -199,3 +263,56 @@ function createMarkupBooksInShopping(books) {
 export { array };
 
 hideLoader();
+
+function generateCardochki(book) {
+  return `
+    <li class="shopping-list-card js-li-shopping" data-id='${book._id}'> 
+      <div class="shopping-list-card__cover">
+        <img src="${book.book_image}" alt="${
+    book.title
+  }" class="shopping-list-card__image">
+      </div>
+      <div class="shopping-list-card__content">
+<div class="shopping-list-card__index">
+        <h1 class="shopping-list-card__title">${book.title}</h1>
+        <p class="shopping-list-card__category">${
+          book.list_name || 'No list name'
+        }</p>
+</div>
+        <div class="shopping-list-card__wrapper">
+          <p class="shopping-list-card__desc">${
+            book.description || 'We hope you will love it'
+          }</p>
+        </div>
+        <div class="shopping-list-card__cellar">
+          <p class="shopping-list-card__author">${book.contributor}</p>
+          <ul class="shopping-list-card__links">
+             <li>
+              <a class="seller__link shopping-list-card__amazon" href=${
+                book.amazon_product_url
+              } target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Amazon">
+                <img src="${amazonImg}" alt="amazon" />
+              </a>
+            </li>
+            <li>
+              <a class="seller__link shopping-list-card__book" href=${
+                book.buy_links[1].url
+              } target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Apple-books">
+                <img src="${appleImg}" alt="apple-books" />
+              </a>
+            </li>
+            <li>
+              <a class="seller__link shopping-list-card__book" href=${
+                book.buy_links[2].url
+              } target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Bookshop">
+                <img src="${bookshopImg}" alt="bookshop" />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <button class="shopping-list-card__button">
+          <img src="${trash}" width="16" height="16" class="shopping-list-card__icon js-delete" alt="Remove">
+        </button>
+      </div>
+    </li>`;
+}
