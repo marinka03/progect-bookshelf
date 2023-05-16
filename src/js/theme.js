@@ -1,3 +1,5 @@
+import { onOpenModal } from './create-modal';
+
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
@@ -12,12 +14,13 @@ const categoryListName = document.querySelector('.category-list');
 const headerHome = document.querySelector('.header__home');
 const headerShopping = document.querySelector('.header__shopping');
 const currentHome = document.querySelector('.current-home');
-const shoppingList = document.querySelector('.shopping-list-card');
+// const modalPopUp = document.querySelector('.modal_pop-up');
 
 checkBox.addEventListener('change', onChange);
+
 isTheme();
 
-function onChange(e) {
+async function onChange(e) {
   if (e.target.checked) {
     body.classList.remove('ligth-theme');
     body.classList.add('dark-theme');
@@ -27,7 +30,11 @@ function onChange(e) {
     currentHome.classList.add('dark-theme-cuttent-page');
     categoryListName.classList.remove('light-theme-color-item');
     categoryListName.classList.add('dark-theme-category-list_item');
-    shoppingList.classList.add('dark-theme-shopping-list');
+    modalPopUp.classList.add('dark-theme_modal-book');
+    // if (await onOpenModal()) {
+    //   modalPopUp.classList.add('dark-theme_modal-book');
+    // }
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.DARK));
   } else {
     body.classList.add('ligth-theme');
@@ -36,11 +43,17 @@ function onChange(e) {
     headerHome.classList.remove('dark-theme_header-hover');
     headerShopping.classList.remove('dark-theme_header-hover');
     categoryListName.classList.remove('dark-theme-category-list_item');
-    // shoppingList.classList.remove('dark-theme-shopping-list');
     categoryListName.classList.add('light-theme-color-item');
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.LIGHT));
   }
 }
+
+// function modal() {
+//   if (onChange) {
+//     modalPopUp.classList.add('dark-theme_modal-book');
+//   }
+// }
+// modal();
 
 function isTheme() {
   const saveTheme = localStorage.getItem(STORAGE_KEY);
@@ -56,7 +69,6 @@ function isTheme() {
       headerShopping.classList.add('dark-theme_header-hover');
       categoryListName.classList.remove('light-theme-color-item');
       categoryListName.classList.add('dark-theme-category-list_item');
-      // shoppingList.classList.add('dark-theme-shopping-list');
       checkBox.checked = true;
     }
   }

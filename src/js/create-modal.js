@@ -3,13 +3,18 @@ import appleImg from '../images/apple_link.png';
 import bookshopImg from '../images/bookshop_link.png';
 import storageServises from './storage-servises';
 
-export {onCloseModal}
+export { onCloseModal };
 
 import { initializeApp } from 'firebase/app';
 
 import 'firebase/auth';
 
-import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
 
 import {
   getDatabase,
@@ -19,12 +24,11 @@ import {
   update,
   remove,
   get,
-  onValue
+  onValue,
 } from 'firebase/database';
 
 import { addbooktosl, removeBook } from './login-modal';
 import { async } from '@firebase/util';
-
 
 const bookQuikWiew = document.querySelector('.main');
 const modalElement = document.querySelector('.modal_pop-up__container');
@@ -40,15 +44,14 @@ closeModalBtn.addEventListener('click', onCloseModal);
 
 let bookItem;
 
-async function onOpenModal(evt) {
+export async function onOpenModal(evt) {
   if (!evt.target.closest('.top-books_quick-view')) return;
-  
+
   const bookId = evt.target
-  .closest('.top-books_quick-view')
-  .getAttribute('data-bookId');
+    .closest('.top-books_quick-view')
+    .getAttribute('data-bookId');
   bookItem = bookId;
   console.log(bookId);
-
 
   backdrop.classList.remove('backdrop_pop-up--is-hidden');
   backdrop.addEventListener('click', handleBackdropClick);
@@ -57,19 +60,17 @@ async function onOpenModal(evt) {
 
   await renderBookById(bookId);
 
-
   // const buttonModalRemoveBook = document.querySelector('.modalbtn-remove');
   // buttonModalRemoveBook.addEventListener('click', removeee)
-  
+
   // function removeee() {
   //     console.log('cliiiiick')
   // }
 
-  // await 
+  // await
 
   // const addAAbook = document.querySelector('.modal__btn-add');
   // addAAbook.addEventListener('click', addbooktosl(bookId));
-  
 }
 
 function onCloseModal() {
@@ -99,7 +100,6 @@ function handleBackdropClick(event) {
 //       // checkname();
 //       // checkId();
 //       // getAddedBooks();
-      
 
 //       // ...
 //     } else {
@@ -116,15 +116,17 @@ async function renderBookById(bookId) {
 
     storageServises.save('active-book', book);
 
-    const bookInStorage = Boolean(storageServises.load('selected-books')?.find(el => el._id === book._id));
+    const bookInStorage = Boolean(
+      storageServises.load('selected-books')?.find(el => el._id === book._id)
+    );
 
     const { book_image, title, author, description, buy_links } = book;
 
     if (description === '') {
-     bookDescription.innerHTML = 'We hope you will love it';
+      bookDescription.innerHTML = 'We hope you will love it';
     } else {
-    bookDescription.innerHTML = '';
-  }
+      bookDescription.innerHTML = '';
+    }
 
     const markup = `<div class="modal-info">
     <img class="book__img" src="${book_image}" alt="${title}"/>
@@ -158,24 +160,26 @@ async function renderBookById(bookId) {
        </div>
     </div>
     <button class="btn modal__btn-add" type="button"
-    data-bookId='${bookId}'>${bookInStorage ? 'remove from the shopping list' : 'add to shopping list'}</button>
+    data-bookId='${bookId}'>${
+      bookInStorage ? 'remove from the shopping list' : 'add to shopping list'
+    }</button>
     <button class="btn modalbtn-remove" data-bookId='${bookId}' type="button">remove from the shopping list</button>
     <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>
     <p class="modal__btn-need-login">First you need to login</p>`;
 
     // <button class="btn modal__btn-remove" type="button">remove from the shopping list</button>
     //   <p class="modal__btn-text">Сongratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.</p>
-    
+
     modalElement.innerHTML = markup;
 
-    const removeBtn = document.querySelector('.modalbtn-remove')
+    const removeBtn = document.querySelector('.modalbtn-remove');
     const NoLoginTxt = document.querySelector('.modal__btn-need-login');
     const addABook = document.querySelector('.modal__btn-add');
-    const congratulationMsg = document.querySelector('.modal__btn-text')
+    const congratulationMsg = document.querySelector('.modal__btn-text');
 
-    addABook.addEventListener('click', (event) =>{
+    addABook.addEventListener('click', event => {
       const bookId = event.target.getAttribute('data-bookId');
-     
+
       addbooktosl(bookId);
       removeBtn.style.display = 'block';
       addABook.style.display = 'none';
@@ -183,48 +187,39 @@ async function renderBookById(bookId) {
       // setTimeout(() =>{
       //   congratulationMsg.style.display = 'none';
       //  }, 3000)
-        
-      
-    })
+    });
 
-    removeBtn.addEventListener('click', (event) =>{
+    removeBtn.addEventListener('click', event => {
       const bookId = event.target.getAttribute('data-bookId');
       // checkYouHaveBook(bookId);
-        removeBook(bookId);
-        removeBtn.style.display = 'none';
-        addABook.style.display = 'block';
-        congratulationMsg.style.display = 'none';
-       
-    
-    })
+      removeBook(bookId);
+      removeBtn.style.display = 'none';
+      addABook.style.display = 'block';
+      congratulationMsg.style.display = 'none';
+    });
 
-    function  checkYouHaveBook(bookId){
+    function checkYouHaveBook(bookId) {
       const userDataString = getUserData();
-      userDataString.books.map((book) => {
-        if(book === bookId){
+      userDataString.books.map(book => {
+        if (book === bookId) {
           removeBtn.style.display = 'block';
           addABook.style.display = 'none';
           congratulationMsg.style.display = 'none';
-        } 
-      })
+        }
+      });
     }
 
-    
-
-    function checkUserIn(){
+    function checkUserIn() {
       const userDataString = getUserData();
       if (!userDataString) {
         NoLoginTxt.style.display = 'block';
         removeBtn.style.display = 'none';
-          addABook.style.display = 'none';
+        addABook.style.display = 'none';
       }
     }
 
-
     checkUserIn();
-checkYouHaveBook(bookId);
-
-    
+    checkYouHaveBook(bookId);
 
     const linksShops = document.querySelectorAll('.modal__link');
     onLinksClick(linksShops);
@@ -242,7 +237,7 @@ function getUserData() {
     return null;
   }
 }
-console.log(getUserData())
+console.log(getUserData());
 
 function onLinksClick(links) {
   for (let i = 0; i < links.length; i++) {
@@ -254,7 +249,6 @@ function onLinksClick(links) {
   }
 }
 
- 
 const BASE_URL = 'https://books-backend.p.goit.global/books/';
 
 async function getBookById(bookId) {
