@@ -47,7 +47,7 @@ import { async } from '@firebase/util';
 //   listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
 // }, 5000);
 hideLoader();
-const containerEl = document.querySelector('.js-container-list');
+// const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
 const emptyWrapper = document.querySelector('.js-wrapper-empty-page');
 console.log(emptyWrapper);
