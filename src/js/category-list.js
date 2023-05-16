@@ -21,6 +21,7 @@ categoryListEl.addEventListener('click', async e => {
     allCategoryCreate();
     // добавление активной категории
     saveActiveCategory(e.target.textContent);
+    changeActiveCategory(categoryRequestTarget);
   } else {
     apiRequestCategory(categoryRequest)
       .then(data => {
