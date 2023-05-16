@@ -1,35 +1,23 @@
 .category-container {
-  // position: relative;
-  // max-width: 375px;
+
   margin: 0 auto;
   padding-top: 40px;
   padding-bottom: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
+//   padding-left: 20px;
+//   padding-right: 20px;
   // outline: solid 2px tomato;
 
   @include mobile {
     max-width: 375px;
   }
-  // @include tablet{
-  //     margin: 0;
-  // }
+  @include tablet{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 
-  // @include tablet {
-  //     // max-width: 768px;
-  //     padding-top: 72px;
-  //     padding-bottom: 140px;
-  padding-left: 47px;
-  padding-right: 47px;
-  // }
-
-  // @include pc {
-  //     // max-width: 1440px;
-  //     padding-top: 72px;
-  //     padding-bottom: 190px;
-  //     padding-left: 85px;
-  //     padding-right: 85px;
-  // }
+  @include pc {
+    padding-top: 40px;
+  }
 }
 
 .isActive {
@@ -41,20 +29,27 @@
 .category-list {
   display: block;
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
   gap: 24px;
   height: 230px; // t- i d-472px;
   width: 335px; //  d- 356px;
   overflow: scroll;
 
+  @include tablet {
+height: 472px;
+      }
+
+    @include pc {
+width: 356px;
+    }
+
   &_item {
     font-size: 16px;
     line-height: 1.25;
     letter-spacing: -0.02em;
     padding: 5px;
-    border-radius: 3px;
-    // $cubic: cubic-bezier(0.4, 0, 0.2, 1);
-    //     $transition: transform $cubic 250ms;
+    border-radius: 3px;  
 
     &:hover {
       text-transform: uppercase;
@@ -70,4 +65,21 @@
 
 .light-theme-color-item {
   color: $light-text-color;
+}
+
+.category-books_container {
+    width: 100%;
+    margin-bottom: 8px;
+
+    @include tablet {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+
+    @include pc {
+        gap: 24px;
+        width: 996px;
+        margin-bottom: 32px;
+    }
 }
