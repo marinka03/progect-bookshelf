@@ -34,7 +34,7 @@ console.log(modalContainer);
 
 function createModal() {
   backdrop.style.display = 'block';
-
+  document.body.classList.add('noscroll');
   const closeButton = document.querySelector('.closeButton');
 
   const close = closeButton.addEventListener('click', closeModal);
@@ -55,6 +55,8 @@ function closeModal() {
   modalContainer.style.display = 'none';
   // modalContainer.innerHTML = "";
   backdrop.style.display = 'none';
+  document.body.classList.remove('noscroll');
+  document.body.classList.add('go-top-show');
   window.removeEventListener('keydown', onEscKeyPress);
   form.reset();
 }
@@ -72,16 +74,7 @@ import {
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
 
-import {
-  getDatabase,
-  ref,
-  set,
-  child,
-  update,
-  remove,
-  get,
-  onValue,
-} from 'firebase/database';
+import { getDatabase, ref, set, child, update, remove, get, onValue } from 'firebase/database';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -126,8 +119,7 @@ const firebaseConfig = {
   storageBucket: 'book-list7.appspot.com',
   messagingSenderId: '822015975293',
   appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
-  databaseURL:
-    'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
+  databaseURL: 'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
 };
 
 // const firebaseConfig = {
@@ -183,12 +175,7 @@ function register() {
   const sighnUpName = name.value;
   const sighnUpPassword = password.value;
 
-  createUserWithEmailAndPassword(
-    auth,
-    sighnUpEmail,
-    sighnUpPassword,
-    sighnUpName
-  )
+  createUserWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
     .then(userCredential => {
       // Signed in
       const user = userCredential.user;
