@@ -16,10 +16,16 @@ const currentShopping = document.querySelector('.current-shopping');
 const modalPopUp = document.querySelector('.modal_pop-up');
 const burger = document.querySelector('.burger');
 const iconClose = document.querySelector('.icon-close');
+const main = document.querySelector('main');
+// const activeCategory = document.querySelector('.active-category');
+
+// if (activeCategory) {
+//   activeCategory.classList.remove('active-category');
+// }
 
 checkBox.addEventListener('change', onChange);
 
-isTheme();
+// isTheme();
 
 function onChange(e) {
   if (e.target.checked) {
@@ -28,9 +34,11 @@ function onChange(e) {
     header.classList.add('dark-theme_header');
     // headerHome.classList.add('dark-theme_header-hover');
     headerShopping.classList.add('dark-theme_header-hover');
-    currentHome.classList.add('dark-theme-curent-page');
+    if (headerHome.classList.contains('current-home')) {
+      currentHome.classList.add('dark-theme-curent-page');
+    }
     // currentShopping.classList.add('dark-theme-curent-page');
-    if (currentHome.classList.contains('dark-theme-curent-page')) {
+    if (headerHome.classList.contains('current-home')) {
       headerShopping.classList.add('dark-theme_header-hover');
     }
     // if (currentShopping.classList.contains('dark-theme-curent-page')) {
@@ -38,11 +46,17 @@ function onChange(e) {
     // }
     burger.classList.add('dark-burger-box');
     iconClose.classList.add('dark-burger-box');
+    // if (
+    //   main.classList.contains('global-container') ||
+    //   categoryListName.classList.contains('light-theme-color-item')
+    // ) {
     categoryListName.classList.remove('light-theme-color-item');
     categoryListName.classList.add('dark-theme-category-list_item');
-    if (body.classList.contains('dark-theme')) {
-      modalPopUp.classList.add('dark-theme_modal-book');
-    }
+    // }
+
+    // if (body.classList.contains('dark-theme')) {
+    //   modalPopUp.classList.add('dark-theme_modal-book');
+    // }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.DARK));
   } else {
@@ -50,7 +64,7 @@ function onChange(e) {
     body.classList.remove('dark-theme');
     header.classList.remove('dark-theme_header');
     // headerHome.classList.remove('dark-theme_header-hover');
-    currentHome.classList.remove('dark-theme-curent-page');
+    // currentHome.classList.remove('dark-theme-curent-page');
     burger.classList.remove('dark-burger-box');
     iconClose.classList.remove('dark-burger-box');
     headerShopping.classList.remove('dark-theme_header-hover');
@@ -71,13 +85,19 @@ function isTheme() {
       body.classList.add('dark-theme');
       header.classList.add('dark-theme_header');
       // headerHome.classList.add('dark-theme_header-hover');
-      currentHome.classList.add('dark-theme-curent-page');
+      if (headerHome.classList.contains('current-home')) {
+        currentHome.classList.add('dark-theme-curent-page');
+      }
       burger.classList.add('dark-burger-box');
       iconClose.classList.remove('dark-burger-box');
       headerShopping.classList.add('dark-theme_header-hover');
+      // if (main.classList.contains('global-container')) {
       categoryListName.classList.remove('light-theme-color-item');
       categoryListName.classList.add('dark-theme-category-list_item');
+      // }
+
       checkBox.checked = true;
     }
   }
 }
+isTheme();
