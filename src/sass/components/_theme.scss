@@ -14,7 +14,8 @@ body.dark-theme {
   border-color: $white-color;
 }
 
-.dark-theme_header-hover {
+.dark-theme .header__home,
+.dark-theme .header__shopping {
   color: $white-color;
   fill: $white-color;
   &:hover,
@@ -27,12 +28,26 @@ body.dark-theme {
 .dark-theme-curent-page {
   color: $black-color;
 }
-.dark-theme-category-list_item {
+
+.dark-theme .category-list {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.dark-theme-shopping-list {
+.dark-theme .shopping-list-card {
   background: $black-color;
+}
+.dark-theme .shopping-list-card__title {
+  color: $white-color;
+}
+
+.dark-theme .shopping-list-card__desc {
+  color: $white-color;
+}
+
+.dark-theme .current-home,
+.dark-theme .current-shopping {
+  color: $black-color;
+  fill: $black-color;
 }
 
 .dark-theme_modal-book {
@@ -42,7 +57,6 @@ body.dark-theme {
 .dark-burger-box {
   stroke: $white-color;
 }
-
 
 // modal pop-up
 
@@ -65,11 +79,11 @@ body.dark-theme {
 }
 
 .dark-theme .book__author {
-  color: #B4AFAF;
+  color: #b4afaf;
 }
 
-.dark-theme .book__description, 
-.dark-theme .no-description, 
+.dark-theme .book__description,
+.dark-theme .no-description,
 .dark-theme .modal__btn-add,
 .dark-theme .modal__btn-remove {
   color: $white-color;
@@ -83,5 +97,3 @@ body.dark-theme {
 .dark-theme .modal__btn-text {
   color: rgba(255, 255, 255, 0.5);
 }
-
-
