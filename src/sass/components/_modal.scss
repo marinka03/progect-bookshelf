@@ -16,6 +16,7 @@
 }
 
 .modal {
+  position: relative;
   background-color: #f6f6f6;
   box-sizing: border-box;
   border-radius: 18px;
@@ -107,7 +108,13 @@
   position: absolute;
   top: 2%;
   right: 2%;
-  fill: #111111;
+  // fill: #111111;
+  fill: white;
+  stroke: black;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
   background: transparent;
   border: 0;
   cursor: pointer;
@@ -198,4 +205,6 @@
   top: 50%;
   transform: translateY(-50%);
   right: 35px;
+  fill: white;
+  stroke: black;
 }
