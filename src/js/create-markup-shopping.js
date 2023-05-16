@@ -11,17 +11,17 @@ import { hideLoader } from './queries';
 
 const listEl = document.querySelector('.js-listInShopping');
 
-let shoppingList = bookList;
-console.log(bookList, 'asdkjasldj');
+// let shoppingList = bookList;
+// console.log(bookList, 'asdkjasldj');
 
-function deleteBook(bookId) {
-  const cardToDelete = document.querySelector(
-    `.shopping-list-card[data-bookId="${bookId}"]`
-  );
-  cardToDelete.remove();
+// function deleteBook(bookId) {
+//   const cardToDelete = document.querySelector(
+//     `.shopping-list-card[data-bookId="${bookId}"]`
+//   );
+//   cardToDelete.remove();
 
-  shoppingList = shoppingList.filter(book => book._id !== bookId);
-}
+//   shoppingList = shoppingList.filter(book => book._id !== bookId);
+// }
 // function deleteBook(bookId) {
 //   const cardToDelete = document.querySelector(
 //     `.shopping-list-card[data-bookId="${bookId}"]`
