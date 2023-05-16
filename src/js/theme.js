@@ -12,6 +12,7 @@ const categoryListName = document.querySelector('.category-list');
 const headerHome = document.querySelector('.header__home');
 const headerShopping = document.querySelector('.header__shopping');
 const currentHome = document.querySelector('.current-home');
+const currentShopping = document.querySelector('.current-shopping');
 const modalPopUp = document.querySelector('.modal_pop-up');
 const burger = document.querySelector('.burger');
 const iconClose = document.querySelector('.icon-close');
@@ -28,6 +29,13 @@ function onChange(e) {
     // headerHome.classList.add('dark-theme_header-hover');
     headerShopping.classList.add('dark-theme_header-hover');
     currentHome.classList.add('dark-theme-curent-page');
+    // currentShopping.classList.add('dark-theme-curent-page');
+    if (currentHome.classList.contains('dark-theme-curent-page')) {
+      headerShopping.classList.add('dark-theme_header-hover');
+    }
+    // if (currentShopping.classList.contains('dark-theme-curent-page')) {
+    //   headerHome.classList.add('dark-theme_header-hover');
+    // }
     burger.classList.add('dark-burger-box');
     iconClose.classList.add('dark-burger-box');
     categoryListName.classList.remove('light-theme-color-item');
