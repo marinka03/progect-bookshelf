@@ -5,35 +5,39 @@ import trash from '../images/trash.png';
 import { hideLoader } from './queries';
 import { bookList } from './login-modal';
 
-setTimeout(() => {
-  listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
-}, 5000);
-
+// setTimeout(() => {
+//   listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
+// }, 5000);
 
 const listEl = document.querySelector('.js-listInShopping');
-
-
-
 
 let shoppingList = bookList;
 console.log(bookList, 'asdkjasldj');
 
 function deleteBook(bookId) {
-  const cardToDelete = document.querySelector(`.shopping-list-card[data-bookId="${bookId}"]`);
+  const cardToDelete = document.querySelector(
+    `.shopping-list-card[data-bookId="${bookId}"]`
+  );
   cardToDelete.remove();
-  
+
   shoppingList = shoppingList.filter(book => book._id !== bookId);
-  
 }
+// function deleteBook(bookId) {
+//   const cardToDelete = document.querySelector(
+//     `.shopping-list-card[data-bookId="${bookId}"]`
+//   );
+//   cardToDelete.remove();
 
-window.deleteBook = deleteBook;
+//   shoppingList = shoppingList.filter(book => book._id !== bookId);
+// }
 
+// window.deleteBook = deleteBook;
 
 function generateCard(books) {
- return books.map(
-    book => {
+  return books
+    .map(book => {
       return `
-    <li class="shopping-list-card" data-bookId='${book._id}'> 
+    <li class="shopping-list-card js-li-shopping" data-id='${book._id}'> 
       <div class="shopping-list-card__cover">
         <img src="${book.book_image}" alt="${
         book.title
@@ -77,19 +81,17 @@ function generateCard(books) {
             </li>
           </ul>
         </div>
-        <button class="shopping-list-card__button" onclick="deleteBook('${
-          book._id
-        }')">
-          <img src="${trash}" width="16" height="16" class="shopping-list-card__icon" alt="Remove">
+        <button class="shopping-list-card__button">
+          <img src="${trash}" width="16" height="16" class="shopping-list-card__icon js-delete" alt="Remove">
         </button>
       </div>
     </li>`;
     })
     .join('');
-  
-
 }
 
-generateCard(bookList);
+// generateCard(bookList);
 
 hideLoader();
+
+export { generateCard };
