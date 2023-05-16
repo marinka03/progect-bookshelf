@@ -38,7 +38,7 @@ import Notiflix from 'notiflix';
 
 function createModal() {
   backdrop.style.display = 'block';
-  document.body.classList.add('noscroll');
+
   const closeButton = document.querySelector('.closeButton');
 
 closeButton.addEventListener('click', closeModal);
@@ -58,8 +58,6 @@ function onEscKeyPress(event) {
 function closeModal() {
   modalContainer.style.display = 'none';
   backdrop.style.display = 'none';
-  document.body.classList.remove('noscroll');
-  document.body.classList.add('go-top-show');
   window.removeEventListener('keydown', onEscKeyPress);
   form.reset();
 }
@@ -104,7 +102,8 @@ const firebaseConfig = {
   storageBucket: 'book-list7.appspot.com',
   messagingSenderId: '822015975293',
   appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
-  databaseURL: 'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
+  databaseURL:
+    'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
 };
 
 // const firebaseConfig = {
@@ -130,7 +129,12 @@ function register() {
   const sighnUpName = name.value;
   const sighnUpPassword = password.value;
 
-  createUserWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
+  createUserWithEmailAndPassword(
+    auth,
+    sighnUpEmail,
+    sighnUpPassword,
+    sighnUpName
+  )
     .then(userCredential => {
       // Signed in
       const user = userCredential.user;
