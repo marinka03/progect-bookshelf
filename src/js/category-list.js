@@ -77,12 +77,18 @@ function createMarkupCategList(arr) {
 
 // export { createMarkupCategList };
 
-function changeActiveCategory(el) {
+function changeActiveCategory() {
   const nameOfCat = load('activeCategory');
   const activeCategory = document.querySelector('.active-category');
-
   activeCategory.classList.remove('active-category');
-  el.classList.add('active-category');
+
+  // test
+  const liEl = document.querySelectorAll('.category-list_name');
+  liEl.forEach(el => {
+    if (el.textContent === nameOfCat) {
+      el.classList.add('active-category');
+    }
+  });
 }
 
 function saveActiveCategory(value) {

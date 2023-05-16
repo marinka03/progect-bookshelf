@@ -38,7 +38,7 @@ document.body.addEventListener('click', function (event) {
         mainHomeContainerEl.innerHTML = `<h1 class="title-top-books">${category}</h1><div class="category-books_container">${MarkupCategory}</div>`;
         // добавление активной категории
         saveActiveCategory(category);
-        // changeActiveCategory(categoryEl);
+        changeActiveCategory();
       })
       .catch(err => console.log(err));
   }
