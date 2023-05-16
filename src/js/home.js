@@ -28,7 +28,7 @@ document.body.addEventListener('click', function (event) {
       .then(data => {
         console.log('data :>> ', data);
         const MarkupCategory = createMarkupCategory(data);
-        mainHomeContainerEl.innerHTML = MarkupCategory;
+        mainHomeContainerEl.innerHTML = `<h1 class="title-top-books">${category}</h1><div class="category-books_container">${MarkupCategory}</div>`;
       })
       .catch(err => console.log(err));
   }
