@@ -1,7 +1,8 @@
+//MODAL
 const modalContainer = document.querySelector('.modal');
 const openModalButton = document.getElementById('header__sign-up');
 const backdrop = document.querySelector('.modal-overlay');
-
+//INPUTS
 const nameInput = document.querySelector('.name');
 const sighnUpOpt = document.getElementById('sighn-up-opt');
 const sighnInOpt = document.getElementById('sighn-in-opt');
@@ -17,14 +18,23 @@ sihnInSvg.style.display = 'none';
 
 const userImg = document.querySelector('.user-img');
 userImg.style.display = 'none';
-
+//EXPORTS
 export { addbooktosl, removeBook };
 export { checkCurentUser };
 export { getAddedBooks };
+//IMPORTS
+import { initializeApp } from 'firebase/app';
+import 'firebase/auth';
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
+import { getDatabase, ref, set, child, update, remove, get, onValue } from 'firebase/database';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import Notiflix from 'notiflix';
 
-// import {onCloseModal} from "./create-modal"
-
-console.log(modalContainer);
 
 function createModal() {
   backdrop.style.display = 'block';
@@ -47,7 +57,6 @@ function onEscKeyPress(event) {
 
 function closeModal() {
   modalContainer.style.display = 'none';
-  // modalContainer.innerHTML = "";
   backdrop.style.display = 'none';
   document.body.classList.remove('noscroll');
   document.body.classList.add('go-top-show');
@@ -55,20 +64,8 @@ function closeModal() {
   form.reset();
 }
 
-// Import the functions you need from the SDKs you need
 
-import { initializeApp } from 'firebase/app';
 
-import 'firebase/auth';
-
-import {
-  getAuth,
-  onAuthStateChanged,
-  signOut,
-  createUserWithEmailAndPassword,
-} from 'firebase/auth';
-
-import { getDatabase, ref, set, child, update, remove, get, onValue } from 'firebase/database';
 
 const sighnUpBtn = document.getElementById('sighn-up');
 const sighnInBtn = document.getElementById('sighn-in');
@@ -125,7 +122,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase();
 const dbRef = ref(getDatabase());
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const database = getDatabase(app);
 
@@ -143,8 +139,8 @@ function register() {
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
 
-
-      alert('Учетная запись успешно создана:', sighnUpName);
+      Notiflix.Notify.success('Учетная запись успешно создана:', sighnUpName);
+      // alert('Учетная запись успешно создана:', sighnUpName);
       closeModal();
     })
     .catch(error => {
@@ -200,6 +196,7 @@ function checkCurentUser() {
 
     } else {
       // User is signed out
+      openModalButton.removeEventListener('click', logOutBtn);
       openModalButton.addEventListener('click', createModal);
       menu.classList.add('noone');
       menu.classList.remove('flex');
