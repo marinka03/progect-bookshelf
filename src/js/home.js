@@ -19,7 +19,6 @@ function allCategoryCreate() {
       }
       // сброс активной категории
       saveActiveCategory('All categories');
-      // changeActiveCategory('All categories');
     })
     .catch(err => console.log(err));
 }
@@ -31,6 +30,7 @@ document.body.addEventListener('click', function (event) {
   if (event.target.classList.contains('js-top-books_button')) {
     // выполнить функцию для элемента с классом 'js-top-books_button'
     const category = event.target.getAttribute('data-category');
+
     apiRequestCategory(category)
       .then(data => {
         console.log('data :>> ', data);
@@ -38,7 +38,7 @@ document.body.addEventListener('click', function (event) {
         mainHomeContainerEl.innerHTML = `<h1 class="title-top-books">${category}</h1><div class="category-books_container">${MarkupCategory}</div>`;
         // добавление активной категории
         saveActiveCategory(category);
-        // changeActiveCategory(category);
+        // changeActiveCategory(categoryEl);
       })
       .catch(err => console.log(err));
   }
