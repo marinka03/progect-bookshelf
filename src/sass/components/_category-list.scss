@@ -20,12 +20,12 @@
   }
 }
 
-.isActive {
-  text-transform: uppercase;
-  font-weight: 700;
-  color: $blue-color;
-  cursor: pointer;
-}
+// .isActive {
+//   text-transform: uppercase;
+//   font-weight: 700;
+//   color: $blue-color;
+//   cursor: pointer;
+// }
 .category-list {
   display: block;
   display: flex;
@@ -49,7 +49,8 @@ width: 356px;
     line-height: 1.25;
     letter-spacing: -0.02em;
     padding: 5px;
-    border-radius: 3px;  
+    border-radius: 3px;
+    transition: padding-left 300ms ease-out, background-color 300ms ease-out, text-transform 300ms ease-out, font-weight 300ms ease-out;
 
     &:hover {
       text-transform: uppercase;
@@ -58,7 +59,6 @@ width: 356px;
       background-color: $accent-color;
       cursor: pointer;
       padding-left: 20px;
-      transition: padding-left 300ms ease-out;
     }
   }
 }
@@ -85,5 +85,8 @@ width: 356px;
 }
 
 .active-category {
-  color: green;
+    text-transform: uppercase;
+        font-weight: 700;
+        color: $blue-color;
+        // cursor: pointer;
 }

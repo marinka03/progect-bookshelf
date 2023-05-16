@@ -2,12 +2,11 @@ import { createMarkupCategory } from './create-markup-category-books';
 import { apiRequestCategory } from './queries';
 import { allCategoryCreate } from './home';
 
-import { save, load, remove } from './storage-servises';
+import { save, load } from './storage-servises';
 export { saveActiveCategory, changeActiveCategory };
 
 const categoryListEl = document.querySelector('.category-list');
 const categoryConteiner = document.querySelector('.js-section-top-books');
-const allCategoryEl = document.querySelector('.all-category');
 
 categoryListEl.addEventListener('click', async e => {
   const categoryRequest = e.target.textContent;
@@ -54,20 +53,10 @@ function apiRequestCategoriesList() {
   });
 }
 
-// function apiRequestByCategory(category) {
-//   const CATEGORY_URL = `https://books-backend.p.goit.global/books/category?category=${category}`;
-//   return fetch(CATEGORY_URL).then(resp => {
-//     if (!resp.ok) {
-//       throw new Error(resp.statusText);
-//     }
-//     return resp.json();
-//   });
-// }
-
 function createMarkupCategList(arr) {
   return arr
     .map(
-      li => `<li class="category-list_item">
+      li => `<li class="category-list_item" data-category='${li.list_name}'>
         <p class="category-list_name">${li.list_name}</p>
 </li>`
     )
@@ -75,14 +64,21 @@ function createMarkupCategList(arr) {
     .join('');
 }
 
-// export { createMarkupCategList };
-
-function changeActiveCategory(el) {
+function changeActiveCategory() {
   const nameOfCat = load('activeCategory');
   const activeCategory = document.querySelector('.active-category');
+  const liEl = document.querySelectorAll('.category-list_item');
 
-  activeCategory.classList.remove('active-category');
-  el.classList.add('active-category');
+  if (activeCategory) {
+    activeCategory.classList.remove('active-category');
+  }
+
+  liEl.forEach(el => {
+    const category = el.getAttribute('data-category');
+    if (category === nameOfCat) {
+      el.classList.add('active-category');
+    }
+  });
 }
 
 function saveActiveCategory(value) {

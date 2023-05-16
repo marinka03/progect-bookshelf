@@ -208,3 +208,14 @@
   fill: white;
   stroke: black;
 }
+
+.flex{
+  display: flex;
+  @media screen and (max-width: 768px) {
+   display: none;
+}
+}
+
+.noone{
+  display: none;
+}

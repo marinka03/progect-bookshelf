@@ -47,7 +47,7 @@ import { async } from '@firebase/util';
 //   listEl.insertAdjacentHTML('beforeend', generateCard(bookList));
 // }, 5000);
 hideLoader();
-const containerEl = document.querySelector('.js-container-list');
+// const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
 const emptyWrapper = document.querySelector('.js-wrapper-empty-page');
 console.log(emptyWrapper);
@@ -337,8 +337,8 @@ function generateCardochki(book) {
             </li>
           </ul>
         </div>
-        <button class="shopping-list-card__button">
-          <img src="${trash}" width="16" height="16" class="shopping-list-card__icon js-delete" alt="Remove">
+        <button class="shopping-list-card__button js-delete">
+          <img src="${trash}" width="16" height="16" class="shopping-list-card__icon" alt="Remove">
         </button>
       </div>
     </li>`;

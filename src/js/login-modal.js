@@ -1,5 +1,5 @@
 const modalContainer = document.querySelector('.modal');
-const openModalButton = document.querySelector('.header__sign-up');
+const openModalButton = document.querySelector('#header__sign-up');
 const backdrop = document.querySelector('.modal-overlay');
 
 const nameInput = document.querySelector('.name');
@@ -264,7 +264,8 @@ function checkCurentUser() {
 
       // addToLocalStorage(userNameLocal, checkLogin, addedBooksLocal)
 
-      menu.style.display = 'flex';
+      menu.classList.add('flex');
+      menu.classList.remove('noone');
       sihbUpSvg.style.display = 'none';
       sihnInSvg.style.display = 'block';
       userImg.style.display = 'block';
@@ -277,7 +278,8 @@ function checkCurentUser() {
     } else {
       // User is signed out
       openModalButton.addEventListener('click', createModal);
-      menu.style.display = 'none';
+      menu.classList.add('noone');
+      menu.classList.remove('flex');
       sihbUpSvg.style.display = 'block';
       sihnInSvg.style.display = 'none';
       userImg.style.display = 'none';
