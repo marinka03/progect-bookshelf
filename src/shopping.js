@@ -1,6 +1,6 @@
 import './js/queries';
 import './js/header-current-page';
-import './js/home';
+// import './js/home';
 // import './js/create-markup-home';
 import './js/create-markup-shopping';
 import './js/shopping-list';
