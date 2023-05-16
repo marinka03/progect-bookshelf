@@ -1,5 +1,3 @@
-import { onOpenModal } from './create-modal';
-
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
@@ -14,13 +12,13 @@ const categoryListName = document.querySelector('.category-list');
 const headerHome = document.querySelector('.header__home');
 const headerShopping = document.querySelector('.header__shopping');
 const currentHome = document.querySelector('.current-home');
-// const modalPopUp = document.querySelector('.modal_pop-up');
+const modalPopUp = document.querySelector('.modal_pop-up');
 
 checkBox.addEventListener('change', onChange);
 
 isTheme();
 
-async function onChange(e) {
+function onChange(e) {
   if (e.target.checked) {
     body.classList.remove('ligth-theme');
     body.classList.add('dark-theme');
@@ -30,10 +28,9 @@ async function onChange(e) {
     currentHome.classList.add('dark-theme-cuttent-page');
     categoryListName.classList.remove('light-theme-color-item');
     categoryListName.classList.add('dark-theme-category-list_item');
-    modalPopUp.classList.add('dark-theme_modal-book');
-    // if (await onOpenModal()) {
-    //   modalPopUp.classList.add('dark-theme_modal-book');
-    // }
+    if (body.classList.contains('dark-theme')) {
+      modalPopUp.classList.add('dark-theme_modal-book');
+    }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.DARK));
   } else {
