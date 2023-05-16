@@ -51,7 +51,7 @@
 
   @include tablet {
     padding: 24px 0 24px 40px;
-    width: 356px;
+    max-width: 356px;
     height: 490px;
   }
 }
@@ -99,4 +99,16 @@
   @include tablet {
     top: 66%;
   }
+}
+
+.hidden {
+  display: none;
+  @include pc {
+    display: block;
+  }
+}
+
+.shopping-global-container {
+  display: flex;
+  padding: 40px 24px;
 }

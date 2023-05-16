@@ -6,21 +6,23 @@
     <title>Shopping Page</title>
     <link rel="icon" href="./images/favicon/favicon.ico" />
     <!--FAVICON-->
-    <link rel="stylesheet" href="./sass/index.scss" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
+    <link rel="stylesheet" href="./sass/index.scss" />
   </head>
-  <body>
+  <body class="light-theme">
     <include src="./partials/sections/header.html"></include>
-    <include src="./partials/sections/support-ukraine.html"></include>
+    <!-- <include src="./partials/sections/support-ukraine.html"></include> -->
     <include src="./partials/sections/menu.html"></include>
     <include src="./partials/sections/scroll-up.html"></include>
     <include src="./partials/sections/loader.html"></include>
     <main>
-      <include src="./partials/sections/markup-shopping-list.html"></include>
-      <!-- <include src="./partials/sections/support-ukraine.html"></include> -->
+      <div class="shopping-global-container container">
+        <include src="./partials/sections/support-ukraine.html"></include>
+        <include src="./partials/sections/markup-shopping-list.html"></include>
+      </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 

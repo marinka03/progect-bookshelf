@@ -16,3 +16,16 @@ function createFondMarkup(arr) {
 }
 
 list_support.insertAdjacentHTML('beforeend', createFondMarkup(funds));
+
+const shoppingPage = document.querySelector('.wrapper');
+
+function hideSupport() {
+  if (window) {
+    const page = window.location.pathname;
+
+    if (page === '/shopping-list.html') {
+      shoppingPage.classList.add('hidden');
+    }
+  }
+}
+hideSupport();
