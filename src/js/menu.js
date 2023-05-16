@@ -1,76 +1,64 @@
+const burger = document.querySelector('.burger-box');
+const iconClose = document.querySelector('.close-box');
+const burgerMenu = document.querySelector('.burger-menu');
 
-const burger = document.querySelector(".burger-box");
-const iconClose = document.querySelector(".close-box");
-const burgerMenu = document.querySelector(".burger-menu");
+burger.addEventListener('click', onClickBurger);
 
-burger.addEventListener("click", onClickBurger);
+function onClickBurger(evt) {
+  const elem = evt.currentTarget;
 
+  if (elem.className.includes('js-opened-menu')) {
+    elem.className = elem.className.replace(
+      'js-opened-menu',
+      'visually-hidden'
+    );
+  }
 
-function onClickBurger(evt){
-    const elem = evt.currentTarget;
+  if (iconClose.className.includes('visually-hidden')) {
+    iconClose.className = iconClose.className.replace(
+      'visually-hidden',
+      'js-opened-menu'
+    );
+  }
 
-    if(elem.className.includes('js-opened-menu')) {
+  if (burgerMenu.className.includes('hidden')) {
+    burgerMenu.className = burgerMenu.className.replace('hidden', '');
+  }
+  iconClose.addEventListener('click', onClickIconClose);
 
-        elem.className = elem.className.replace('js-opened-menu', 'visually-hidden');
-    }
-
-    if(iconClose.className.includes('visually-hidden')){
-        iconClose.className = iconClose.className.replace('visually-hidden', 'js-opened-menu');
-    }
-
-    if(burgerMenu.className.includes("visually-hidden")){
-        burgerMenu.innerHTML = createMarkupMenu();
-        burgerMenu.className = burgerMenu.className.replace('visually-hidden', '');
-    }
-    iconClose.addEventListener("click", onClickIconClose);
-
-    return
+  return;
 }
 
+function onClickIconClose(evt) {
+  let elem = evt.currentTarget;
 
-function createMarkupMenu(){
-    return `
-    <menu class="header__menu">
-        <div class="header__home-box current-home">
-          <a href="./index.html" class="uppercase link header__home ">Home</a>
-        </div>
-  
-        <div class="header__shopping-box">
-          <a href="./shopping-list.html" class="uppercase link header__shopping"
-            >Shopping<span> list</span>
-            </a>
-            <svg width="20" height="20">
-              <use href="./images/icons/icons.svg#icon-shopping_bag"></use>
-            </svg>
-        </div>
-    </menu>`
-}
-
-function onClickIconClose(evt){
-    let elem = evt.currentTarget;
-
-   
-    if(elem.className.includes("js-opened-menu")) {
-        elem.className = elem.className.replace('js-opened-menu', 'visually-hidden');
+  if (elem.className.includes('js-opened-menu')) {
+    elem.className = elem.className.replace(
+      'js-opened-menu',
+      'visually-hidden'
+    );
+  }
+  if (burger.className.includes('visually-hidden')) {
+    burger.className = burger.className.replace(
+      'visually-hidden',
+      'js-opened-menu'
+    );
+    if (burgerMenu.className.includes('burger-menu')) {
+      burgerMenu.className = burgerMenu.className.replace(
+        'burger-menu',
+        'burger-menu hidden'
+      );
     }
-    if(burger.className.includes('visually-hidden')){
-        burger.className = burger.className.replace('visually-hidden', 'js-opened-menu');
-        if(burgerMenu.className.includes("burger-menu")){
-            burgerMenu.className = burgerMenu.className.replace("burger-menu", "burger-menu visually-hidden")
-            
-        }
-        burgerMenu.innerHTML = ""
-    }
-    burger.addEventListener("click", onClickBurger);
-    return;
-    // onClickBurger()
+  }
+  burger.addEventListener('click', onClickBurger);
+  return;
+  // onClickBurger()
 }
 // z-index: 0;
 // opacity: 0;
 // width: 0vw;
 // height: 0vh;
 // visibility: hidden;
-
 
 // z-index: 2;
 // opacity: 1;
@@ -92,4 +80,3 @@ function onClickIconClose(evt){
 // /> */}
 
 // const btnUserHomePage = document.querySelector(".header__sign-up");
-
