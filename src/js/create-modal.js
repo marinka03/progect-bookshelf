@@ -5,30 +5,30 @@ import storageServises from './storage-servises';
 
 // export {onCloseModal}
 
-import { initializeApp } from 'firebase/app';
+// import { initializeApp } from 'firebase/app';
 
 import 'firebase/auth';
 
-import {
-  getAuth,
-  onAuthStateChanged,
-  signOut,
-  createUserWithEmailAndPassword,
-} from 'firebase/auth';
+// import {
+//   getAuth,
+//   onAuthStateChanged,
+//   signOut,
+//   createUserWithEmailAndPassword,
+// } from 'firebase/auth';
 
-import {
-  getDatabase,
-  ref,
-  set,
-  child,
-  update,
-  remove,
-  get,
-  onValue,
-} from 'firebase/database';
+// import {
+//   getDatabase,
+//   ref,
+//   set,
+//   child,
+//   update,
+//   remove,
+//   get,
+//   onValue,
+// } from 'firebase/database';
 
 import { addbooktosl, removeBook } from './login-modal';
-import { async } from '@firebase/util';
+// import { async } from '@firebase/util';
 
 const bookQuikWiew = document.querySelector('.main');
 const modalElement = document.querySelector('.modal_pop-up__container');
@@ -51,7 +51,7 @@ export async function onOpenModal(evt) {
     .closest('.top-books_quick-view')
     .getAttribute('data-bookId');
   bookItem = bookId;
-  console.log(bookId);
+  // console.log(bookId);
 
   backdrop.classList.remove('backdrop_pop-up--is-hidden');
   backdrop.addEventListener('click', handleBackdropClick);
@@ -237,7 +237,7 @@ function getUserData() {
     return null;
   }
 }
-console.log(getUserData());
+
 
 function onLinksClick(links) {
   for (let i = 0; i < links.length; i++) {
