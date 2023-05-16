@@ -11,6 +11,7 @@ body.dark-theme {
 
 .dark-theme_header {
   background-color: $black-color;
+  border-color: $white-color;
 }
 
 .dark-theme_header-hover {
@@ -23,7 +24,7 @@ body.dark-theme {
   }
 }
 
-.dark-theme-cuttent-page {
+.dark-theme-curent-page {
   color: $black-color;
 }
 .dark-theme-category-list_item {
@@ -36,4 +37,8 @@ body.dark-theme {
 
 .dark-theme_modal-book {
   background-color: $dark-theme-main-background-color;
+}
+
+.dark-burger-box {
+  stroke: $white-color;
 }
