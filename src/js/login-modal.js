@@ -24,9 +24,11 @@ const sighnUpEmail = email.value;
 const sighnUpName = name.value;
 const sighnUpPassword = password.value;
 
-export { addbooktosl };
+export { addbooktosl, removeBook };
 export { checkCurentUser };
 export { getAddedBooks };
+
+import {onCloseModal} from "./create-modal"
 
 console.log(modalContainer);
 
@@ -230,6 +232,7 @@ function login() {
       // checkname()
       alert('С возвращением!');
       closeModal();
+      saveUserData();
     })
     .catch(error => {
       const errorCode = error.code;
@@ -244,18 +247,23 @@ const userCard = document.querySelector('.user-info');
 function checkCurentUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
+ 
+
+     
+      
+      const userId = auth.currentUser.uid;
+
       checkname();
       checkId();
       getAddedBooks();
-
-      const userinfo = {
-        name: sighnUpName,
-        email: sighnUpEmail,
-        
-      }
+      
 
 
-      addToLocalStorage('user', userinfo);
+      // const userNameLocal = username;
+      // const checkLogin = userId;
+      // const addedBooksLocal = bookList;
+
+      // addToLocalStorage(userNameLocal, checkLogin, addedBooksLocal)
 
 
       menu.style.display = 'flex';
@@ -299,6 +307,7 @@ function signOutUser() {
       userCard.textContent = 'Sighn up';
       alert('bye');
       closeModal();
+      clearUserData();
     })
     .then(() => {
       sighnOutBtn.style.display = 'none';
@@ -374,7 +383,9 @@ function checkname() {
     // ...
     userCard.textContent = username;
     console.log(username);
-    //   return username;
+   
+    saveUserName(username)
+      // return username;
   });
 }
 
@@ -386,6 +397,8 @@ function checkId() {
     // ...
     //  console.log(url)
     console.log(userId);
+    // addToLocalStorage(userId)
+    saveUserEmail(userId)
   });
 }
 
@@ -419,24 +432,28 @@ function addbooktosl(bookId) {
     });
 }
 
-document.body.addEventListener('click', function (event) {
-  console.log('curent');
-    if (event.target.classList.contains('modal__btn-add')) {
-    // выполнить функцию для элемента с классом 'modal__btn-add'
-   const bookId = event.target.getAttribute('data-bookId');
-    console.log('bookId :>> ', bookId);
-    addbooktosl(bookId);
-  }
-  if (event.target.classList.contains('modalbtn-remove')) {
-    // выполнить функцию для элемента с классом 'modal__btn-add'
-    bookId = event.target.getAttribute('data-bookId');
-    // removeee();
-  //   addbooktosl(bookId);
-  removeBook(bookId);
-  }
-});
+// document.body.addEventListener('click', function (event) {
+
+//     if (event.target.classList.contains('modal__btn-add')) {
+//     // выполнить функцию для элемента с классом 'modal__btn-add'
+//    const bookId = event.target.getAttribute('data-bookId');
+//     console.log('bookId :>> ', bookId);
+//     addbooktosl(bookId);
+//     // onCloseModal();
+//   }
+//   if (event.target.classList.contains('modalbtn-remove')) {
+//     // выполнить функцию для элемента с классом 'modal__btn-add'
+//     bookId = event.target.getAttribute('data-bookId');
+//     // removeee();
+//   //   addbooktosl(bookId);
+//   removeBook(bookId);
+//   // onCloseModal();
+//   }
+// });
 
 const bookList = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
+
+
 function getAddedBooks() {
   const userId = auth.currentUser.uid;
 
@@ -460,6 +477,7 @@ function getAddedBooks() {
           console.log(bookList);
         });
       });
+      saveUserBooks(addedBooks)
       return addedBooks;
     } else {
       console.log('no books found');
@@ -518,21 +536,125 @@ function removeBook(bookId) {
       });
   }
 
-  function addToLocalStorage(key, value) {
-    const existingData = localStorage.getItem(key);
-    let data = [];
+//   function addToLocalStorage(key, value) {
+//     if (!localStorage.hasOwnProperty(key)) {
+
     
-    if (existingData) {
-      data = JSON.parse(existingData);
-    }
+//     const existingData = localStorage.getItem(key);
+//     let data = [];
     
-    data.push(value);
+//     if (existingData) {
+//       data = JSON.parse(existingData);
+//     }
+   
+//     data.push(value);
+//  console.log(value);
     
-    localStorage.setItem(key, JSON.stringify(data));
-  }
+//     localStorage.setItem(key, JSON.stringify(data));
+//     console.log(localStorage.getItem(key));
+//   }
+//     const storedBooks = JSON.parse(localStorage.getItem(key));
+// console.log('ojjjj',storedBooks);
+//   }
+
+  // function addToLocalStorage(key, value) {
+  //   let data = [];
+  //   data.push(value);
+  //   localStorage.setItem(JSON.stringify(key), JSON.stringify(data));
+  // }
+
 
 //   removeBook(643282b1e85766588626a0dc);
 
 // const includeBook = document.querySelector(".checking");
 //     //   console.log(includeBook);
 //       includeBook.addEventListener("click",  removeBook("643282b1e85766588626a0dc", globalUserId));
+
+
+
+// function addToLocalStorage(name, checkLogin, books) {
+//   const userInfo = {
+//     name: name,
+//     checkLogin: checkLogin,
+//     books: books,
+//   };
+
+//   // Convert the user info object to a string
+//   const userInfoString = JSON.stringify(userInfo);
+
+//   // Save the string in local storage
+//   localStorage.setItem('userdata', userInfoString);
+// }
+
+
+function saveUserName(name) {
+  const userData = getUserData();
+  if (userData) {
+    userData.name = name;
+    saveUserData(userData.name, userData.id, userData.books);
+  } else {
+    const userInfo = {
+      name: name,
+      id: '',
+      books: [],
+    };
+    saveUserData(userInfo.name, userInfo.id, userInfo.books);
+  }
+}
+
+function saveUserEmail(id) {
+  const userData = getUserData();
+  if (userData) {
+    userData.id = id;
+    saveUserData(userData.name, userData.id, userData.books);
+  } else {
+    const userInfo = {
+      name: '',
+      id: id,
+      books: [],
+    };
+    saveUserData(userInfo.name, userInfo.id, userInfo.books);
+  }
+}
+
+function saveUserBooks(books) {
+  const userData = getUserData();
+  if (userData) {
+    userData.books = books;
+    saveUserData(userData.name, userData.id, userData.books);
+  } else {
+    const userInfo = {
+      name: '',
+      id: '',
+      books: books,
+    };
+    saveUserData(userInfo.name, userInfo.id, userInfo.books);
+  }
+}
+
+function getUserData() {
+  const userDataString = localStorage.getItem('userdata');
+  if (userDataString) {
+    const userData = JSON.parse(userDataString);
+    return userData;
+  } else {
+    return null;
+  }
+}
+
+function saveUserData(name, id, books) {
+  const userInfo = {
+    name: name,
+    id: id,
+    books: books,
+  };
+
+  // Convert the user info object to a string
+  const userInfoString = JSON.stringify(userInfo);
+
+  // Save the string in local storage
+  localStorage.setItem('userdata', userInfoString);
+}
+function clearUserData() {
+  localStorage.removeItem('userdata');
+}
