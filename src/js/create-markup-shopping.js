@@ -81,8 +81,8 @@ function generateCard(books) {
             </li>
           </ul>
         </div>
-        <button class="shopping-list-card__button">
-          <img src="${trash}" width="16" height="16" class="shopping-list-card__icon js-delete" alt="Remove">
+        <button class="shopping-list-card__button js-delete">
+          <img src="${trash}" width="16" height="16" class="shopping-list-card__icon" alt="Remove">
         </button>
       </div>
     </li>`;
