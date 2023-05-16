@@ -182,15 +182,15 @@ async function renderBookById(bookId) {
       congratulationMsg.style.display = 'block';
       // setTimeout(() =>{
       //   congratulationMsg.style.display = 'none';
-      //  }, 5000)
+      //  }, 3000)
         
       
     })
 
     removeBtn.addEventListener('click', (event) =>{
       const bookId = event.target.getAttribute('data-bookId');
-      checkYouHaveBook(bookId);
-        // removeBook(bookId);
+      // checkYouHaveBook(bookId);
+        removeBook(bookId);
         removeBtn.style.display = 'none';
         addABook.style.display = 'block';
         congratulationMsg.style.display = 'none';
