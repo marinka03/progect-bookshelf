@@ -12,8 +12,12 @@ const categoryListName = document.querySelector('.category-list');
 const headerHome = document.querySelector('.header__home');
 const headerShopping = document.querySelector('.header__shopping');
 const currentHome = document.querySelector('.current-home');
+const modalPopUp = document.querySelector('.modal_pop-up');
+const burger = document.querySelector('.burger');
+const iconClose = document.querySelector('.icon-close');
 
 checkBox.addEventListener('change', onChange);
+
 isTheme();
 
 function onChange(e) {
@@ -21,18 +25,26 @@ function onChange(e) {
     body.classList.remove('ligth-theme');
     body.classList.add('dark-theme');
     header.classList.add('dark-theme_header');
-    headerHome.classList.add('dark-theme_header-hover');
+    // headerHome.classList.add('dark-theme_header-hover');
     headerShopping.classList.add('dark-theme_header-hover');
-    currentHome.classList.add('dark-theme-cuttent-page');
+    currentHome.classList.add('dark-theme-curent-page');
+    burger.classList.add('dark-burger-box');
+    iconClose.classList.add('dark-burger-box');
     categoryListName.classList.remove('light-theme-color-item');
     categoryListName.classList.add('dark-theme-category-list_item');
+    if (body.classList.contains('dark-theme')) {
+      modalPopUp.classList.add('dark-theme_modal-book');
+    }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(Theme.DARK));
   } else {
     body.classList.add('ligth-theme');
     body.classList.remove('dark-theme');
     header.classList.remove('dark-theme_header');
-    headerHome.classList.remove('dark-theme_header-hover');
+    // headerHome.classList.remove('dark-theme_header-hover');
+    currentHome.classList.remove('dark-theme-curent-page');
+    burger.classList.remove('dark-burger-box');
+    iconClose.classList.remove('dark-burger-box');
     headerShopping.classList.remove('dark-theme_header-hover');
     categoryListName.classList.remove('dark-theme-category-list_item');
     categoryListName.classList.add('light-theme-color-item');
@@ -50,7 +62,10 @@ function isTheme() {
     if (parseTheme === 'dark-theme') {
       body.classList.add('dark-theme');
       header.classList.add('dark-theme_header');
-      headerHome.classList.add('dark-theme_header-hover');
+      // headerHome.classList.add('dark-theme_header-hover');
+      currentHome.classList.add('dark-theme-curent-page');
+      burger.classList.add('dark-burger-box');
+      iconClose.classList.remove('dark-burger-box');
       headerShopping.classList.add('dark-theme_header-hover');
       categoryListName.classList.remove('light-theme-color-item');
       categoryListName.classList.add('dark-theme-category-list_item');
