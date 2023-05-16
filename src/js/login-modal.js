@@ -24,7 +24,7 @@ const sighnUpEmail = email.value;
 const sighnUpName = name.value;
 const sighnUpPassword = password.value;
 
-export { addbooktosl };
+export { addbooktosl, removeBook };
 export { checkCurentUser };
 export { getAddedBooks };
 
@@ -432,24 +432,24 @@ function addbooktosl(bookId) {
     });
 }
 
-document.body.addEventListener('click', function (event) {
-  console.log('curent');
-    if (event.target.classList.contains('modal__btn-add')) {
-    // выполнить функцию для элемента с классом 'modal__btn-add'
-   const bookId = event.target.getAttribute('data-bookId');
-    console.log('bookId :>> ', bookId);
-    addbooktosl(bookId);
-    onCloseModal();
-  }
-  if (event.target.classList.contains('modalbtn-remove')) {
-    // выполнить функцию для элемента с классом 'modal__btn-add'
-    bookId = event.target.getAttribute('data-bookId');
-    // removeee();
-  //   addbooktosl(bookId);
-  removeBook(bookId);
-  onCloseModal();
-  }
-});
+// document.body.addEventListener('click', function (event) {
+
+//     if (event.target.classList.contains('modal__btn-add')) {
+//     // выполнить функцию для элемента с классом 'modal__btn-add'
+//    const bookId = event.target.getAttribute('data-bookId');
+//     console.log('bookId :>> ', bookId);
+//     addbooktosl(bookId);
+//     // onCloseModal();
+//   }
+//   if (event.target.classList.contains('modalbtn-remove')) {
+//     // выполнить функцию для элемента с классом 'modal__btn-add'
+//     bookId = event.target.getAttribute('data-bookId');
+//     // removeee();
+//   //   addbooktosl(bookId);
+//   removeBook(bookId);
+//   // onCloseModal();
+//   }
+// });
 
 const bookList = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
 

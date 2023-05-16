@@ -1,10 +1,30 @@
 import amazonImg from '../images/amazon_link.png';
 import appleImg from '../images/apple_link.png';
 import bookshopImg from '../images/bookshop_link.png';
-import { addbooktosl } from './login-modal';
 import storageServises from './storage-servises';
 
 export {onCloseModal}
+
+import { initializeApp } from 'firebase/app';
+
+import 'firebase/auth';
+
+import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+
+import {
+  getDatabase,
+  ref,
+  set,
+  child,
+  update,
+  remove,
+  get,
+  onValue
+} from 'firebase/database';
+
+import { addbooktosl, removeBook } from './login-modal';
+import { async } from '@firebase/util';
+
 
 const bookQuikWiew = document.querySelector('.main');
 const modalElement = document.querySelector('.modal_pop-up__container');
@@ -150,21 +170,61 @@ async function renderBookById(bookId) {
 
     const removeBtn = document.querySelector('.modalbtn-remove')
     const NoLoginTxt = document.querySelector('.modal__btn-need-login');
-    const addABook = document.querySelector('.modal__btn-add')
+    const addABook = document.querySelector('.modal__btn-add');
+    const congratulationMsg = document.querySelector('.modal__btn-text')
 
-    function checkUserIn(bookId){
+    addABook.addEventListener('click', (event) =>{
+      const bookId = event.target.getAttribute('data-bookId');
+     
+      addbooktosl(bookId);
+      removeBtn.style.display = 'block';
+      addABook.style.display = 'none';
+      congratulationMsg.style.display = 'block';
+      // setTimeout(() =>{
+      //   congratulationMsg.style.display = 'none';
+      //  }, 5000)
+        
+      
+    })
+
+    removeBtn.addEventListener('click', (event) =>{
+      const bookId = event.target.getAttribute('data-bookId');
+      checkYouHaveBook(bookId);
+        // removeBook(bookId);
+        removeBtn.style.display = 'none';
+        addABook.style.display = 'block';
+        congratulationMsg.style.display = 'none';
+       
+    
+    })
+
+    function  checkYouHaveBook(bookId){
       const userDataString = getUserData();
       userDataString.books.map((book) => {
         if(book === bookId){
           removeBtn.style.display = 'block';
           addABook.style.display = 'none';
+          congratulationMsg.style.display = 'none';
         } 
       })
     }
 
-    checkUserIn(bookId);
+    
 
-    // removeBtn.addEventListener('click', removeBook(bookId));
+    function checkUserIn(){
+      const userDataString = getUserData();
+      if (!userDataString) {
+        NoLoginTxt.style.display = 'block';
+        removeBtn.style.display = 'none';
+          addABook.style.display = 'none';
+      }
+    }
+
+
+    checkUserIn();
+checkYouHaveBook(bookId);
+
+    
 
     const linksShops = document.querySelectorAll('.modal__link');
     onLinksClick(linksShops);
