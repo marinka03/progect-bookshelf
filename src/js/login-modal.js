@@ -65,7 +65,12 @@ import { initializeApp } from 'firebase/app';
 
 import 'firebase/auth';
 
-import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
 
 import {
   getDatabase,
@@ -75,7 +80,7 @@ import {
   update,
   remove,
   get,
-  onValue
+  onValue,
 } from 'firebase/database';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -113,8 +118,6 @@ function signinmodal() {
   sighnInBtn.style.display = 'block';
   sighnUpBtn.style.display = 'none';
 }
-
-
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBcrgHRI8n8PGmp66vE4dbqzvZDKE7S3nw',
@@ -195,11 +198,11 @@ function register() {
       // const userImg = randomImg();
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
-    //   const userinfo = {
-    //     name: sighnUpName,
-    //     email: sighnUpEmail,
-    //   }
-      
+      //   const userinfo = {
+      //     name: sighnUpName,
+      //     email: sighnUpEmail,
+      //   }
+
       //  dbRef.child('users/' + userId).set(users_data)
 
       alert('Учетная запись успешно создана:', sighnUpName);
@@ -249,24 +252,17 @@ const userCard = document.querySelector('.user-info');
 function checkCurentUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
- 
-
-     
-      
       const userId = auth.currentUser.uid;
 
       checkname();
       checkId();
       getAddedBooks();
-      
-
 
       // const userNameLocal = username;
       // const checkLogin = userId;
       // const addedBooksLocal = bookList;
 
       // addToLocalStorage(userNameLocal, checkLogin, addedBooksLocal)
-
 
       menu.style.display = 'flex';
       sihbUpSvg.style.display = 'none';
@@ -385,9 +381,9 @@ function checkname() {
     // ...
     userCard.textContent = username;
     console.log(username);
-   
-    saveUserName(username)
-      // return username;
+
+    saveUserName(username);
+    // return username;
   });
 }
 
@@ -400,7 +396,7 @@ function checkId() {
     //  console.log(url)
     console.log(userId);
     // addToLocalStorage(userId)
-    saveUserEmail(userId)
+    saveUserEmail(userId);
   });
 }
 
@@ -453,8 +449,7 @@ function addbooktosl(bookId) {
 //   }
 // });
 
-const bookList = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
-
+// const bookList = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
 
 function getAddedBooks() {
   const userId = auth.currentUser.uid;
@@ -467,33 +462,38 @@ function getAddedBooks() {
     if (books) {
       const addedBooks = Object.values(books);
       console.log('Массив добавленных книг:', addedBooks);
-      addedBooks.map(item => {
-        console.log(item);
-        apiFetchCate(item).then(data => {
-          const inShoppingList = bookList.some(number => item === number._id);
-          if (inShoppingList) {
-            return;
-          }
-          bookList.push(data);
-          localStorage.setItem('shopping-list', JSON.stringify(bookList));
-          console.log(bookList);
-        });
-      });
-      saveUserBooks(addedBooks)
+      //   addedBooks.map(item => {
+      //     console.log(item);
+      //     apiFetchCate(item).then(data => {
+      //       const inShoppingList = bookList.some(number => item === number._id);
+      //       if (inShoppingList) {
+      //         return;
+      //       }
+      //       bookList.push(data);
+      //       localStorage.setItem('shopping-list', JSON.stringify(bookList));
+      //       console.log(bookList);
+      //     });
+      //   });
+      saveUserBooks(addedBooks);
       return addedBooks;
     } else {
+      const localStorageEL = JSON.parse(localStorage.getItem('userdata')) ?? {};
+      console.log(localStorageEL.books);
+      localStorageEL.books = [];
+      localStorage.setItem('userdata', JSON.stringify(localStorageEL));
       console.log('no books found');
     }
   });
 }
 
-export { bookList };
+// export { bookList };
 
-function apiFetchCate(id) {
-  return fetch(`https://books-backend.p.goit.global/books/${id}`).then(resp =>
-    resp.json()
-  );
-}
+// function apiFetchCate(id) {
+//   return fetch(`https://books-backend.p.goit.global/books/${id}`).then(resp =>
+//     resp.json()
+//   );
+// }
+
 // function removeBook(bookId) {
 //   const userId = auth.currentUser.uid;
 //   //   const userId = globalUserId;
@@ -510,48 +510,90 @@ function apiFetchCate(id) {
 //     });
 // }
 
+// function removeBook(bookId) {
+//   const userId = auth.currentUser.uid;
+
+//   const db = getDatabase();
+//   const userBooksRef = ref(db, 'users/' + userId + '/books');
+//   const bookRef = child(userBooksRef, bookId);
+
+//   get(bookRef)
+//     .then(snapshot => {
+//       if (snapshot.exists()) {
+//         // Книга существует в списке, удаляем ее
+//         remove(bookRef)
+//           .then(() => {
+//             alert('Книга успешно удалена из списка');
+//             // Check if the books array is empty
+//             get(userBooksRef)
+//               .then(snapshot => {
+//                 const books = snapshot.val();
+//                 if (books) {
+//                   const bookIds = Object.keys(books);
+//                   if (bookIds.length === 0) {
+//                     // If the books array is empty, return an empty array
+//                     saveUserBooks([]);
+//                   }
+//                 }
+//               })
+//               .catch(error => {
+//                 console.error('Ошибка при проверке списка книг:', error);
+//               });
+//           })
+//           .catch(error => {
+//             console.error('Ошибка при удалении книги из списка:', error);
+//           });
+//       } else {
+//         // Книги нет в списке
+//         alert('Книги нет в списке');
+//       }
+//     })
+//     .catch(error => {
+//       console.error('Ошибка при проверке наличия книги в списке:', error);
+//     });
+// }
+
 function removeBook(bookId) {
-    const userId = auth.currentUser.uid;
-  
-    const db = getDatabase();
-    const userBooksRef = ref(db, 'users/' + userId + '/books');
-    const bookRef = child(userBooksRef, bookId);
-  
-    get(bookRef)
-      .then(snapshot => {
-        if (snapshot.exists()) {
-          // Книга существует в списке, удаляем ее
-          remove(bookRef)
-            .then(() => {
-              alert('Книга успешно удалена из списка');
-            })
-            .catch(error => {
-              console.error('Ошибка при удалении книги из списка:', error);
-            });
-        } else {
-          // Книги нет в списке
-          alert('Книги нет в списке');
-        }
-      })
-      .catch(error => {
-        console.error('Ошибка при проверке наличия книги в списке:', error);
-      });
-  }
+  const userId = auth.currentUser.uid;
+
+  const db = getDatabase();
+  const userBooksRef = ref(db, 'users/' + userId + '/books');
+  const bookRef = child(userBooksRef, bookId);
+
+  get(bookRef)
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        // Книга существует в списке, удаляем ее
+        remove(bookRef)
+          .then(() => {
+            alert('Книга успешно удалена из списка');
+          })
+          .catch(error => {
+            console.error('Ошибка при удалении книги из списка:', error);
+          });
+      } else {
+        // Книги нет в списке
+        alert('Книги нет в списке');
+      }
+    })
+    .catch(error => {
+      console.error('Ошибка при проверке наличия книги в списке:', error);
+    });
+}
 
 //   function addToLocalStorage(key, value) {
 //     if (!localStorage.hasOwnProperty(key)) {
 
-    
 //     const existingData = localStorage.getItem(key);
 //     let data = [];
-    
+
 //     if (existingData) {
 //       data = JSON.parse(existingData);
 //     }
-   
+
 //     data.push(value);
 //  console.log(value);
-    
+
 //     localStorage.setItem(key, JSON.stringify(data));
 //     console.log(localStorage.getItem(key));
 //   }
@@ -559,20 +601,17 @@ function removeBook(bookId) {
 // console.log('ojjjj',storedBooks);
 //   }
 
-  // function addToLocalStorage(key, value) {
-  //   let data = [];
-  //   data.push(value);
-  //   localStorage.setItem(JSON.stringify(key), JSON.stringify(data));
-  // }
-
+// function addToLocalStorage(key, value) {
+//   let data = [];
+//   data.push(value);
+//   localStorage.setItem(JSON.stringify(key), JSON.stringify(data));
+// }
 
 //   removeBook(643282b1e85766588626a0dc);
 
 // const includeBook = document.querySelector(".checking");
 //     //   console.log(includeBook);
 //       includeBook.addEventListener("click",  removeBook("643282b1e85766588626a0dc", globalUserId));
-
-
 
 // function addToLocalStorage(name, checkLogin, books) {
 //   const userInfo = {
@@ -587,7 +626,6 @@ function removeBook(bookId) {
 //   // Save the string in local storage
 //   localStorage.setItem('userdata', userInfoString);
 // }
-
 
 function saveUserName(name) {
   const userData = getUserData();
@@ -619,6 +657,8 @@ function saveUserEmail(id) {
   }
 }
 
+//   let books = [];
+
 function saveUserBooks(books) {
   const userData = getUserData();
   if (userData) {
@@ -628,7 +668,7 @@ function saveUserBooks(books) {
     const userInfo = {
       name: '',
       id: '',
-      books: books,
+      books: Array.isArray(books) ? books : [],
     };
     saveUserData(userInfo.name, userInfo.id, userInfo.books);
   }
