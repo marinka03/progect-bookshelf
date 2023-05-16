@@ -363,29 +363,15 @@ function writeUserData(userId, name, email) {
   alert('User saved');
 }
 
-// function checkData(globalUserId){
-//     get(child(dbRef, `users/${globalUserId}`)).then((snapshot) => {
-//         if (snapshot.exists()) {
-//           console.log(snapshot.val());
-//         } else {
-//           console.log("No data available");
-//         }
-//       }).catch((error) => {
-//         console.error(error);
-//       });
-// }
-
 function checkname() {
   const userId = auth.currentUser.uid;
   return onValue(ref(db, '/users/' + userId), snapshot => {
     const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
 
-    // ...
     userCard.textContent = username;
     console.log(username);
 
     saveUserName(username);
-    // return username;
   });
 }
 
