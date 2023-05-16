@@ -1,6 +1,7 @@
 .header {
-  width: 100%;
-  //   display: flex;
+  // width: 100%;
+//   display: flex;
+  margin: 0 auto;
   height: 64px;
   position: sticky;
   z-index: 10;
@@ -10,13 +11,17 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 
-  @include tablet {
+  @media (min-width: 768px) {
+    width: 768px;
+    // padding: 0 32px;
     height: 72px;
-  }
+}
 
-  //     @include pc {
+@media (min-width: 1440px) {
+    width: 1440px;
+    // padding: 0 24px;
+}
 
-  // }
   &__nav {
     width: 100%;
     display: flex;
@@ -58,10 +63,11 @@
     cursor: pointer;
     width: 72px;
     height: 34px;
+    border-radius: 36px;
+    transition: background-color 250ms ease-out;
     &:hover {
-      padding: 12px 16px;
       background: #eac645;
-      border-radius: 36px;
+      
     }
   }
   &__home {
@@ -70,23 +76,22 @@
     font-size: 14px;
     line-height: 0.77;
     letter-spacing: -0.04em;
+    // transition: background-color 250ms ease-out;
   }
   &__shopping-box {
     flex-direction: row;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    height: 40px;
+    height: 34px;
     padding: 12px 16px;
     letter-spacing: -0.04em;
+    transition: background-color 250ms ease-out;
+    border-radius: 36px;
+    
 
     &:hover {
-      padding: 12px 16px;
-      gap: 8px;
-      height: 34px;
       background-color: #eac645;
-      border-radius: 36px;
-      transition: background-color 200ms ease-out;
     }
   }
 
@@ -118,6 +123,10 @@
     &:focus {
       box-shadow: rgb(176, 147, 147) 3px 1px 6px 0px;
     }
+    
+    &:focus  ~ .sign-out-header{
+      transition: opacity .7s cubic-bezier(.4, 0, .2, 1);
+    }
     @include tablet {
       opacity: 1;
       visibility: visible;
@@ -131,6 +140,8 @@
       border: 2px solid #111111;
       color: $white-color;
       background-color: $blue-color;
+      // transition: opacity .7s cubic-bezier(.4, 0, .2, 1);
+      // transition: background-color 30ms ease-out;
       //   margin-right: 24px;
       cursor: pointer;
     }
@@ -139,7 +150,6 @@
     stroke: $accent-color;
   }
 }
-
 .current-home {
   padding: 12px 16px;
   background: #eac645;
@@ -160,24 +170,8 @@
   line-height: 0.77;
   letter-spacing: -0.04em;
   gap: 8px;
-  padding: 18px 20px;
-  @include tablet {
-    padding: 18px 32px;
-  }
-  @include pc {
-    padding: 24px 24px;
-  }
 }
 
-// .swither-box {
-//     display: flex;
-// //   margin-right: 250px;
-// //   position: absolute;
-// //   @include tablet {
-// //     margin-right: 225px;
-// //   }
-
-// }
 
 .switch-box {
   position: relative;
@@ -223,29 +217,18 @@
     content: '';
     border-radius: 50%;
     background-color: $white-color;
-    transition: $transition;
+    transition: transform .7s cubic-bezier(.4, 0, .2, 1);
   }
 }
 .burger-box {
   margin-left: 15px;
   display: block;
-
-  //   @include tablet {
-  //     opacity: 0;
-  //     visibility: hidden;
-  //     display: none;
-  //   }
 }
 .burger {
   stroke: $black-color;
   margin-right: 5px;
   cursor: pointer;
 
-  // z-index: 2;
-  // opacity: 1;
-  // width: 28px;
-  // height: 28px;
-  // visibility: visible;
   @include tablet {
     opacity: 0;
     visibility: hidden;
@@ -258,13 +241,7 @@
   margin-right: 5px;
   cursor: pointer;
 }
-.user-img {
-  width: 32px;
-  height: 32px;
-  outline: auto;
-  outline-color: blueviolet;
-  border-radius: 50%;
-}
+
 .sign-out-header {
   width: 182px;
   height: 48px;
@@ -297,10 +274,36 @@
 //     }
 //   }
 .header-user-log-out {
-  // position: absolute;
-  // position: absolute;
   top: 14%;
-  // z-index: -1;
+  // display: none;
   display: flex;
   flex-direction: column;
+  // @include tablet {
+  //   display: flex;
+  // }
+}
+.main-navigation{
+  display: flex;
+  justify-content: space-around;
+}
+.user-img {
+  width: 32px;
+  height: 32px;
+  outline: auto;
+  outline-color: $white-color;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $white-color;
+}
+.user-icon{
+  width: 19px;
+  height: inherit;
+  background-color: $white-color;
+  fill: $blue-color;
+  border-radius: inherit;
+
+  // display: block;
+  border-radius: inherit;
 }

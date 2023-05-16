@@ -1,13 +1,12 @@
+//MODAL
 const modalContainer = document.querySelector('.modal');
 const openModalButton = document.getElementById('header__sign-up');
 const backdrop = document.querySelector('.modal-overlay');
-
+//INPUTS
 const nameInput = document.querySelector('.name');
 const sighnUpOpt = document.getElementById('sighn-up-opt');
 const sighnInOpt = document.getElementById('sighn-in-opt');
 const menu = document.querySelector('.header__menu');
-
-// import {buttonModalRemoveBook} from './create-modal'
 
 const form = document.querySelector('.form');
 const email = document.getElementById('email');
@@ -19,25 +18,30 @@ sihnInSvg.style.display = 'none';
 
 const userImg = document.querySelector('.user-img');
 userImg.style.display = 'none';
-
-const sighnUpEmail = email.value;
-const sighnUpName = name.value;
-const sighnUpPassword = password.value;
-
+//EXPORTS
 export { addbooktosl, removeBook };
 export { checkCurentUser };
 export { getAddedBooks };
+//IMPORTS
+import { initializeApp } from 'firebase/app';
+import 'firebase/auth';
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
+import { getDatabase, ref, set, child, update, remove, get, onValue } from 'firebase/database';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import Notiflix from 'notiflix';
 
-// import {onCloseModal} from "./create-modal"
-
-console.log(modalContainer);
 
 function createModal() {
   backdrop.style.display = 'block';
 
   const closeButton = document.querySelector('.closeButton');
 
-  const close = closeButton.addEventListener('click', closeModal);
+closeButton.addEventListener('click', closeModal);
 
   modalContainer.appendChild(closeButton);
 
@@ -53,41 +57,13 @@ function onEscKeyPress(event) {
 
 function closeModal() {
   modalContainer.style.display = 'none';
-  // modalContainer.innerHTML = "";
   backdrop.style.display = 'none';
   window.removeEventListener('keydown', onEscKeyPress);
   form.reset();
 }
 
-// Import the functions you need from the SDKs you need
 
-import { initializeApp } from 'firebase/app';
 
-import 'firebase/auth';
-
-import {
-  getAuth,
-  onAuthStateChanged,
-  signOut,
-  createUserWithEmailAndPassword,
-} from 'firebase/auth';
-
-import {
-  getDatabase,
-  ref,
-  set,
-  child,
-  update,
-  remove,
-  get,
-  onValue,
-} from 'firebase/database';
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const sighnUpBtn = document.getElementById('sighn-up');
 const sighnInBtn = document.getElementById('sighn-in');
@@ -142,41 +118,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getDatabase();
 const dbRef = ref(getDatabase());
-// firebase.initializeApp(firebaseConfig);
-// const database = firebase.database();
-// const auth = firebase.auth(app);
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const database = getDatabase(app);
-// const database = getDatabase(app);
-
-// createUserWithEmailAndPassword(auth, email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-
-//     console.log('Учетная запись успешно создана:', user);
-
-//     // const database_ref = database.ref()
-
-//     // const user_data = {
-//     //     email: email,
-//     //     name: name,
-//     //     last_login: Date.now(),
-//     // }
-//     // ...
-// //     database_ref.child('users/' + user.uid).set(user_data)
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // alert(errorMessage)
-//   });
-let globalUserId;
 
 function register() {
   const sighnUpEmail = email.value;
@@ -195,39 +141,22 @@ function register() {
       const userId = user.uid;
       globalUserId = userId;
 
-      // const userImg = randomImg();
-
       writeUserData(userId, sighnUpName, sighnUpEmail);
-      //   const userinfo = {
-      //     name: sighnUpName,
-      //     email: sighnUpEmail,
-      //   }
 
-      //  dbRef.child('users/' + userId).set(users_data)
-
-      alert('Учетная запись успешно создана:', sighnUpName);
+      Notiflix.Notify.success('Учетная запись успешно создана:', sighnUpName);
+      // alert('Учетная запись успешно создана:', sighnUpName);
       closeModal();
-      // const database_ref = database.ref()
-
-      // const user_data = {
-      //     email: email,
-      //     name: name,
-      //     last_login: Date.now(),
-      // }
-      // ...
-      //     database_ref.child('users/' + user.uid).set(user_data)
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // alert(errorMessage)
+      alert(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
       console.log(errorMessage + errorCode);
     });
 }
 
 function login() {
   const sighnUpEmail = email.value;
-  // const sighnUpName = name.value;
   const sighnUpPassword = password.value;
   signInWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword)
     .then(userCredential => {
@@ -258,11 +187,6 @@ function checkCurentUser() {
       checkId();
       getAddedBooks();
 
-      // const userNameLocal = username;
-      // const checkLogin = userId;
-      // const addedBooksLocal = bookList;
-
-      // addToLocalStorage(userNameLocal, checkLogin, addedBooksLocal)
 
       menu.classList.add('flex');
       menu.classList.remove('noone');
@@ -274,9 +198,9 @@ function checkCurentUser() {
       openModalButton.addEventListener('click', logOutBtn);
       sighnOutBtn.style.display = 'none';
 
-      // ...
     } else {
       // User is signed out
+      openModalButton.removeEventListener('click', logOutBtn);
       openModalButton.addEventListener('click', createModal);
       menu.classList.add('noone');
       menu.classList.remove('flex');
@@ -317,44 +241,7 @@ function signOutUser() {
     });
 }
 
-//   function validateemail(email) {
-// expression = /^[^@]+@\w+(\.\w+)+\w$/
-// if (expression.test(email) == true) {
-// // Email is good
-// return true}
-//  else {
-//  return false}
-//   }
-
-//   if (validateemail(email) == false || validatepassword(password) == false || validatename(name) == false){
-//     return
-//   }
-
-//   function validatepassword(password) {
-//     if (password > 6) {
-//     return false}
-//      else {return true
-//      }
-//       };
-
-//       function validatefields(field){
-//         if (field == null) {
-//             return false
-//         }
-//         if (field.length <= 0){
-//             return false
-//         }
-//         else {
-//            return true
-//         }
-//       }
-
-// const userId = auth.currentUser.uid;
-
 function writeUserData(userId, name, email) {
-  // const userId = user.uid;
-  // const sighnUpEmail = email.value;
-  // const sighnUpName = name.value;
   set(ref(db, 'users/' + userId), {
     username: name,
     email: email,
@@ -363,29 +250,14 @@ function writeUserData(userId, name, email) {
   alert('User saved');
 }
 
-// function checkData(globalUserId){
-//     get(child(dbRef, `users/${globalUserId}`)).then((snapshot) => {
-//         if (snapshot.exists()) {
-//           console.log(snapshot.val());
-//         } else {
-//           console.log("No data available");
-//         }
-//       }).catch((error) => {
-//         console.error(error);
-//       });
-// }
-
 function checkname() {
   const userId = auth.currentUser.uid;
   return onValue(ref(db, '/users/' + userId), snapshot => {
     const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
 
-    // ...
     userCard.textContent = username;
-    console.log(username);
-
+    // console.log(username);
     saveUserName(username);
-    // return username;
   });
 }
 
@@ -393,10 +265,8 @@ function checkId() {
   const userId = auth.currentUser.uid;
   return onValue(ref(db, '/users/' + userId), snapshot => {
     const url = (snapshot.val() && snapshot.val().url) || 'Anonymous';
-    //   userCard.innerHTML = url;
-    // ...
     //  console.log(url)
-    console.log(userId);
+    // console.log(userId);
     // addToLocalStorage(userId)
     saveUserEmail(userId);
   });
@@ -432,26 +302,6 @@ function addbooktosl(bookId) {
     });
 }
 
-// document.body.addEventListener('click', function (event) {
-
-//     if (event.target.classList.contains('modal__btn-add')) {
-//     // выполнить функцию для элемента с классом 'modal__btn-add'
-//    const bookId = event.target.getAttribute('data-bookId');
-//     console.log('bookId :>> ', bookId);
-//     addbooktosl(bookId);
-//     // onCloseModal();
-//   }
-//   if (event.target.classList.contains('modalbtn-remove')) {
-//     // выполнить функцию для элемента с классом 'modal__btn-add'
-//     bookId = event.target.getAttribute('data-bookId');
-//     // removeee();
-//   //   addbooktosl(bookId);
-//   removeBook(bookId);
-//   // onCloseModal();
-//   }
-// });
-
-// const bookList = JSON.parse(localStorage.getItem('shopping-list')) ?? [];
 
 function getAddedBooks() {
   const userId = auth.currentUser.uid;
@@ -464,18 +314,6 @@ function getAddedBooks() {
     if (books) {
       const addedBooks = Object.values(books);
       console.log('Массив добавленных книг:', addedBooks);
-      //   addedBooks.map(item => {
-      //     console.log(item);
-      //     apiFetchCate(item).then(data => {
-      //       const inShoppingList = bookList.some(number => item === number._id);
-      //       if (inShoppingList) {
-      //         return;
-      //       }
-      //       bookList.push(data);
-      //       localStorage.setItem('shopping-list', JSON.stringify(bookList));
-      //       console.log(bookList);
-      //     });
-      //   });
       saveUserBooks(addedBooks);
       return addedBooks;
     } else {
@@ -487,73 +325,6 @@ function getAddedBooks() {
     }
   });
 }
-
-// export { bookList };
-
-// function apiFetchCate(id) {
-//   return fetch(`https://books-backend.p.goit.global/books/${id}`).then(resp =>
-//     resp.json()
-//   );
-// }
-
-// function removeBook(bookId) {
-//   const userId = auth.currentUser.uid;
-//   //   const userId = globalUserId;
-
-//   const db = getDatabase();
-//   const bookRef = ref(db, 'users/' + userId + '/books' + bookId);
-
-//   remove(bookRef)
-//     .then(() => {
-//       alert('book deleted');
-//     })
-//     .catch(error => {
-//       console.error('some problem...', error);
-//     });
-// }
-
-// function removeBook(bookId) {
-//   const userId = auth.currentUser.uid;
-
-//   const db = getDatabase();
-//   const userBooksRef = ref(db, 'users/' + userId + '/books');
-//   const bookRef = child(userBooksRef, bookId);
-
-//   get(bookRef)
-//     .then(snapshot => {
-//       if (snapshot.exists()) {
-//         // Книга существует в списке, удаляем ее
-//         remove(bookRef)
-//           .then(() => {
-//             alert('Книга успешно удалена из списка');
-//             // Check if the books array is empty
-//             get(userBooksRef)
-//               .then(snapshot => {
-//                 const books = snapshot.val();
-//                 if (books) {
-//                   const bookIds = Object.keys(books);
-//                   if (bookIds.length === 0) {
-//                     // If the books array is empty, return an empty array
-//                     saveUserBooks([]);
-//                   }
-//                 }
-//               })
-//               .catch(error => {
-//                 console.error('Ошибка при проверке списка книг:', error);
-//               });
-//           })
-//           .catch(error => {
-//             console.error('Ошибка при удалении книги из списка:', error);
-//           });
-//       } else {
-//         // Книги нет в списке
-//         alert('Книги нет в списке');
-//       }
-//     })
-//     .catch(error => {
-//       console.error('Ошибка при проверке наличия книги в списке:', error);
-//     });
-// }
 
 function removeBook(bookId) {
   const userId = auth.currentUser.uid;
@@ -582,52 +353,6 @@ function removeBook(bookId) {
       console.error('Ошибка при проверке наличия книги в списке:', error);
     });
 }
-
-//   function addToLocalStorage(key, value) {
-//     if (!localStorage.hasOwnProperty(key)) {
-
-//     const existingData = localStorage.getItem(key);
-//     let data = [];
-
-//     if (existingData) {
-//       data = JSON.parse(existingData);
-//     }
-
-//     data.push(value);
-//  console.log(value);
-
-//     localStorage.setItem(key, JSON.stringify(data));
-//     console.log(localStorage.getItem(key));
-//   }
-//     const storedBooks = JSON.parse(localStorage.getItem(key));
-// console.log('ojjjj',storedBooks);
-//   }
-
-// function addToLocalStorage(key, value) {
-//   let data = [];
-//   data.push(value);
-//   localStorage.setItem(JSON.stringify(key), JSON.stringify(data));
-// }
-
-//   removeBook(643282b1e85766588626a0dc);
-
-// const includeBook = document.querySelector(".checking");
-//     //   console.log(includeBook);
-//       includeBook.addEventListener("click",  removeBook("643282b1e85766588626a0dc", globalUserId));
-
-// function addToLocalStorage(name, checkLogin, books) {
-//   const userInfo = {
-//     name: name,
-//     checkLogin: checkLogin,
-//     books: books,
-//   };
-
-//   // Convert the user info object to a string
-//   const userInfoString = JSON.stringify(userInfo);
-
-//   // Save the string in local storage
-//   localStorage.setItem('userdata', userInfoString);
-// }
 
 function saveUserName(name) {
   const userData = getUserData();
@@ -659,7 +384,6 @@ function saveUserEmail(id) {
   }
 }
 
-//   let books = [];
 
 function saveUserBooks(books) {
   const userData = getUserData();
