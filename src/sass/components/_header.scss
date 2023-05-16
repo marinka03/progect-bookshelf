@@ -1,11 +1,11 @@
 .header {
   width: 100%;
-//   display: flex;
+  //   display: flex;
   height: 64px;
   position: sticky;
   z-index: 10;
   top: 0;
-  border: $ligth-theme_modal-border-color;
+  border: 1.5px solid $black-color;
   background-color: $white-color;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -38,7 +38,7 @@
     display: none;
 
     @include tablet {
-    //   display: flex;
+      //   display: flex;
       visibility: visible;
       opacity: 1;
       flex-direction: row;
@@ -131,7 +131,7 @@
       border: 2px solid #111111;
       color: $white-color;
       background-color: $blue-color;
-    //   margin-right: 24px;
+      //   margin-right: 24px;
       cursor: pointer;
     }
   }
@@ -181,7 +181,7 @@
 
 .switch-box {
   position: relative;
-//   right: 235px;
+  //   right: 235px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -258,27 +258,27 @@
   margin-right: 5px;
   cursor: pointer;
 }
-.user-img{
-    width: 32px;
-    height: 32px;
-    outline: auto;
-    outline-color: blueviolet;
-    border-radius: 50%;
+.user-img {
+  width: 32px;
+  height: 32px;
+  outline: auto;
+  outline-color: blueviolet;
+  border-radius: 50%;
 }
-.sign-out-header{
-    width: 182px;  
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    cursor: pointer;
-    background-color: $white-color;
-    font-weight: 500;
-    position: absolute;
-    top: 58px;
-    border-radius: 18px;
-    border: 2px solid #111111;
-    transition: all 0.5s ease-out;
+.sign-out-header {
+  width: 182px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  background-color: $white-color;
+  font-weight: 500;
+  position: absolute;
+  top: 58px;
+  border-radius: 18px;
+  border: 2px solid #111111;
+  transition: all 0.5s ease-out;
 }
 
 // @keyframes slidein {
@@ -296,11 +296,11 @@
 //         max-width: 100%;
 //     }
 //   }
-.header-user-log-out{
-    // position: absolute;
-    // position: absolute;
-    top: 14%;
-    // z-index: -1;
-    display: flex;
-    flex-direction: column;
+.header-user-log-out {
+  // position: absolute;
+  // position: absolute;
+  top: 14%;
+  // z-index: -1;
+  display: flex;
+  flex-direction: column;
 }
