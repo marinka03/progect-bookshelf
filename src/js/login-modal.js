@@ -148,17 +148,19 @@ function register() {
       // Signed in
       const user = userCredential.user;
       const userId = user.uid;
+      console.log(user.uid)
       globalUserId = userId;
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
 
-      Notiflix.Notify.success('You created a account:', `${sighnUpName}`);
+      Notiflix.Notify.success('You created a account!');
 
       closeModal();
     })
     .catch(error => {
       Notiflix.Notify.failure(
-        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+        // error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+        console.log(error)
       );
     });
 }
@@ -167,7 +169,7 @@ function login() {
   const sighnUpEmail = email.value;
   const sighnUpPassword = password.value;
   signInWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword)
-    .then(userCredential => {
+  .then(userCredential => {
       // Signed in
       const user = userCredential.user;
 
