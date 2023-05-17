@@ -24,7 +24,7 @@ function hideSupport() {
     const page = window.location.pathname;
 
     if (page === '/shopping-list.html') {
-      shoppingPage.classList.add('hidden');
+      shoppingPage.classList.add('hidden-support');
     }
   }
 }

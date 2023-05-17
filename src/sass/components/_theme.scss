@@ -7,6 +7,7 @@ body.dark-theme {
   background-color: $dark-theme-main-background-color;
   color: $white-color;
   fill: $white-color;
+  transition: transform $cubic 250ms;
 }
 
 .dark-theme_header {
@@ -25,10 +26,6 @@ body.dark-theme {
   }
 }
 
-.dark-theme-curent-page {
-  color: $black-color;
-}
-
 .dark-theme .category-list {
   color: rgba(255, 255, 255, 0.6);
 }
@@ -36,10 +33,7 @@ body.dark-theme {
 .dark-theme .shopping-list-card {
   background: $black-color;
 }
-.dark-theme .shopping-list-card__title {
-  color: $white-color;
-}
-
+.dark-theme .shopping-list-card__title,
 .dark-theme .shopping-list-card__desc {
   color: $white-color;
 }
@@ -50,11 +44,8 @@ body.dark-theme {
   fill: $black-color;
 }
 
-.dark-theme_modal-book {
-  background-color: $dark-theme-main-background-color;
-}
-
-.dark-burger-box {
+.dark-theme .burger,
+.dark-theme .icon-close {
   stroke: $white-color;
 }
 
@@ -89,7 +80,8 @@ body.dark-theme {
   color: $white-color;
 }
 
-.dark-theme .seller__list {
+.dark-theme .seller__list,
+.dark-theme .shopping-list-card__links {
   filter: invert(1);
   mix-blend-mode: luminosity;
 }

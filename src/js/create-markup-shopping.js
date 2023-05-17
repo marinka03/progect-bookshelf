@@ -33,15 +33,13 @@ const listEl = document.querySelector('.js-listInShopping');
 
 // window.deleteBook = deleteBook;
 
-function generateCard(books) {
-  return books
-    .map(book => {
-      return `
+function generateCard(book) {
+  return `
     <li class="shopping-list-card js-li-shopping" data-id='${book._id}'> 
       <div class="shopping-list-card__cover">
         <img src="${book.book_image}" alt="${
-        book.title
-      }" class="shopping-list-card__image">
+    book.title
+  }" class="shopping-list-card__image">
       </div>
       <div class="shopping-list-card__content">
 <div class="shopping-list-card__index">
@@ -82,16 +80,18 @@ function generateCard(books) {
           </ul>
         </div>
         <button class="shopping-list-card__button js-delete">
-          <img src="${trash}" width="16" height="16" class="shopping-list-card__icon" alt="Remove">
+          <img src="${trash}" width="16" height="16" class="shopping-list-card__icon js-delete" alt="Remove">
         </button>
       </div>
     </li>`;
-    })
-    .join('');
+}
+
+function generateCards(books) {
+  return books.map(generateCard).join('');
 }
 
 // generateCard(bookList);
 
 hideLoader();
 
-export { generateCard };
+export { generateCard, generateCards };
