@@ -189,6 +189,9 @@ function checkCurentUser() {
       burgerSignUp.style.display = 'none';
       burgerSignout.style.display = 'block';
       document.getElementById('mobile-user-info').style.display = 'block';
+      openModalButton.style.borderRadius = "36px";
+
+
 
 
     } else {
@@ -204,6 +207,7 @@ function checkCurentUser() {
       burgerSignUp.style.display = 'block';
       burgerSignout.style.display = 'none';
       document.getElementById('mobile-user-info').style.display = 'none';
+      openModalButton.style.borderRadius = "16px";
     }
   });
 }
