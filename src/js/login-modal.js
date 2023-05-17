@@ -57,7 +57,20 @@ function createModal() {
   window.addEventListener('keydown', onEscKeyPress);
   // document.querySelector('.burger-box').click();
   // document.querySelector('.burger-menu').style.position = 'inherit';
+  document.addEventListener('keydown', onConfirm);
 }
+
+function onConfirm(event) {
+  
+    if (event.key === 'Enter') {
+     if (sighnUpOpt.disabled) {
+      register()
+     } else {
+     login()
+     }
+    }
+  }
+
 
 function onEscKeyPress(event) {
   if (event.code === 'Escape') {
@@ -71,6 +84,7 @@ function closeModal() {
   window.removeEventListener('keydown', onEscKeyPress);
   document.body.classList.remove('noscroll');
   form.reset();
+  document.removeEventListener('keydown', onConfirm);
   // document.querySelector('.burger-menu').style.position = 'fixed';
 }
 
@@ -148,17 +162,19 @@ function register() {
       // Signed in
       const user = userCredential.user;
       const userId = user.uid;
-      globalUserId = userId;
+      console.log(user.uid)
+     
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
 
-      Notiflix.Notify.success('You created a account:', `${sighnUpName}`);
+      Notiflix.Notify.success('You created a account!');
 
       closeModal();
     })
     .catch(error => {
       Notiflix.Notify.failure(
         error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+      
       );
     });
 }
@@ -167,7 +183,7 @@ function login() {
   const sighnUpEmail = email.value;
   const sighnUpPassword = password.value;
   signInWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword)
-    .then(userCredential => {
+  .then(userCredential => {
       // Signed in
       const user = userCredential.user;
 
@@ -248,6 +264,7 @@ function signOutUser() {
       Notiflix.Notify.info('Hope we see you soon!');
       closeModal();
       clearUserData();
+      window.location.href = './index.html';
     })
     .then(() => {
       sighnOutBtn.style.display = 'none';
@@ -454,13 +471,29 @@ const burgerSignUp = document.getElementById('mobile-sign-up');
 const burgerSignout = document.getElementById('mobile-sighn-out');
 burgerSignUp.addEventListener('click', createModal);
 burgerSignout.addEventListener('click', signOutUser);
-// const burgerMenu = document.getElementById('7542');
 
-// function simulateClick(elementId) {
-//   const element = document.getElementById(elementId);
-//   if (element) {
-//     element.click();
-//   } else {
-//     console.error('Элемент не найден');
-//   }
-// }
+
+
+
+
+const inputFields = document.querySelectorAll('.modal__input');
+
+
+inputFields.forEach(input => {
+  const label = input.nextElementSibling;
+
+  input.addEventListener('input', function() {
+    if (input.value !== '') {
+      label.style.display = 'none';
+    }  else {
+      label.style.display = 'block';
+    }
+  });
+});
+
+
+
+
+
+
+

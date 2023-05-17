@@ -1,18 +1,22 @@
 .light-theme {
   background-color: $light-theme-main-background-color;
   color: $black-color;
+  transition: 550ms;
 }
-
+.dark-theme {
+  transition: 550ms;
+}
 body.dark-theme {
   background-color: $dark-theme-main-background-color;
   color: $white-color;
   fill: $white-color;
-  transition: transform $cubic 250ms;
+  // transition: transform $cubic 550ms;
 }
 
 .dark-theme_header {
   background-color: $black-color;
   border-color: $white-color;
+  transition: 550ms;
 }
 
 .dark-theme .header__home,
@@ -83,9 +87,40 @@ body.dark-theme {
 .dark-theme .seller__list,
 .dark-theme .shopping-list-card__links {
   filter: invert(1);
-  mix-blend-mode: luminosity;
 }
 
 .dark-theme .modal__btn-text {
   color: rgba(255, 255, 255, 0.5);
+}
+
+.dark-theme .modal {
+  background-color: $dark-theme-main-background-color;
+  border-color: $light-theme-main-background-color;
+}
+.dark-theme .modal__input {
+  background-color: $dark-theme-main-background-color;
+  border-color: $light-theme-main-background-color;
+  stroke: $light-theme-main-background-color;
+}
+.dark-theme .modal__input-label {
+  color: $light-theme-main-background-color;
+}
+
+.dark-theme .modal__input-svg {
+  stroke: $light-theme-main-background-color;
+  fill: $dark-theme-main-background-color;
+}
+
+.dark-theme .close__svg {
+  stroke: $light-theme-main-background-color;
+}
+
+.dark-theme .modal__sign-up,
+.dark-theme .modal__sign-in {
+  background-color: $light-theme-main-background-color;
+  color: $dark-theme-main-background-color;
+}
+.dark-theme .modal__sign-in-opt:enabled,
+.dark-theme .modal__sign-up-opt:enabled {
+  color: rgba(246, 246, 246, 0.5);
 }

@@ -35,7 +35,9 @@ const listEl = document.querySelector('.js-listInShopping');
 
 function generateCard(book) {
   return `
-    <li class="shopping-list-card js-li-shopping" data-id='${book._id}'> 
+    <li class="shopping-list-card js-li-shopping is-hidden" data-id='${
+      book._id
+    }'> 
       <div class="shopping-list-card__cover">
         <img src="${book.book_image}" alt="${
     book.title
@@ -60,21 +62,21 @@ function generateCard(book) {
               <a class="seller__link shopping-list-card__amazon" href=${
                 book.amazon_product_url
               } target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Amazon">
-                <img src="${amazonImg}" alt="amazon" />
+                <img src="${amazonImg}" alt="amazon" class="seller__pic"/>
               </a>
             </li>
             <li>
               <a class="seller__link shopping-list-card__book" href=${
                 book.buy_links[1].url
               } target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Apple-books">
-                <img src="${appleImg}" alt="apple-books" />
+                <img src="${appleImg}" alt="apple-books" class="seller__pic"/>
               </a>
             </li>
             <li>
               <a class="seller__link shopping-list-card__book" href=${
                 book.buy_links[2].url
               } target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Bookshop">
-                <img src="${bookshopImg}" alt="bookshop" />
+                <img src="${bookshopImg}" alt="bookshop" class="seller__pic"/>
               </a>
             </li>
           </ul>
