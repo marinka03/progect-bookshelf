@@ -89,3 +89,35 @@ body.dark-theme {
 .dark-theme .modal__btn-text {
   color: rgba(255, 255, 255, 0.5);
 }
+
+.dark-theme .modal {
+  background-color: $dark-theme-main-background-color;
+  border-color: $light-theme-main-background-color;
+}
+.dark-theme .modal__input {
+  background-color: $dark-theme-main-background-color;
+  border-color: $light-theme-main-background-color;
+  stroke: $light-theme-main-background-color;
+}
+.dark-theme .modal__input-label {
+  color: $light-theme-main-background-color;
+}
+
+.dark-theme .modal__input-svg {
+  stroke: $light-theme-main-background-color;
+  fill: $dark-theme-main-background-color;
+}
+
+.dark-theme .close__svg {
+  stroke: $light-theme-main-background-color;
+}
+
+.dark-theme .modal__sign-up,
+.dark-theme .modal__sign-in {
+  background-color: $light-theme-main-background-color;
+  color: $dark-theme-main-background-color;
+}
+.dark-theme .modal__sign-in-opt:enabled,
+.dark-theme .modal__sign-up-opt:enabled {
+  color: rgba(246, 246, 246, 0.5);
+}
