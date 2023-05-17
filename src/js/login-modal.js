@@ -149,7 +149,7 @@ function register() {
       const user = userCredential.user;
       const userId = user.uid;
       console.log(user.uid)
-      globalUserId = userId;
+     
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
 
@@ -159,8 +159,8 @@ function register() {
     })
     .catch(error => {
       Notiflix.Notify.failure(
-        // error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
-        console.log(error)
+        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+      
       );
     });
 }
