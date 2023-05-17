@@ -471,16 +471,8 @@ const burgerSignUp = document.getElementById('mobile-sign-up');
 const burgerSignout = document.getElementById('mobile-sighn-out');
 burgerSignUp.addEventListener('click', createModal);
 burgerSignout.addEventListener('click', signOutUser);
-// const burgerMenu = document.getElementById('7542');
 
-// function simulateClick(elementId) {
-//   const element = document.getElementById(elementId);
-//   if (element) {
-//     element.click();
-//   } else {
-//     console.error('Элемент не найден');
-//   }
-// }
+
 
 
 
@@ -492,8 +484,10 @@ inputFields.forEach(input => {
 
   input.addEventListener('input', function() {
     if (input.value !== '') {
-      label.classList.remove('modal__input-animation');
-    } 
+      label.style.display = 'none';
+    }  else {
+      label.style.display = 'block';
+    }
   });
 });
 
