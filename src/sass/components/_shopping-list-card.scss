@@ -193,8 +193,8 @@
   }
 
   &__button {
-    right: 24px;
-    top: 24px;
+    right: 8px;
+    top: 8px;
     position: absolute;
     cursor: pointer;
 
@@ -204,21 +204,38 @@
     padding: 8px;
 
     display: flex;
+
+    @include tablet {
+      right: 20px;
+      top: 20px;
+    }
   }
 }
 
 .wrapper-empty-page {
   margin-top: 140px;
-  margin-left: 355px;
 }
 
 .wrapper-empty-page_description {
   max-width: 349px;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.wrapper-empty-image {
+  margin-left: auto;
+  margin-right: auto;
+}
 .card-container {
-  @include tablet {
-    margin-left: 40px;
+  @include pc {
+    min-width: 996px;
+  }
+}
+.shopping-global-container {
+  padding-top: 40px;
+  @include pc {
+    display: flex;
+    gap: 40px;
   }
 }
