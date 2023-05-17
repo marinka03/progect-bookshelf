@@ -163,7 +163,7 @@
 
   &:hover,
   &:focus {
-    box-shadow: rgb(176, 147, 147) 3px 1px 6px 0px;
+    box-shadow: rgb(176, 147, 147) 4px 2px 7px 0px;
     width: 125px;
   }
 }
@@ -208,9 +208,11 @@
 
   color: #111111;
   cursor: pointer;
-  transform: translateY(100%);
-  transition: transform 0.7s ease;
-  visibility: hidden;
+  // transform: translateY(100%);
+  transition: opacity 0.5s ease;
+
+  // visibility: hidden;
+  opacity: 0;
 
   @include tablet {
     top: 228px;
@@ -226,6 +228,6 @@
 }
 
 .top-books_book:hover .top-books_quick-view {
-  visibility: visible;
-  transform: translateY(0%);
+  opacity: 1;
+  // transform: translateY(0%);
 }
