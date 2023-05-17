@@ -144,9 +144,9 @@
 }
 
 .top-books_button {
-  display: block;
   display: flex;
   align-items: center;
+
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28;
@@ -160,6 +160,14 @@
   border-radius: 40px;
   float: right;
   white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    box-shadow: rgb(176, 147, 147) 3px 1px 6px 0px;
+    width: 135px;
+    height: 48px;
+    font-size: 16px;
+  }
 }
 
 .top-books_image {
@@ -204,6 +212,7 @@
   color: #111111;
   cursor: pointer;
   visibility: hidden;
+  transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @include tablet {
     top: 228px;
