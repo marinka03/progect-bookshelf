@@ -11,7 +11,7 @@ function apiRequestTopBooks() {
       if (!resp.ok) {
         throw new Error(resp.statusText);
       }
-      hideLoader();
+      // hideLoader();
       // setTimeout(() => {
       //   preloader.remove();
       // }, 200);

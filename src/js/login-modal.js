@@ -250,6 +250,7 @@ function signOutUser() {
       Notiflix.Notify.info('Hope we see you soon!');
       closeModal();
       clearUserData();
+      window.location.href = './index.html';
     })
     .then(() => {
       sighnOutBtn.style.display = 'none';
@@ -466,3 +467,29 @@ burgerSignout.addEventListener('click', signOutUser);
 //     console.error('Элемент не найден');
 //   }
 // }
+
+
+
+const inputFields = document.querySelectorAll('.modal__input');
+
+
+inputFields.forEach(input => {
+  const label = input.nextElementSibling;
+
+  input.addEventListener('input', function() {
+    if (input.value !== '') {
+      label.style.opacity = '0';
+    } else {
+      label.style.opacity = '1';
+    }
+  });
+});
+// const label = document.querySelectorAll('.modal__input-label');
+
+// inputField.addEventListener('input', function() {
+//   if (inputField.value !== '') {
+//     label.style.opacity = '0';
+//   } else {
+//     label.style.opacity = '1';
+//   }
+// });

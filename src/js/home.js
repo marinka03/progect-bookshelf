@@ -1,4 +1,4 @@
-import { apiRequestTopBooks } from './queries';
+import { apiRequestTopBooks, hideLoader } from './queries';
 import { createMarkupTopBooks } from './create-markup-home';
 import { apiRequestCategory } from './queries';
 import { createMarkupCategory } from './create-markup-category-books';
@@ -16,6 +16,7 @@ function allCategoryCreate() {
       if (data.page !== data.total_pages) {
         paginationBtn.hidden = false;
       }
+      hideLoader();
       // сброс активной категории
       saveActiveCategory('All categories');
       changeActiveCategory();
