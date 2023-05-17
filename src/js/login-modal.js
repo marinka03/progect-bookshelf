@@ -46,6 +46,9 @@ function createModal() {
 
   modalContainer.style.display = 'block';
   window.addEventListener('keydown', onEscKeyPress);
+  // document.querySelector('.burger-box').click();
+  // document.querySelector('.burger-menu').style.position = 'inherit';
+
 }
 
 function onEscKeyPress(event) {
@@ -60,6 +63,7 @@ function closeModal() {
   window.removeEventListener('keydown', onEscKeyPress);
   document.body.classList.remove('noscroll');
   form.reset();
+  // document.querySelector('.burger-menu').style.position = 'fixed';
 }
 
 const sighnUpBtn = document.getElementById('sighn-up');
@@ -171,6 +175,7 @@ function checkCurentUser() {
       checkname();
       checkId();
       getAddedBooks();
+      burgerMenues.style.display = 'block';
 
       menu.classList.add('flex');
       menu.classList.remove('noone');
@@ -181,6 +186,13 @@ function checkCurentUser() {
       openModalButton.removeEventListener('click', createModal);
       openModalButton.addEventListener('click', logOutBtn);
       sighnOutBtn.style.display = 'none';
+      burgerSignUp.style.display = 'none';
+      burgerSignout.style.display = 'block';
+      document.getElementById('mobile-user-info').style.display = 'block';
+      openModalButton.style.borderRadius = "36px";
+
+
+
     } else {
       // User is signed out
       openModalButton.removeEventListener('click', logOutBtn);
@@ -190,6 +202,11 @@ function checkCurentUser() {
       sihbUpSvg.style.display = 'block';
       sihnInSvg.style.display = 'none';
       userImg.style.display = 'none';
+      burgerMenues.style.display = 'none';
+      burgerSignUp.style.display = 'block';
+      burgerSignout.style.display = 'none';
+      document.getElementById('mobile-user-info').style.display = 'none';
+      openModalButton.style.borderRadius = "16px";
     }
   });
 }
@@ -240,6 +257,7 @@ function checkname() {
     const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
 
     userCard.textContent = username;
+    document.getElementById('mobile-user-name').textContent = username;
 
     saveUserName(username);
   });
@@ -403,3 +421,23 @@ function saveUserData(name, id, books) {
 function clearUserData() {
   localStorage.removeItem('userdata');
 }
+
+
+import {onClickIconClose} from './menu'
+// buttons on burger
+const burgerMenues = document.getElementById('mobile-menu');
+const burgerSignUp = document.getElementById('mobile-sign-up');
+const burgerSignout = document.getElementById('mobile-sighn-out');
+burgerSignUp.addEventListener('click', createModal);
+burgerSignout.addEventListener('click', signOutUser);
+// const burgerMenu = document.getElementById('7542');
+
+// function simulateClick(elementId) {
+//   const element = document.getElementById(elementId);
+//   if (element) {
+//     element.click();
+//   } else {
+//     console.error('Элемент не найден');
+//   }
+// }
+
