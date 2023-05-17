@@ -9,7 +9,7 @@ const categoryListEl = document.querySelector('.category-list');
 const categoryConteiner = document.querySelector('.js-section-top-books');
 
 categoryListEl.addEventListener('click', async e => {
-  const categoryRequest = e.target.textContent;
+  const categoryRequest = e.target.dataset.category || e.target.textContent;
   const categoryRequestTarget = e.target;
 
   if (e.target.textContent === categoryListEl.textContent) {
