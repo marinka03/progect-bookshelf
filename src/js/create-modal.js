@@ -9,6 +9,8 @@ import storageServises from './storage-servises';
 
 import 'firebase/auth';
 
+import Notiflix from 'notiflix';
+
 // import {
 //   getAuth,
 //   onAuthStateChanged,
@@ -205,6 +207,7 @@ async function renderBookById(bookId) {
           removeBtn.style.display = 'block';
           addABook.style.display = 'none';
           congratulationMsg.style.display = 'none';
+          Notiflix.Notify.warning('You already have this book');
         }
       });
     }
