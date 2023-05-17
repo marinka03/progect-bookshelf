@@ -23,7 +23,7 @@ function hideSupport() {
   if (window) {
     const page = window.location.pathname;
 
-    if (page === '/shopping-list.html') {
+    if (page.includes('/shopping-list')) {
       shoppingPage.classList.add('hidden-support');
     }
   }
