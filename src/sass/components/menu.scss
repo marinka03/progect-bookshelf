@@ -147,6 +147,7 @@
 
 .mob-user-log-out {
   display: flex;
+  overflow: visible;
 }
 
 .mob__sign-up {
@@ -263,8 +264,6 @@
 
   border-radius: 18px;
   border: 2px solid #111111;
-
-  z-index: 100;
 }
 
 .mob-menu__img {
