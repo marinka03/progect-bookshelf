@@ -47,6 +47,7 @@ closeButton.addEventListener('click', closeModal);
 
   modalContainer.style.display = 'block';
   window.addEventListener('keydown', onEscKeyPress);
+
 }
 
 function onEscKeyPress(event) {
@@ -183,6 +184,7 @@ function checkCurentUser() {
       checkname();
       checkId();
       getAddedBooks();
+      burgerMenues.style.display = 'block';
 
 
       menu.classList.add('flex');
@@ -204,6 +206,7 @@ function checkCurentUser() {
       sihbUpSvg.style.display = 'block';
       sihnInSvg.style.display = 'none';
       userImg.style.display = 'none';
+      burgerMenues.style.display = 'none';
     }
   });
 }
@@ -421,3 +424,19 @@ function saveUserData(name, id, books) {
 function clearUserData() {
   localStorage.removeItem('userdata');
 }
+
+
+import {onClickIconClose} from './menu'
+// buttons on burger
+const burgerMenues = document.getElementById('mobile-menu');
+const burgerSignUp = document.getElementById('mobile-sign-up');
+burgerSignUp.addEventListener('click', createModal);
+
+// const burgerMenu = document.getElementById('7542');
+
+function burgercls() {
+  document.getElementById('7542').style.display = 'none';
+}
+
+
+

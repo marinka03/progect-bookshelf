@@ -2,7 +2,11 @@ const burger = document.querySelector('.burger-box');
 const iconClose = document.querySelector('.close-box');
 const burgerMenu = document.querySelector('.burger-menu');
 
+export {onClickIconClose}
+
 burger.addEventListener('click', onClickBurger);
+
+
 
 function onClickBurger(evt) {
   const elem = evt.currentTarget;
@@ -30,6 +34,8 @@ function onClickBurger(evt) {
 }
 
 function onClickIconClose(evt) {
+
+
   let elem = evt.currentTarget;
 
   if (elem.className.includes('js-opened-menu')) {
