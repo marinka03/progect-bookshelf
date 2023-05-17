@@ -34,8 +34,6 @@ function onClickBurger(evt) {
 }
 
 function onClickIconClose(evt) {
-
-
   let elem = evt.currentTarget;
 
   if (elem.className.includes('js-opened-menu')) {
@@ -57,32 +55,6 @@ function onClickIconClose(evt) {
     }
   }
   burger.addEventListener('click', onClickBurger);
+
   return;
-  // onClickBurger()
 }
-// z-index: 0;
-// opacity: 0;
-// width: 0vw;
-// height: 0vh;
-// visibility: hidden;
-
-// z-index: 2;
-// opacity: 1;
-// width: 28px;
-// height: 28px;
-// visibility: visible;
-// const linkMarkupMenu = import{menu}
-
-// {/* <source
-// type="image/png"
-// srcset="
-//     ./images/menu_mob_image.png    1x,
-//     ./images/menu_mob_image@2x.png 2x
-// "
-// />
-// <img
-// src="./images/menu_mob_image.png"
-// alt="Books"
-// /> */}
-
-// const btnUserHomePage = document.querySelector(".header__sign-up");
