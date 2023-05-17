@@ -193,8 +193,12 @@
   }
 
   &__button {
-    right: 24px;
-    top: 24px;
+    right: 14px;
+    top: 14px;
+    @include tablet {
+      right: 24px;
+      top: 24px;
+    }
     position: absolute;
     cursor: pointer;
 
