@@ -57,7 +57,20 @@ function createModal() {
   window.addEventListener('keydown', onEscKeyPress);
   // document.querySelector('.burger-box').click();
   // document.querySelector('.burger-menu').style.position = 'inherit';
+  document.addEventListener('keydown', onConfirm);
 }
+
+function onConfirm(event) {
+  
+    if (event.key === 'Enter') {
+     if (sighnUpOpt.disabled) {
+      register()
+     } else {
+     login()
+     }
+    }
+  }
+
 
 function onEscKeyPress(event) {
   if (event.code === 'Escape') {
@@ -71,6 +84,7 @@ function closeModal() {
   window.removeEventListener('keydown', onEscKeyPress);
   document.body.classList.remove('noscroll');
   form.reset();
+  document.removeEventListener('keydown', onConfirm);
   // document.querySelector('.burger-menu').style.position = 'fixed';
 }
 
@@ -478,18 +492,14 @@ inputFields.forEach(input => {
 
   input.addEventListener('input', function() {
     if (input.value !== '') {
-      label.style.opacity = '0';
-    } else {
-      label.style.opacity = '1';
-    }
+      label.classList.remove('modal__input-animation');
+    } 
   });
 });
-// const label = document.querySelectorAll('.modal__input-label');
 
-// inputField.addEventListener('input', function() {
-//   if (inputField.value !== '') {
-//     label.style.opacity = '0';
-//   } else {
-//     label.style.opacity = '1';
-//   }
-// });
+
+
+
+
+
+

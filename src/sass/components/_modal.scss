@@ -200,7 +200,7 @@
 }
 @keyframes slideOutRight {
   0% {
-    transform: translateН(0);
+    transform: translateX(0);
     opacity: 1;
   }
   100% {
@@ -209,8 +209,23 @@
   }
 }
 
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .modal__input:focus + .modal__input-label {
   animation: slideOutRight 0.3s forwards;
+}
+
+.modal__input:not(:focus) + .modal__input-label {
+  animation: slideInLeft 0.3s forwards;
 }
 .modal__input::placeholder {
   color: #4f2ee8;
@@ -219,9 +234,9 @@
   color: #111111;
   text-transform: uppercase;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 20px;
-  transform: translateY(-50%);
+  // transform: translateY(-50%);
   font-size: 16px;
   line-height: 0.8;
   letter-spacing: -1%;
