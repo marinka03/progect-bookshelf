@@ -30,17 +30,25 @@
     #ffffff 100%
   );
   background-repeat: no-repeat;
-  width: 100vw;
+  width: 768px;
   height: 100vh;
   position: fixed;
   bottom: 0px;
   top: 64px;
   z-index: 2;
+  @include tablet {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
 }
 .mobile-user-log-out {
+  width: 768px;
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+  position: relative;
 }
 
 .mob-menu {
@@ -174,7 +182,6 @@
   height: inherit;
   background-color: $white-color;
   fill: $blue-color;
-  border-radius: inherit;
 
   // display: block;
   border-radius: inherit;
@@ -252,5 +259,13 @@
   font-size: 14px;
   line-height: 18px;
 }
+.mob-menu__img {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  left: -25px;
+  bottom: -120px;
 
+  transform: rotate(-15deg);
+}
 // ---------------------------------------------------------
