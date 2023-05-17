@@ -104,26 +104,26 @@ function signinmodal() {
   sighnUpBtn.style.display = 'none';
 }
 
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyBcrgHRI8n8PGmp66vE4dbqzvZDKE7S3nw',
-//   authDomain: 'book-list7.firebaseapp.com',
-//   projectId: 'book-list7',
-//   storageBucket: 'book-list7.appspot.com',
-//   messagingSenderId: '822015975293',
-//   appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
-//   databaseURL:
-//     'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
-// };
-
 const firebaseConfig = {
-  apiKey: "AIzaSyAc6ZeZFNKDr2KsntnTRa9jOsvNY3-ClBY",
-  authDomain: "book-list-final.firebaseapp.com",
-  projectId: "book-list-final",
-  storageBucket: "book-list-final.appspot.com",
-  messagingSenderId: "57582328129",
-  appId: "1:57582328129:web:0ab4019b98f2dac7ace9c0",
-  databaseURL:'https://book-list-final-default-rtdb.europe-west1.firebasedatabase.app'
+  apiKey: 'AIzaSyBcrgHRI8n8PGmp66vE4dbqzvZDKE7S3nw',
+  authDomain: 'book-list7.firebaseapp.com',
+  projectId: 'book-list7',
+  storageBucket: 'book-list7.appspot.com',
+  messagingSenderId: '822015975293',
+  appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
+  databaseURL:
+    'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
 };
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAc6ZeZFNKDr2KsntnTRa9jOsvNY3-ClBY",
+//   authDomain: "book-list-final.firebaseapp.com",
+//   projectId: "book-list-final",
+//   storageBucket: "book-list-final.appspot.com",
+//   messagingSenderId: "57582328129",
+//   appId: "1:57582328129:web:0ab4019b98f2dac7ace9c0",
+//   databaseURL:'https://book-list-final-default-rtdb.europe-west1.firebasedatabase.app'
+// };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -148,17 +148,19 @@ function register() {
       // Signed in
       const user = userCredential.user;
       const userId = user.uid;
-      globalUserId = userId;
+      console.log(user.uid)
+     
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
 
-      Notiflix.Notify.success('You created a account:', `${sighnUpName}`);
+      Notiflix.Notify.success('You created a account!');
 
       closeModal();
     })
     .catch(error => {
       Notiflix.Notify.failure(
         error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+      
       );
     });
 }
@@ -167,7 +169,7 @@ function login() {
   const sighnUpEmail = email.value;
   const sighnUpPassword = password.value;
   signInWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword)
-    .then(userCredential => {
+  .then(userCredential => {
       // Signed in
       const user = userCredential.user;
 

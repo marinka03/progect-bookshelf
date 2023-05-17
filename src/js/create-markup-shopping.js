@@ -35,7 +35,9 @@ const listEl = document.querySelector('.js-listInShopping');
 
 function generateCard(book) {
   return `
-    <li class="shopping-list-card js-li-shopping" data-id='${book._id}'> 
+    <li class="shopping-list-card js-li-shopping is-hidden" data-id='${
+      book._id
+    }'> 
       <div class="shopping-list-card__cover">
         <img src="${book.book_image}" alt="${
     book.title
