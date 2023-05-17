@@ -1,7 +1,10 @@
 body {
   font-family: 'DM Sans';
 }
-
+.noscroll {
+  position: fixed;
+  overflow: hidden;
+}
 .link {
   text-decoration: none;
   cursor: pointer;
