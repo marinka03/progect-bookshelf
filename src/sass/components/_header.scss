@@ -10,6 +10,7 @@
   background-color: $white-color;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  // transition: color 0.5s;
 
   @media (min-width: 768px) {
     width: 768px;
@@ -119,14 +120,18 @@
     position: relative;
     display: none;
 
+    // transition-property: box-shadow;
+    // transition-duration: 500ms;
+    // transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+
     &:hover,
     &:focus {
       box-shadow: rgb(176, 147, 147) 3px 1px 6px 0px;
     }
     
-    &:focus  + .sign-out-header{
-      transition: opacity .7s cubic-bezier(.4, 0, .2, 1), width cubic-bezier(.4, 0, .2, 1), heigth cubic-bezier(.4, 0, .2, 1);
-    }
+    // &:focus  + .sign-out-header{
+    //   transition: opacity .7s cubic-bezier(.4, 0, .2, 1), width cubic-bezier(.4, 0, .2, 1), heigth cubic-bezier(.4, 0, .2, 1);
+    // }
     @include tablet {
       opacity: 1;
       visibility: visible;
@@ -255,32 +260,40 @@
   top: 58px;
   border-radius: 18px;
   border: 2px solid #111111;
-  // transition: all 0.5s ease-out;
+  animation-name: slidein;
+  animation-duration: 500ms ;
 }
 
-// @keyframes slidein {
-//     from {
-//         top:0;
-//         left: 15;
-//         width: 0%;
-//     }
-//     50% {
-//         width: 55%;
-//       }
-//     to {
-//         top: 45;
-//         left: 15;
-//         max-width: 100%;
-//     }
-//   }
+
+@keyframes slidein {
+    from {
+        opacity: 0;
+         top:15px;
+         max-width: 182px;
+        height: 20px;
+    }
+    50% {
+       opacity: 0;
+        top:20px;
+        height: 25px;
+        width: 182px;
+      }
+      75% {
+        opacity: 0.5;
+        height: 25px;
+
+       }
+    to {
+      opacity: 1;
+        top: 58px;
+        width: 182px;
+        height: 48px;
+    }
+  }
 .header-user-log-out {
   top: 14%;
-  // display: none;
   display: flex;
   flex-direction: column;
-  // @include tablet {
-  //   display: flex;
-  // }
 }
 .main-navigation{
   display: flex;
@@ -303,7 +316,5 @@
   background-color: $white-color;
   fill: $blue-color;
   border-radius: inherit;
-
-  // display: block;
   border-radius: inherit;
 }
