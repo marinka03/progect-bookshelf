@@ -141,21 +141,21 @@ async function renderBookById(bookId) {
               <a class="seller__link" href="${
                 buy_links[0].url
               }" target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Amazon">
-                <img src="${amazonImg}" alt="amazon" />
+                <img src="${amazonImg}" alt="amazon" class="seller__pic" />
               </a>
             </li>
             <li>
               <a class="seller__link" href="${
                 buy_links[1].url
               }" target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Apple-books">
-                <img src="${appleImg}" alt="apple-books" />
+                <img src="${appleImg}" alt="apple-books" class="seller__pic"/>
               </a>
             </li>
             <li>
               <a class="seller__link" href="${
                 buy_links[4].url
               }" target="_blank" crossorigin="anonymous"  rel="noopener noreferrer" aria-label="Bookshop">
-                <img src="${bookshopImg}" alt="bookshop" />
+                <img src="${bookshopImg}" alt="bookshop" class="seller__pic"/>
               </a>
             </li>
        </ul>
