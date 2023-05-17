@@ -47,6 +47,8 @@ closeButton.addEventListener('click', closeModal);
 
   modalContainer.style.display = 'block';
   window.addEventListener('keydown', onEscKeyPress);
+  // document.querySelector('.burger-box').click();
+  document.querySelector('.burger-menu').style.position = 'inherit';
 
 }
 
@@ -61,6 +63,7 @@ function closeModal() {
   backdrop.style.display = 'none';
   window.removeEventListener('keydown', onEscKeyPress);
   form.reset();
+  document.querySelector('.burger-menu').style.position = 'fixed';
 }
 
 
@@ -196,6 +199,8 @@ function checkCurentUser() {
       openModalButton.removeEventListener('click', createModal);
       openModalButton.addEventListener('click', logOutBtn);
       sighnOutBtn.style.display = 'none';
+      burgerSignUp.style.display = 'none';
+      burgerSignout.style.display = 'block';
 
     } else {
       // User is signed out
@@ -207,6 +212,8 @@ function checkCurentUser() {
       sihnInSvg.style.display = 'none';
       userImg.style.display = 'none';
       burgerMenues.style.display = 'none';
+      burgerSignUp.style.display = 'block';
+      burgerSignout.style.display = 'none';
     }
   });
 }
@@ -430,13 +437,17 @@ import {onClickIconClose} from './menu'
 // buttons on burger
 const burgerMenues = document.getElementById('mobile-menu');
 const burgerSignUp = document.getElementById('mobile-sign-up');
+const burgerSignout = document.getElementById('mobile-sighn-out');
 burgerSignUp.addEventListener('click', createModal);
-
+burgerSignout.addEventListener('click', signOutUser);
 // const burgerMenu = document.getElementById('7542');
 
-function burgercls() {
-  document.getElementById('7542').style.display = 'none';
-}
-
-
+// function simulateClick(elementId) {
+//   const element = document.getElementById(elementId);
+//   if (element) {
+//     element.click();
+//   } else {
+//     console.error('Элемент не найден');
+//   }
+// }
 
