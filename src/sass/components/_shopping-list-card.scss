@@ -211,22 +211,6 @@
     }
   }
 }
-
-.wrapper-empty-page {
-  margin-top: 140px;
-}
-
-.wrapper-empty-page_description {
-  max-width: 349px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.wrapper-empty-image {
-  margin-left: auto;
-  margin-right: auto;
-}
 .card-container {
   @include pc {
     min-width: 996px;
@@ -238,4 +222,20 @@
     display: flex;
     gap: 40px;
   }
+}
+.wrapper-empty-page {
+  margin-top: 140px;
+}
+
+.wrapper-empty-page_description {
+  max-width: 349px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper-empty-image,
+.js-image-empty {
+  margin-left: auto;
+  margin-right: auto;
 }
