@@ -143,15 +143,12 @@ function register() {
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
 
-      Notiflix.Notify.success('Учетная запись успешно создана:', sighnUpName);
-      // alert('Учетная запись успешно создана:', sighnUpName);
+      Notiflix.Notify.success('You created a account:', `${sighnUpName}`);
+  
       closeModal();
     })
     .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
-      console.log(errorMessage + errorCode);
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
@@ -162,26 +159,26 @@ function login() {
     .then(userCredential => {
       // Signed in
       const user = userCredential.user;
-      // checkId()
-      // checkname()
-      alert('С возвращением!');
+   
+
+      Notiflix.Notify.success('Welcome back!');
       closeModal();
       saveUserData();
+      checkCurentUser();
     })
     .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // alert(errorMessage)
-      console.log(errorMessage + errorCode);
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
 const userCard = document.querySelector('.user-info');
-//   console.log(userCard)
+
+
+
 function checkCurentUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
-      const userId = auth.currentUser.uid;
+      // const userId = auth.currentUser.uid;
 
       checkname();
       checkId();
@@ -229,7 +226,8 @@ function signOutUser() {
     .then(() => {
       // Sign-out successful.
       userCard.textContent = 'Sign up';
-      alert('bye');
+      
+      Notiflix.Notify.info('Hope we see you soon!');
       closeModal();
       clearUserData();
     })
@@ -237,7 +235,7 @@ function signOutUser() {
       sighnOutBtn.style.display = 'none';
     })
     .catch(error => {
-      // An error happened.
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
@@ -247,7 +245,7 @@ function writeUserData(userId, name, email) {
     email: email,
     //   profile_picture : svg
   });
-  alert('User saved');
+  // alert('User saved');
 }
 
 function checkname() {
@@ -256,8 +254,9 @@ function checkname() {
     const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
 
     userCard.textContent = username;
-    // console.log(username);
+
     saveUserName(username);
+ 
   });
 }
 
@@ -283,22 +282,21 @@ function addbooktosl(bookId) {
     .then(snapshot => {
       if (snapshot.exists()) {
         // Книга уже существует в списке
-        alert('Книга уже добавлена в список');
       } else {
         // Книги нет в списке, добавляем ее
         update(userBooksRef, {
           [bookId]: bookId,
         })
           .then(() => {
-            alert('Книга успешно добавлена в список');
+            Notiflix.Notify.success('Book is added to your shopping list');
           })
           .catch(error => {
-            console.error('Ошибка при добавлении книги в список:', error);
+            Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
           });
       }
     })
     .catch(error => {
-      console.error('Ошибка при проверке наличия книги в списке:', error);
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
@@ -313,7 +311,7 @@ function getAddedBooks() {
     const books = snapshot.val();
     if (books) {
       const addedBooks = Object.values(books);
-      console.log('Массив добавленных книг:', addedBooks);
+      // console.log('Массив добавленных книг:', addedBooks);
       saveUserBooks(addedBooks);
       return addedBooks;
     } else {
@@ -321,7 +319,7 @@ function getAddedBooks() {
       console.log(localStorageEL.books);
       localStorageEL.books = [];
       localStorage.setItem('userdata', JSON.stringify(localStorageEL));
-      console.log('no books found');
+    
     }
   });
 }
@@ -339,18 +337,15 @@ function removeBook(bookId) {
         // Книга существует в списке, удаляем ее
         remove(bookRef)
           .then(() => {
-            alert('Книга успешно удалена из списка');
+            Notiflix.Notify.info('Book is removed from your shopping list');
           })
           .catch(error => {
-            console.error('Ошибка при удалении книги из списка:', error);
+            Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
           });
-      } else {
-        // Книги нет в списке
-        alert('Книги нет в списке');
       }
     })
     .catch(error => {
-      console.error('Ошибка при проверке наличия книги в списке:', error);
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
