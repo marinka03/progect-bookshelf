@@ -47,7 +47,7 @@ function createModal() {
   modalContainer.style.display = 'block';
   window.addEventListener('keydown', onEscKeyPress);
   // document.querySelector('.burger-box').click();
-  document.querySelector('.burger-menu').style.position = 'inherit';
+  // document.querySelector('.burger-menu').style.position = 'inherit';
 
 }
 
@@ -63,7 +63,7 @@ function closeModal() {
   window.removeEventListener('keydown', onEscKeyPress);
   document.body.classList.remove('noscroll');
   form.reset();
-  document.querySelector('.burger-menu').style.position = 'fixed';
+  // document.querySelector('.burger-menu').style.position = 'fixed';
 }
 
 const sighnUpBtn = document.getElementById('sighn-up');
@@ -188,6 +188,7 @@ function checkCurentUser() {
       sighnOutBtn.style.display = 'none';
       burgerSignUp.style.display = 'none';
       burgerSignout.style.display = 'block';
+      document.getElementById('mobile-user-info').style.display = 'block';
 
 
     } else {
@@ -202,6 +203,7 @@ function checkCurentUser() {
       burgerMenues.style.display = 'none';
       burgerSignUp.style.display = 'block';
       burgerSignout.style.display = 'none';
+      document.getElementById('mobile-user-info').style.display = 'none';
     }
   });
 }
@@ -252,6 +254,7 @@ function checkname() {
     const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
 
     userCard.textContent = username;
+    document.getElementById('mobile-user-name').textContent = username;
 
     saveUserName(username);
   });
