@@ -35,14 +35,13 @@ import { getDatabase, ref, set, child, update, remove, get, onValue } from 'fire
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Notiflix from 'notiflix';
 
-
 function createModal() {
   backdrop.style.display = 'block';
 
   const closeButton = document.querySelector('.closeButton');
 
-closeButton.addEventListener('click', closeModal);
-
+  closeButton.addEventListener('click', closeModal);
+  document.body.classList.add('noscroll');
   modalContainer.appendChild(closeButton);
 
   modalContainer.style.display = 'block';
@@ -59,11 +58,9 @@ function closeModal() {
   modalContainer.style.display = 'none';
   backdrop.style.display = 'none';
   window.removeEventListener('keydown', onEscKeyPress);
+  document.body.classList.remove('noscroll');
   form.reset();
 }
-
-
-
 
 const sighnUpBtn = document.getElementById('sighn-up');
 const sighnInBtn = document.getElementById('sighn-in');
@@ -102,8 +99,7 @@ const firebaseConfig = {
   storageBucket: 'book-list7.appspot.com',
   messagingSenderId: '822015975293',
   appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
-  databaseURL:
-    'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
+  databaseURL: 'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
 };
 
 // const firebaseConfig = {
@@ -129,12 +125,7 @@ function register() {
   const sighnUpName = name.value;
   const sighnUpPassword = password.value;
 
-  createUserWithEmailAndPassword(
-    auth,
-    sighnUpEmail,
-    sighnUpPassword,
-    sighnUpName
-  )
+  createUserWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
     .then(userCredential => {
       // Signed in
       const user = userCredential.user;
@@ -144,7 +135,7 @@ function register() {
       writeUserData(userId, sighnUpName, sighnUpEmail);
 
       Notiflix.Notify.success('You created a account:', `${sighnUpName}`);
-  
+
       closeModal();
     })
     .catch(error => {
@@ -159,7 +150,6 @@ function login() {
     .then(userCredential => {
       // Signed in
       const user = userCredential.user;
-   
 
       Notiflix.Notify.success('Welcome back!');
       closeModal();
@@ -173,8 +163,6 @@ function login() {
 
 const userCard = document.querySelector('.user-info');
 
-
-
 function checkCurentUser() {
   onAuthStateChanged(auth, user => {
     if (user) {
@@ -183,7 +171,6 @@ function checkCurentUser() {
       checkname();
       checkId();
       getAddedBooks();
-
 
       menu.classList.add('flex');
       menu.classList.remove('noone');
@@ -194,7 +181,6 @@ function checkCurentUser() {
       openModalButton.removeEventListener('click', createModal);
       openModalButton.addEventListener('click', logOutBtn);
       sighnOutBtn.style.display = 'none';
-
     } else {
       // User is signed out
       openModalButton.removeEventListener('click', logOutBtn);
@@ -226,7 +212,7 @@ function signOutUser() {
     .then(() => {
       // Sign-out successful.
       userCard.textContent = 'Sign up';
-      
+
       Notiflix.Notify.info('Hope we see you soon!');
       closeModal();
       clearUserData();
@@ -256,7 +242,6 @@ function checkname() {
     userCard.textContent = username;
 
     saveUserName(username);
- 
   });
 }
 
@@ -300,7 +285,6 @@ function addbooktosl(bookId) {
     });
 }
 
-
 function getAddedBooks() {
   const userId = auth.currentUser.uid;
 
@@ -319,7 +303,6 @@ function getAddedBooks() {
       console.log(localStorageEL.books);
       localStorageEL.books = [];
       localStorage.setItem('userdata', JSON.stringify(localStorageEL));
-    
     }
   });
 }
@@ -378,7 +361,6 @@ function saveUserEmail(id) {
     saveUserData(userInfo.name, userInfo.id, userInfo.books);
   }
 }
-
 
 function saveUserBooks(books) {
   const userData = getUserData();
