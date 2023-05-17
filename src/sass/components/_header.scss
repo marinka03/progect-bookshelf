@@ -1,6 +1,5 @@
 .header {
-  // width: 100%;
-  //   display: flex;
+  width: 375px;
   margin: 0 auto;
   height: 64px;
   position: sticky;
@@ -10,23 +9,20 @@
   background-color: $white-color;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  transition: 550ms;
-  // transition: color 0.5s;
 
   @media (min-width: 768px) {
     width: 768px;
-    // padding: 0 32px;
     height: 72px;
   }
 
   @media (min-width: 1440px) {
     width: 1440px;
-    // padding: 0 24px;
   }
 
   &__nav {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 64px;
 
@@ -45,7 +41,6 @@
     display: none;
 
     @include tablet {
-      //   display: flex;
       visibility: visible;
       opacity: 1;
       flex-direction: row;
@@ -77,7 +72,6 @@
     font-size: 14px;
     line-height: 0.77;
     letter-spacing: -0.04em;
-    // transition: background-color 250ms ease-out;
   }
   &__shopping-box {
     flex-direction: row;
@@ -106,12 +100,6 @@
     display: flex;
     align-items: center;
     justify-content: end;
-    width: 100%;
-    gap: 18px;
-
-    @include tablet {
-      gap: 14px;
-    }
   }
   &__sign-up {
     opacity: 0;
@@ -119,18 +107,11 @@
     position: relative;
     display: none;
 
-    // transition-property: box-shadow;
-    // transition-duration: 500ms;
-    // transition-timing-function: cubic-bezier(.4, 0, .2, 1);
-
     &:hover,
     &:focus {
       box-shadow: rgb(176, 147, 147) 3px 1px 6px 0px;
     }
 
-    // &:focus  + .sign-out-header{
-    //   transition: opacity .7s cubic-bezier(.4, 0, .2, 1), width cubic-bezier(.4, 0, .2, 1), heigth cubic-bezier(.4, 0, .2, 1);
-    // }
     @include tablet {
       opacity: 1;
       visibility: visible;
@@ -144,9 +125,6 @@
       border: 2px solid #111111;
       color: $white-color;
       background-color: $blue-color;
-      // transition: opacity .7s cubic-bezier(.4, 0, .2, 1);
-      // transition: background-color 30ms ease-out;
-      //   margin-right: 24px;
       cursor: pointer;
     }
   }
@@ -178,10 +156,10 @@
 
 .switch-box {
   position: relative;
-  //   right: 235px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 24px;
 }
 #toggle {
   opacity: 0;
@@ -198,6 +176,7 @@
     }
     & ~ .slide-block {
       left: 0;
+      display: none;
       border-bottom-right-radius: 0;
       border-top-right-radius: 0;
     }
@@ -229,7 +208,7 @@
 }
 .burger {
   stroke: $black-color;
-  margin-right: 5px;
+  // margin-right: 5px;
   cursor: pointer;
 
   @include tablet {
@@ -288,8 +267,11 @@
 }
 .header-user-log-out {
   top: 14%;
-  display: flex;
+  display: none;
   flex-direction: column;
+  @include tablet {
+    display: flex;
+  }
 }
 .main-navigation {
   display: flex;
