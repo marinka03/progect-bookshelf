@@ -45,13 +45,15 @@
 
 .mob-menu {
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
+  align-items: flex-start;
 
   padding: 0px;
   gap: 16px;
 
   margin-top: 183px;
   margin-bottom: auto;
+  margin-left: 129px;
 }
 
 .mob-menu__home {
@@ -241,7 +243,7 @@
   cursor: pointer;
   gap: 4px;
   height: 34px;
-  padding: 12px 16px;
+
   letter-spacing: -0.04em;
   transition: background-color 250ms ease-out;
   border-radius: 36px;
