@@ -31,7 +31,16 @@ import {
   signOut,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { getDatabase, ref, set, child, update, remove, get, onValue } from 'firebase/database';
+import {
+  getDatabase,
+  ref,
+  set,
+  child,
+  update,
+  remove,
+  get,
+  onValue,
+} from 'firebase/database';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Notiflix from 'notiflix';
 
@@ -48,7 +57,6 @@ function createModal() {
   window.addEventListener('keydown', onEscKeyPress);
   // document.querySelector('.burger-box').click();
   // document.querySelector('.burger-menu').style.position = 'inherit';
-
 }
 
 function onEscKeyPress(event) {
@@ -96,25 +104,26 @@ function signinmodal() {
   sighnUpBtn.style.display = 'none';
 }
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyBcrgHRI8n8PGmp66vE4dbqzvZDKE7S3nw',
-  authDomain: 'book-list7.firebaseapp.com',
-  projectId: 'book-list7',
-  storageBucket: 'book-list7.appspot.com',
-  messagingSenderId: '822015975293',
-  appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
-  databaseURL: 'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
-};
-
 // const firebaseConfig = {
-//   apiKey: "AIzaSyAc6ZeZFNKDr2KsntnTRa9jOsvNY3-ClBY",
-//   authDomain: "book-list-final.firebaseapp.com",
-//   projectId: "book-list-final",
-//   storageBucket: "book-list-final.appspot.com",
-//   messagingSenderId: "57582328129",
-//   appId: "1:57582328129:web:0ab4019b98f2dac7ace9c0",
-//   databaseURL:'https://book-list-final-default-rtdb.europe-west1.firebasedatabase.app'
+//   apiKey: 'AIzaSyBcrgHRI8n8PGmp66vE4dbqzvZDKE7S3nw',
+//   authDomain: 'book-list7.firebaseapp.com',
+//   projectId: 'book-list7',
+//   storageBucket: 'book-list7.appspot.com',
+//   messagingSenderId: '822015975293',
+//   appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
+//   databaseURL:
+//     'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
 // };
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAc6ZeZFNKDr2KsntnTRa9jOsvNY3-ClBY",
+  authDomain: "book-list-final.firebaseapp.com",
+  projectId: "book-list-final",
+  storageBucket: "book-list-final.appspot.com",
+  messagingSenderId: "57582328129",
+  appId: "1:57582328129:web:0ab4019b98f2dac7ace9c0",
+  databaseURL:'https://book-list-final-default-rtdb.europe-west1.firebasedatabase.app'
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -129,7 +138,12 @@ function register() {
   const sighnUpName = name.value;
   const sighnUpPassword = password.value;
 
-  createUserWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
+  createUserWithEmailAndPassword(
+    auth,
+    sighnUpEmail,
+    sighnUpPassword,
+    sighnUpName
+  )
     .then(userCredential => {
       // Signed in
       const user = userCredential.user;
@@ -143,7 +157,9 @@ function register() {
       closeModal();
     })
     .catch(error => {
-      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
+      Notiflix.Notify.failure(
+        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+      );
     });
 }
 
@@ -161,7 +177,9 @@ function login() {
       checkCurentUser();
     })
     .catch(error => {
-      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
+      Notiflix.Notify.failure(
+        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+      );
     });
 }
 
@@ -175,7 +193,7 @@ function checkCurentUser() {
       checkname();
       checkId();
       getAddedBooks();
-      burgerMenues.style.display = 'block';
+      burgerMenues.style.display = 'flex';
 
       menu.classList.add('flex');
       menu.classList.remove('noone');
@@ -187,12 +205,9 @@ function checkCurentUser() {
       openModalButton.addEventListener('click', logOutBtn);
       sighnOutBtn.style.display = 'none';
       burgerSignUp.style.display = 'none';
-      burgerSignout.style.display = 'block';
-      document.getElementById('mobile-user-info').style.display = 'block';
-      openModalButton.style.borderRadius = "36px";
-
-
-
+      burgerSignout.style.display = 'flex';
+      document.getElementById('mobile-user-info').style.display = 'flex';
+      openModalButton.style.borderRadius = '36px';
     } else {
       // User is signed out
       openModalButton.removeEventListener('click', logOutBtn);
@@ -203,10 +218,10 @@ function checkCurentUser() {
       sihnInSvg.style.display = 'none';
       userImg.style.display = 'none';
       burgerMenues.style.display = 'none';
-      burgerSignUp.style.display = 'block';
+      burgerSignUp.style.display = 'flex';
       burgerSignout.style.display = 'none';
       document.getElementById('mobile-user-info').style.display = 'none';
-      openModalButton.style.borderRadius = "16px";
+      openModalButton.style.borderRadius = '16px';
     }
   });
 }
@@ -238,7 +253,9 @@ function signOutUser() {
       sighnOutBtn.style.display = 'none';
     })
     .catch(error => {
-      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
+      Notiflix.Notify.failure(
+        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+      );
     });
 }
 
@@ -294,12 +311,16 @@ function addbooktosl(bookId) {
             Notiflix.Notify.success('Book is added to your shopping list');
           })
           .catch(error => {
-            Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
+            Notiflix.Notify.failure(
+              error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+            );
           });
       }
     })
     .catch(error => {
-      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
+      Notiflix.Notify.failure(
+        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+      );
     });
 }
 
@@ -341,12 +362,16 @@ function removeBook(bookId) {
             Notiflix.Notify.info('Book is removed from your shopping list');
           })
           .catch(error => {
-            Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
+            Notiflix.Notify.failure(
+              error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+            );
           });
       }
     })
     .catch(error => {
-      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
+      Notiflix.Notify.failure(
+        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
+      );
     });
 }
 
@@ -422,8 +447,7 @@ function clearUserData() {
   localStorage.removeItem('userdata');
 }
 
-
-import {onClickIconClose} from './menu'
+import { onClickIconClose } from './menu';
 // buttons on burger
 const burgerMenues = document.getElementById('mobile-menu');
 const burgerSignUp = document.getElementById('mobile-sign-up');
@@ -440,4 +464,3 @@ burgerSignout.addEventListener('click', signOutUser);
 //     console.error('Элемент не найден');
 //   }
 // }
-
