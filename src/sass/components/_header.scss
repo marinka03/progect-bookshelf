@@ -8,7 +8,10 @@
   border: 1.5px solid $black-color;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-
+  // fixheader
+  background-color: #ffffff;
+  transition: 300ms;
+  // fixheader
   @media (min-width: 768px) {
     width: 768px;
     height: 72px;
