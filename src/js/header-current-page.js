@@ -22,7 +22,7 @@ const burgerSpppingCurrentPage = document.querySelector(
   '.mob-menu__shopping-box'
 );
 
-function currenPage() {
+function currentPage() {
   if (window) {
     const page = window.location.pathname;
 
@@ -36,4 +36,4 @@ function currenPage() {
     }
   }
 }
-currenPage();
+currentPage();
