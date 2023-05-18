@@ -48,7 +48,7 @@ document.body.addEventListener('click', function (event) {
 
     apiRequestCategory(category)
       .then(data => {
-        console.log('data :>> ', data);
+        // console.log('data :>> ', data);
         const MarkupCategory = createMarkupCategory(data);
         mainHomeContainerEl.innerHTML = `<h1 class="title-top-books">${category}</h1><div class="category-books_container">${MarkupCategory}</div>`;
         // добавление активной категории
