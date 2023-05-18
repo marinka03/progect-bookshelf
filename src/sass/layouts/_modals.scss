@@ -193,13 +193,13 @@
     
 }
 
-// .seller__link {
-//     filter: grayscale(1);
-// }
+.seller__link {
+    filter: grayscale(1);
+}
 
 .seller__pic {
     mix-blend-mode: luminosity;
-    filter: grayscale(1);
+    // filter: grayscale(1);
     transition-property: filter;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(.4, 0, .2, 1);
