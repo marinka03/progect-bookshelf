@@ -73,8 +73,8 @@ function closeModal() {
   backdrop.classList.remove('ovopen'); // СТАЛО
   window.removeEventListener('keydown', onEscKeyPress);
   document.body.classList.remove('noscroll');
-  form.reset();
   document.removeEventListener('keydown', onConfirm);
+  // form.reset();
   // document.querySelector('.burger-menu').style.position = 'fixed';
 }
 
@@ -108,25 +108,25 @@ function signinmodal() {
   sighnUpBtn.style.display = 'none';
 }
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyBcrgHRI8n8PGmp66vE4dbqzvZDKE7S3nw',
-  authDomain: 'book-list7.firebaseapp.com',
-  projectId: 'book-list7',
-  storageBucket: 'book-list7.appspot.com',
-  messagingSenderId: '822015975293',
-  appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
-  databaseURL: 'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
-};
-
 // const firebaseConfig = {
-//   apiKey: "AIzaSyAc6ZeZFNKDr2KsntnTRa9jOsvNY3-ClBY",
-//   authDomain: "book-list-final.firebaseapp.com",
-//   projectId: "book-list-final",
-//   storageBucket: "book-list-final.appspot.com",
-//   messagingSenderId: "57582328129",
-//   appId: "1:57582328129:web:0ab4019b98f2dac7ace9c0",
-//   databaseURL:'https://book-list-final-default-rtdb.europe-west1.firebasedatabase.app'
+//   apiKey: 'AIzaSyBcrgHRI8n8PGmp66vE4dbqzvZDKE7S3nw',
+//   authDomain: 'book-list7.firebaseapp.com',
+//   projectId: 'book-list7',
+//   storageBucket: 'book-list7.appspot.com',
+//   messagingSenderId: '822015975293',
+//   appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
+//   databaseURL: 'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
 // };
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAc6ZeZFNKDr2KsntnTRa9jOsvNY3-ClBY",
+  authDomain: "book-list-final.firebaseapp.com",
+  projectId: "book-list-final",
+  storageBucket: "book-list-final.appspot.com",
+  messagingSenderId: "57582328129",
+  appId: "1:57582328129:web:0ab4019b98f2dac7ace9c0",
+  databaseURL:'https://book-list-final-default-rtdb.europe-west1.firebasedatabase.app'
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -177,7 +177,7 @@ function login() {
     });
 }
 
-const userCard = document.querySelector('.user-info');
+// const userCard = document.querySelector('.user-info');
 
 function checkCurentUser() {
   onAuthStateChanged(auth, user => {
@@ -237,7 +237,7 @@ function signOutUser() {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
-      userCard.textContent = 'Sign up';
+      openModalButton.textContent = 'Sign up';
 
       Notiflix.Notify.info('Hope we see you soon!');
       closeModal();
@@ -266,7 +266,7 @@ function checkname() {
   return onValue(ref(db, '/users/' + userId), snapshot => {
     const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
 
-    userCard.textContent = username;
+    openModalButton.textContent = username;
     document.getElementById('mobile-user-name').textContent = username;
 
     saveUserName(username);
@@ -453,3 +453,15 @@ inputFields.forEach(input => {
     }
   });
 });
+
+
+// // Получаем элементы, между которыми нужно добавить текстовый контент
+// const element1 = document.getElementById('element1');
+// const element2 = document.getElementById('element2');
+
+// // Создаем текстовый узел
+// const textNode = document.createTextNode('Ваш текст');
+
+// // Добавляем текстовый узел между элементами
+// element1.appendChild(textNode);
+// element2.prepend(textNode);
