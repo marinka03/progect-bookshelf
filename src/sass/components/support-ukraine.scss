@@ -22,11 +22,15 @@
   display: flex;
   align-items: center;
   height: 40px;
-  filter: brightness(0) invert(1);
+  // filter: brightness(0) invert(1);
   transition: border 250ms $cubic;
   &:hover {
     border: 1px solid $white-color;
   }
+}
+
+.support_funds_image {
+  filter: brightness(0) invert(1);
 }
 
 .support_funds_number {
