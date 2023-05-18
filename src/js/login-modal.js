@@ -31,21 +31,12 @@ import {
   signOut,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import {
-  getDatabase,
-  ref,
-  set,
-  child,
-  update,
-  remove,
-  get,
-  onValue,
-} from 'firebase/database';
+import { getDatabase, ref, set, child, update, remove, get, onValue } from 'firebase/database';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Notiflix from 'notiflix';
 
 function createModal() {
-  backdrop.style.display = 'block';
+  backdrop.classList.add('ovopen');
 
   const closeButton = document.querySelector('.closeButton');
 
@@ -61,16 +52,14 @@ function createModal() {
 }
 
 function onConfirm(event) {
-  
-    if (event.key === 'Enter') {
-     if (sighnUpOpt.disabled) {
-      register()
-     } else {
-     login()
-     }
+  if (event.key === 'Enter') {
+    if (sighnUpOpt.disabled) {
+      register();
+    } else {
+      login();
     }
   }
-
+}
 
 function onEscKeyPress(event) {
   if (event.code === 'Escape') {
@@ -79,8 +68,9 @@ function onEscKeyPress(event) {
 }
 
 function closeModal() {
-  modalContainer.style.display = 'none';
-  backdrop.style.display = 'none';
+  // modalContainer.style.display = 'none';
+  // backdrop.style.display = 'none';
+  backdrop.classList.remove('ovopen');
   window.removeEventListener('keydown', onEscKeyPress);
   document.body.classList.remove('noscroll');
   form.reset();
@@ -125,8 +115,7 @@ const firebaseConfig = {
   storageBucket: 'book-list7.appspot.com',
   messagingSenderId: '822015975293',
   appId: '1:822015975293:web:ba97db769cb5eb5d8bf614',
-  databaseURL:
-    'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
+  databaseURL: 'https://book-list7-default-rtdb.europe-west1.firebasedatabase.app',
 };
 
 // const firebaseConfig = {
@@ -152,18 +141,12 @@ function register() {
   const sighnUpName = name.value;
   const sighnUpPassword = password.value;
 
-  createUserWithEmailAndPassword(
-    auth,
-    sighnUpEmail,
-    sighnUpPassword,
-    sighnUpName
-  )
+  createUserWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword, sighnUpName)
     .then(userCredential => {
       // Signed in
       const user = userCredential.user;
       const userId = user.uid;
-      console.log(user.uid)
-     
+      console.log(user.uid);
 
       writeUserData(userId, sighnUpName, sighnUpEmail);
 
@@ -172,10 +155,7 @@ function register() {
       closeModal();
     })
     .catch(error => {
-      Notiflix.Notify.failure(
-        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
-      
-      );
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
@@ -183,7 +163,7 @@ function login() {
   const sighnUpEmail = email.value;
   const sighnUpPassword = password.value;
   signInWithEmailAndPassword(auth, sighnUpEmail, sighnUpPassword)
-  .then(userCredential => {
+    .then(userCredential => {
       // Signed in
       const user = userCredential.user;
 
@@ -193,9 +173,7 @@ function login() {
       checkCurentUser();
     })
     .catch(error => {
-      Notiflix.Notify.failure(
-        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
-      );
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
@@ -270,9 +248,7 @@ function signOutUser() {
       sighnOutBtn.style.display = 'none';
     })
     .catch(error => {
-      Notiflix.Notify.failure(
-        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
-      );
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
@@ -328,16 +304,12 @@ function addbooktosl(bookId) {
             Notiflix.Notify.success('Book is added to your shopping list');
           })
           .catch(error => {
-            Notiflix.Notify.failure(
-              error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
-            );
+            Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
           });
       }
     })
     .catch(error => {
-      Notiflix.Notify.failure(
-        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
-      );
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
@@ -379,16 +351,12 @@ function removeBook(bookId) {
             Notiflix.Notify.info('Book is removed from your shopping list');
           })
           .catch(error => {
-            Notiflix.Notify.failure(
-              error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
-            );
+            Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
           });
       }
     })
     .catch(error => {
-      Notiflix.Notify.failure(
-        error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' ')
-      );
+      Notiflix.Notify.failure(error.code.split('auth/')[1].toUpperCase().replace(/-/g, ' '));
     });
 }
 
@@ -472,28 +440,16 @@ const burgerSignout = document.getElementById('mobile-sighn-out');
 burgerSignUp.addEventListener('click', createModal);
 burgerSignout.addEventListener('click', signOutUser);
 
-
-
-
-
 const inputFields = document.querySelectorAll('.modal__input');
-
 
 inputFields.forEach(input => {
   const label = input.nextElementSibling;
 
-  input.addEventListener('input', function() {
+  input.addEventListener('input', function () {
     if (input.value !== '') {
       label.style.display = 'none';
-    }  else {
+    } else {
       label.style.display = 'block';
     }
   });
 });
-
-
-
-
-
-
-
