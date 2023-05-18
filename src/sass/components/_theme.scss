@@ -84,14 +84,14 @@ body.dark-theme {
   color: $white-color;
 }
 
-// .dark-theme .seller__list,
-// .dark-theme .shopping-list-card__links {
-//   filter: invert(1);
-// }
-
-.dark-theme .seller__pic {
+.dark-theme .seller__list,
+.dark-theme .shopping-list-card__links {
   filter: invert(1);
 }
+
+// .dark-theme .seller__pic {
+//   filter: invert(1);
+// }
 
 // .dark-theme .seller__pic:hover {
 //   filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.15));
