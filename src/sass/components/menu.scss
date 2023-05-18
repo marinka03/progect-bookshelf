@@ -32,8 +32,10 @@
     #ffffff 100%
   );
   background-repeat: no-repeat;
+
   width: 100vw;
   height: 100vh;
+
   position: fixed;
   bottom: 0px;
   top: 64px;
@@ -49,11 +51,11 @@
 }
 
 .mobile-user-log-out {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  max-width: 375px;
 }
 
 .mob-menu {
