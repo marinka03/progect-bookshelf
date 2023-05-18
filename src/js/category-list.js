@@ -26,7 +26,13 @@ categoryListEl.addEventListener('click', async e => {
       .then(data => {
         // console.log(data);
         const MarkupCategory = createMarkupCategory(data);
-        categoryConteiner.innerHTML = `<h1 class="title-top-books">${e.target.textContent}</h1><div class="category-books_container">${MarkupCategory}</div>`;
+        const titleWords = e.target.textContent.split(' ');
+        const lastWord = titleWords.pop();
+        const formattedTitle = `${titleWords.join(
+          ' '
+        )} <span style="color: #4f2ee8;">${lastWord}</span>`;
+
+        categoryConteiner.innerHTML = `<h1 class="title-top-books">${formattedTitle}</h1><div class="category-books_container">${MarkupCategory}</div>`;
 
         // добавление активной категории
         saveActiveCategory(e.target.textContent);

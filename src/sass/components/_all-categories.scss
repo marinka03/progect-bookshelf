@@ -67,9 +67,6 @@
   @include tablet {
     display: flex;
     gap: 25px;
-
-    // width: 704px;
-    height: auto;
   }
   @include pc {
     gap: 24px;
@@ -112,6 +109,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
   width: 335px;
 
   @include tablet {
@@ -160,10 +158,11 @@
   border-radius: 40px;
   float: right;
   white-space: nowrap;
+  transition: box-shadow 0.5s ease, width 0.5s ease;
 
   &:hover,
   &:focus {
-    box-shadow: rgb(176, 147, 147) 3px 1px 6px 0px;
+    box-shadow: rgb(176, 147, 147) 5px 3px 8px 0px;
     width: 125px;
   }
 }
@@ -208,8 +207,11 @@
 
   color: #111111;
   cursor: pointer;
-  visibility: hidden;
-  transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  transition: opacity 0.5s ease;
+
+  // visibility: hidden;
+  opacity: 0;
 
   @include tablet {
     top: 228px;
@@ -225,5 +227,5 @@
 }
 
 .top-books_book:hover .top-books_quick-view {
-  visibility: visible;
+  opacity: 1;
 }
