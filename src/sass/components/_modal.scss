@@ -12,7 +12,9 @@
   height: 100vh;
   width: 100%;
   z-index: 100;
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .modal {
@@ -23,7 +25,7 @@
   border: 2px solid #111111;
   max-width: 335px;
   z-index: 101;
-  display: flex;
+  display: block;
   align-items: center;
   top: 50%;
   left: 50%;
@@ -31,6 +33,11 @@
   @include tablet {
     max-width: 579px;
   }
+}
+.ovopen {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 .modal__sign-up,
 .modal__sign-in {
@@ -192,7 +199,6 @@
     line-height: 0.75;
     height: 64px;
   }
-  
 }
 @keyframes slideOutRight {
   0% {
@@ -237,9 +243,9 @@
   line-height: 0.8;
   // letter-spacing: -1%;
   font-weight: bold;
-    transition: opacity 0.2s ease-in-out;
-    opacity: 1;
-  
+  transition: opacity 0.2s ease-in-out;
+  opacity: 1;
+
   @include tablet {
     font-size: 18px;
     line-height: 0.75;
@@ -249,7 +255,6 @@
 .modal__input-box {
   position: relative;
   border-radius: 40px;
-  
 }
 .input-name {
   padding-left: 45px;
