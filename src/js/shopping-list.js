@@ -12,15 +12,14 @@ const emptyWrapper = document.querySelector('.js-wrapper-empty-page');
 
 const localStorageEL = JSON.parse(localStorage.getItem('userdata')) || {};
 
-const tui = document.querySelector('.tui-pagination');
-tui.style.display = 'none';
+const tuiContainer = document.querySelector('.pagination-container');
+tuiContainer.style.display = 'none';
 
 if (!localStorageEL.books.length) {
-  tui.style.display = 'none';
+  tuiContainer.style.display = 'none';
 } else {
-  setInterval(() => {
-	  tui.style.display = 'block';
-	  console.log('vjndfaivnubi');
+  setTimeout(() => {
+    tuiContainer.style.display = 'block';
   }, 1000);
 }
 
@@ -57,7 +56,6 @@ async function onClickBtnDelete(evt) {
     const id = li.dataset.id;
 
     const index = array.findIndex(item => item._id === id);
-    console.log(array[index]);
     array.splice(index, 1);
 
     removeBook(id);
@@ -65,7 +63,7 @@ async function onClickBtnDelete(evt) {
 
     if (!array.length) {
       listEl.innerHTML = `<div class="wrapper-empty-page js-wrapper-empty-page"><p class="wrapper-empty-page_description js-descr-empty">This page is empty, add some books and proceed to order.</p><img class="js-image-empty" src="${shoppping_list}" alt="This page is empty" /></div>`;
-      tui.style.display = 'none';
+      tuiContainer.style.display = 'none';
     }
     addPagination();
   }
@@ -79,11 +77,9 @@ function apiFetchCate(id) {
 
 hideLoader();
 
-//-----------------------------------------------------------------------------------------
-
-export function addPagination() {
-  let itemsPerPage = 0; // Кількість елементів на сторінці
-  let totalItems = 0; // Загальна кількість елементів
+function addPagination() {
+  let itemsPerPage = 0;
+  let totalItems = 0;
   let visiblePages = 0;
 
   if (window.innerWidth < 768) {
@@ -96,8 +92,6 @@ export function addPagination() {
 
   const listItems = document.querySelectorAll('.js-li-shopping');
   totalItems = listItems.length;
-  console.log(totalItems);
-  console.log(listItems);
 
   const firstThreeItems = Array.from(listItems).slice(0, itemsPerPage);
   firstThreeItems.forEach((item, index) => {
@@ -145,14 +139,3 @@ export function addPagination() {
     });
   });
 }
-
-// function updateOptions() {
-//   const width = window.innerWidth;
-//   if (width < 768) {
-//     itemsPerPage = 4;
-//     visiblePages = 2;
-//   } else {
-//     itemsPerPage = 3;
-//     visiblePages = 3;
-//   }
-// }
