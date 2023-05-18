@@ -1,22 +1,26 @@
 .light-theme {
   background-color: $light-theme-main-background-color;
   color: $black-color;
-  transition: 550ms;
+  transition: 300ms;
 }
 .dark-theme {
-  transition: 550ms;
+  transition: 300ms;
 }
 body.dark-theme {
   background-color: $dark-theme-main-background-color;
   color: $white-color;
   fill: $white-color;
-  // transition: transform $cubic 550ms;
 }
 
+.light-theme_header {
+  background-color: $white-color;
+  color: $black-color;
+  transition: 300ms;
+}
 .dark-theme_header {
   background-color: $black-color;
   border-color: $white-color;
-  transition: 550ms;
+  transition: 300ms;
 }
 
 .dark-theme .header__home,
