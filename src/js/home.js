@@ -26,21 +26,6 @@ function allCategoryCreate() {
 
 allCategoryCreate();
 
-// const seeMoreBtn = document.querySelector('.js-top-books_button');
-
-// seeMoreBtn.addEventListener('click', () => {
-//   apiRequestCategory(category)
-//     .then(data => {
-//       console.log('data :>> ', data);
-//       const MarkupCategory = createMarkupCategory(data);
-//       mainHomeContainerEl.innerHTML = `<h1 class="title-top-books">${category}</h1><div class="category-books_container">${MarkupCategory}</div>`;
-//       // добавление активной категории
-//       saveActiveCategory(category);
-//       changeActiveCategory();
-//     })
-//     .catch(err => console.log(err));
-// });
-
 document.body.addEventListener('click', function (event) {
   if (event.target.classList.contains('js-top-books_button')) {
     // выполнить функцию для элемента с классом 'js-top-books_button'
@@ -48,7 +33,6 @@ document.body.addEventListener('click', function (event) {
 
     apiRequestCategory(category)
       .then(data => {
-        console.log('data :>> ', data);
         const MarkupCategory = createMarkupCategory(data);
         mainHomeContainerEl.innerHTML = `<h1 class="title-top-books">${category}</h1><div class="category-books_container">${MarkupCategory}</div>`;
         // добавление активной категории

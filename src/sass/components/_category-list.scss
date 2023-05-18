@@ -90,3 +90,19 @@ width: 356px;
         color: $blue-color;
         // cursor: pointer;
 }
+
+// Scrollbar
+
+::-webkit-scrollbar {
+  width: 8px;
+
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background: #E0E0E0;
+}
