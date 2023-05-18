@@ -22,18 +22,18 @@ const burgerSpppingCurrentPage = document.querySelector(
   '.mob-menu__shopping-box'
 );
 
-function currenPage() {
+function currentPage() {
   if (window) {
     const page = window.location.pathname;
 
     if (page.includes('/shopping-list')) {
-      burgerSpppingCurrentPage.classList.add('current-shopping');
-      burgerHomeCurrentPage.classList.remove('current-home');
+      burgerSpppingCurrentPage.classList.add('mobile-menu-current-shopping');
+      burgerHomeCurrentPage.classList.remove('mobile-menu-current-home');
     }
     if (page.includes('/index')) {
-      burgerHomeCurrentPage.classList.add('current-home');
-      burgerSpppingCurrentPage.classList.remove('current-shopping');
+      burgerHomeCurrentPage.classList.add('mobile-menu-current-home');
+      burgerSpppingCurrentPage.classList.remove('mobile-menu-current-shopping');
     }
   }
 }
-currenPage();
+currentPage();

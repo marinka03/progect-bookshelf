@@ -95,7 +95,6 @@
     &:hover,
     &:focus {
         stroke: $blue-color;
-        scale: 1.05;
     }
 }
 
@@ -195,28 +194,20 @@
 }
 
 .seller__link {
-            filter: grayscale(100%);
-            
-
-
+    filter: grayscale(1);
 }
 
 .seller__pic {
-
-
-
-        transition-property: filter;
+    mix-blend-mode: luminosity;
+    // filter: grayscale(1);
+    transition-property: filter;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(.4, 0, .2, 1);
     
-
         &:hover {
-        filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3));
-
+        filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15));
         } 
 }
-
-
 
 .modal__btn-add,
 .modal__btn-remove {
@@ -235,7 +226,7 @@
     background-color: inherit;
     border: 2px solid $blue-color;
     border-radius: 32px;
-    transition-property: color background-color;
+    transition-property: color, background-color;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(.4, 0, .2, 1);
     
@@ -324,45 +315,5 @@
         }
 }
 
-
-
-// modal pop-up
-
-.dark-theme .modal_pop-up {
-  background-color: $dark-theme-main-background-color;
-  border-color: $white-color;
-  transition: 250ms;
-}
-
-.dark-theme .modal_pop-up__close-icon {
-  stroke: $white-color;
-}
-
-.dark-theme .modal_pop-up__close-icon:hover {
-  stroke: $blue-color;
-}
-
-.dark-theme .book__title {
-  color: $white-color;
-}
-
-.dark-theme .book__author {
-  color: #B4AFAF;
-}
-
-.dark-theme .book__description, 
-.dark-theme .no-description, 
-.dark-theme .modal__btn-add,
-.dark-theme .modal__btn-remove {
-  color: $white-color;
-}
-
-.dark-theme .seller__list {
-  filter: invert(1);
-}
-
-.dark-theme .modal__btn-text {
-  color: rgba(255, 255, 255, 0.5);
-}
 
 

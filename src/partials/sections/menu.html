@@ -1,7 +1,12 @@
-<div id="7542" class="container burger-menu hidden">
+<div id="7542" class="burger-menu hidden container">
   <div class="mobile-user-log-out">
-    <button id="mobile-sign-up" class="mobile__sign-up" type="button">
-      <p class="mobile-sign-up__text">Sign up</p>
+    <button
+      id="mobile-sign-up"
+      class="mobile__sign-up mobile-sign-up__text"
+      type="button"
+    >
+      Sign up
+
       <svg class="mobile__svg-array" width="20" height="20">
         <use href="./images/icons/icons.svg#icon-arrow"></use>
       </svg>
@@ -13,34 +18,34 @@
           id="mobile-user-img"
           class="mobile__user-img"
           width="37"
-          heigth="37"
+          height="37"
         >
           <use href="./images/icons/icons.svg#icon-user"></use>
         </svg>
       </div>
-
       <p id="mobile-user-name" class="mobile__user-info">Sign up</p>
     </div>
 
-    <menu id="mobile-menu" class="mob-menu">
-      <a
-        href="./index.html"
-        class="uppercase link mob-menu__home mob-menu__home-box current-home"
-        >Home</a
-      >
+    <ul id="mobile-menu" class="mob-menu">
+      <li>
+        <a
+          href="./index.html"
+          class="uppercase link mob-menu__home mob-menu__home-box mobile-menu-current-home"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="./shopping-list.html"
+          class="uppercase link mob-menu__shopping mob-menu__shopping-box"
+          >Shopping list
 
-      <a
-        href="./shopping-list.html"
-        class="uppercase link mob-menu__shopping mob-menu__shopping-box"
-        >Shopping list
-
-        <svg width="20" height="20">
-          <use href="./images/icons/icons.svg#icon-shopping_bag"></use>
-        </svg>
-      </a>
-
-      <!-- <button class="checking">addbook</button> -->
-    </menu>
+          <svg width="20" height="20">
+            <use href="./images/icons/icons.svg#icon-shopping_bag"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
 
     <button id="mobile-sighn-out" class="mobile__sign-out">
       Log out
@@ -48,6 +53,14 @@
         <use href="./images/icons/icons.svg#icon-arrow"></use>
       </svg>
     </button>
-    <img src="./images/menu_mob_image.png" />
+
+    <div class="mob-menu__img-wrapper">
+      <img
+        src="./images/img-menu.png"
+        alt="books"
+        class="mob-menu__img"
+        width="450"
+      />
+    </div>
   </div>
 </div>
