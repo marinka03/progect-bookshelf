@@ -1,29 +1,17 @@
 import { hideLoader } from './queries';
 import { generateCard } from './create-markup-shopping';
 import shoppping_list from '../images/shopping_list.png';
-
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-
 import { generateCard, generateCards } from './create-markup-shopping';
-
 import 'firebase/auth';
-
 import { removeBook } from './login-modal';
 
-hideLoader();
-// const containerEl = document.querySelector('.js-container-list');
 const listEl = document.querySelector('.js-listInShopping');
 const emptyWrapper = document.querySelector('.js-wrapper-empty-page');
-// console.log(emptyWrapper);
-// const arrToShoppingList = [];
 
-// console.log(JSON.parse(localStorage.getItem('userdata')) || {});
 const localStorageEL = JSON.parse(localStorage.getItem('userdata')) || {};
-// console.log(localStorageEL.books);
 
-// listEl.insertAdjacentHTML('beforeend', createMarkupBooksInShopping(bookList));
-// const btnDelete = document.querySelector('.js-li-shopping');
 const tui = document.querySelector('.tui-pagination');
 tui.style.display = 'none';
 
@@ -31,31 +19,25 @@ if (!localStorageEL.books.length) {
   tui.style.display = 'none';
 } else {
   setInterval(() => {
-    tui.style.display = 'block';
+	  tui.style.display = 'block';
+	  console.log('vjndfaivnubi');
   }, 1000);
 }
 
-// const empty = emptyWrapper;
-// console.log(localStorageEL);
-// console.log(Object.keys(localStorageEL).length);
 if (!Object.keys(localStorageEL).length) {
-  //   console.log('vfekbmnubneubn');
   return;
 } else if (!localStorageEL.books.length) {
-  //   console.log(localStorageEL.books);
-  //   console.log('1');
   emptyWrapper.style.display = 'block';
 } else {
-  //   console.log('2');
   emptyWrapper.style.display = 'none';
 }
 
 generateMarkup(localStorageEL.books);
+
 const array = [];
 function generateMarkup(arrayEl) {
   arrayEl.forEach(item => {
     apiFetchCate(item).then(data => {
-      //   console.log(data);
       array.push(data);
       listEl.insertAdjacentHTML('beforeend', generateCard(data));
     });
@@ -65,30 +47,7 @@ function generateMarkup(arrayEl) {
   }, 2000);
 }
 
-// let count = 0;
-// localStorageEL.books.forEach(item => {
-//   //   console.log(count);
-//   count += 1;
-//   if (!(count > 3)) {
-//     apiFetchCate(item).then(data => {
-//       //   console.log(data);
-//       array.push(data);
-//       listEl.insertAdjacentHTML('beforeend', generateCard(data));
-//     });
-//   }
-// });
-
-// const array = [];
-// pagination.on('beforeMove', evt => {
-//   //   localStorageEL.books.forEach(item => {
-//   //     apiFetchCate(item).then(data => {
-//   //       console.log(data);
-//   //       array.push(data);
-//   //       listEl.innerHTML = generateCard(data);
-//   //     });
-//   //   });
-//   console.log(evt);
-// });
+hideLoader();
 
 listEl.addEventListener('click', onClickBtnDelete);
 
@@ -96,12 +55,10 @@ async function onClickBtnDelete(evt) {
   if (evt.target.classList.contains('js-delete')) {
     const li = evt.target.closest('.js-li-shopping');
     const id = li.dataset.id;
-    // console.log(id);
 
     const index = array.findIndex(item => item._id === id);
     console.log(array[index]);
     array.splice(index, 1);
-    // console.log(array);
 
     removeBook(id);
     await (listEl.innerHTML = generateCards(array));
@@ -131,7 +88,7 @@ export function addPagination() {
 
   if (window.innerWidth < 768) {
     itemsPerPage = 4;
-    visiblePages = 1;
+    visiblePages = 2;
   } else {
     itemsPerPage = 3;
     visiblePages = 3;
@@ -189,13 +146,13 @@ export function addPagination() {
   });
 }
 
-function updateOptions() {
-  const width = window.innerWidth;
-  if (width < 768) {
-    itemsPerPage = 4;
-    visiblePages = 2;
-  } else {
-    itemsPerPage = 3;
-    visiblePages = 3;
-  }
-}
+// function updateOptions() {
+//   const width = window.innerWidth;
+//   if (width < 768) {
+//     itemsPerPage = 4;
+//     visiblePages = 2;
+//   } else {
+//     itemsPerPage = 3;
+//     visiblePages = 3;
+//   }
+// }
