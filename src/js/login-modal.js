@@ -177,7 +177,7 @@ function login() {
     });
 }
 
-// const userCard = document.querySelector('.user-info');
+const userCard = document.querySelector('.user-info');
 
 function checkCurentUser() {
   onAuthStateChanged(auth, user => {
@@ -237,7 +237,7 @@ function signOutUser() {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
-      openModalButton.textContent = 'Sign up';
+      userCard.textContent = 'Sign up';
 
       Notiflix.Notify.info('Hope we see you soon!');
       closeModal();
@@ -266,7 +266,7 @@ function checkname() {
   return onValue(ref(db, '/users/' + userId), snapshot => {
     const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
 
-    openModalButton.textContent = username;
+    userCard.textContent = username;
     document.getElementById('mobile-user-name').textContent = username;
 
     saveUserName(username);
