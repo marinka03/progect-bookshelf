@@ -34,7 +34,8 @@
   gap: 24px;
   height: 230px; // t- i d-472px;
   width: 335px; //  d- 356px;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   @include tablet {
 height: 472px;
