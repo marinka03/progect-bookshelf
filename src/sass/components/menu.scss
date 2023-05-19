@@ -55,7 +55,8 @@
 
   padding: 0px;
   gap: 16px;
-
+z-index: 2;
+position: relative;
   margin-top: 110px;
   // margin-bottom: auto;
   margin-left: 129px;
@@ -153,6 +154,8 @@
 
 .mobile-sign-up-box {
   padding-top: 40px;
+  z-index: 2;
+  position: relative;
 }
 
 .mobile__sign-up {
@@ -189,6 +192,8 @@
 .mob-user-info {
   align-items: center;
   gap: 9px;
+  z-index: 2;
+    position: relative;
 }
 
 .mobile__user-img {
