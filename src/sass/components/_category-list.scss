@@ -106,3 +106,13 @@ width: 356px;
   border-radius: 12px;
   background: #E0E0E0;
 }
+
+.card-margin {
+margin-bottom: 40px;
+@include tablet {
+    margin-bottom: 15px;
+  }
+  @include pc {
+    margin-bottom: 15px;
+    }
+}
