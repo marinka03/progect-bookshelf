@@ -1,5 +1,5 @@
 .header {
-  width: 375px;
+  
   margin: 0 auto;
   height: 64px;
   position: sticky;
@@ -9,6 +9,10 @@
   background-color: $white-color;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+
+  @media (min-width: 375px) {
+  width: 375px;
+}
 
   @media (min-width: 768px) {
     width: 768px;
@@ -22,7 +26,7 @@
   &__nav {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
     height: 64px;
 
@@ -281,6 +285,8 @@
 .main-navigation{
   display: flex;
   justify-content: space-around;
+  margin-right: auto;
+
 }
 .user-img {
   width: 27px;
