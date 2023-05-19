@@ -15,7 +15,7 @@
 .title-top-books {
   font-weight: 700;
   font-size: 32px;
-  line-height: 38px;
+  line-height: 1, 18;
 
   margin-bottom: 40px;
 
@@ -67,12 +67,13 @@
   @include tablet {
     display: flex;
     gap: 25px;
+    height: auto;
   }
   @include pc {
     gap: 24px;
 
     width: 996px;
-    height: auto;
+
     margin-bottom: 32px;
   }
 }
@@ -85,7 +86,11 @@
   color: #b4afaf;
 
   margin-bottom: 18px;
-  margin-top: 42px;
+  margin-top: 80px;
+
+  @include pc {
+    margin-top: 42px;
+  }
 }
 
 .top-books_list {
@@ -142,8 +147,10 @@
 }
 
 .top-books_button {
-  display: flex;
-  align-items: center;
+  // display: flex;
+  // align-items: center;
+
+  display: block;
 
   font-weight: 700;
   font-size: 14px;
