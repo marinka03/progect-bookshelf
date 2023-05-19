@@ -6,20 +6,18 @@
   z-index: 10;
   top: 0;
   border: 1.5px solid $black-color;
+  background-color: $white-color;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  // fixheader
-  background-color: #ffffff;
-  transition: 300ms;
-  // fixheader
+
   @media (min-width: 768px) {
     width: 768px;
     height: 72px;
-  }
+}
 
-  @media (min-width: 1440px) {
+@media (min-width: 1440px) {
     width: 1440px;
-  }
+}
 
   &__nav {
     width: 100%;
@@ -66,6 +64,7 @@
     transition: background-color 250ms ease-out;
     &:hover {
       background: #eac645;
+      
     }
   }
   &__home {
@@ -85,6 +84,7 @@
     letter-spacing: -0.04em;
     transition: background-color 250ms ease-out;
     border-radius: 36px;
+    
 
     &:hover {
       background-color: #eac645;
@@ -137,14 +137,14 @@
 .current-home {
   padding: 12px 16px;
   background: #eac645;
-  border-radius: 36px; //--------------------------HOME
+  border-radius: 36px;
 }
 .current-shopping {
   padding: 12px 16px;
   gap: 8px;
   height: 34px;
   background-color: #eac645;
-  border-radius: 36px; //-----------------------SHOPPING LIST
+  border-radius: 36px;
 }
 .wrapper-logo {
   display: flex;
@@ -155,6 +155,7 @@
   letter-spacing: -0.04em;
   gap: 8px;
 }
+
 
 .switch-box {
   position: relative;
@@ -201,7 +202,7 @@
     content: '';
     border-radius: 50%;
     background-color: $white-color;
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform .7s cubic-bezier(.4, 0, .2, 1);
   }
 }
 .burger-box {
@@ -240,48 +241,50 @@
   border-radius: 18px;
   border: 2px solid #111111;
   animation-name: slidein;
-  animation-duration: 500ms;
+  animation-duration: 500ms ;
 }
 
+
 @keyframes slidein {
-  from {
-    opacity: 0;
-    top: 15px;
-    max-width: 182px;
-    height: 20px;
+    from {
+        opacity: 0;
+         top:15px;
+         max-width: 182px;
+        height: 20px;
+    }
+    50% {
+       opacity: 0;
+        top:20px;
+        height: 25px;
+        width: 182px;
+      }
+      75% {
+        opacity: 0.5;
+        height: 25px;
+
+       }
+    to {
+      opacity: 1;
+        top: 58px;
+        width: 182px;
+        height: 48px;
+    }
   }
-  50% {
-    opacity: 0;
-    top: 20px;
-    height: 25px;
-    width: 182px;
-  }
-  75% {
-    opacity: 0.5;
-    height: 25px;
-  }
-  to {
-    opacity: 1;
-    top: 58px;
-    width: 182px;
-    height: 48px;
-  }
-}
 .header-user-log-out {
   top: 14%;
   display: none;
   flex-direction: column;
-  @include tablet {
+  @include tablet{
     display: flex;
   }
 }
-.main-navigation {
+.main-navigation{
   display: flex;
   justify-content: space-around;
 }
 .user-img {
-  width: 32px;
-  height: 32px;
+  width: 27px;
+  height: 27px;
   outline: auto;
   outline-color: $white-color;
   border-radius: 50%;
@@ -290,12 +293,12 @@
   justify-content: center;
   background-color: $white-color;
 }
-.user-icon {
-  // width: 19px;
-  // height: 19px;
-  // padding: 20px;
+.user-icon{
   background-color: $white-color;
   fill: $blue-color;
   border-radius: inherit;
   border-radius: inherit;
+}
+.user-info{
+  font-weight: bold;
 }
