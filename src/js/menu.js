@@ -21,8 +21,8 @@ function onClickBurger(evt) {
     burgerMenu.className = burgerMenu.className.replace('hidden', '');
   }
   iconClose.addEventListener('click', onClickIconClose);
-  // document.body.classList.add('noscroll');
-  noScroll()
+  document.body.classList.add('noscroll');
+  // noScroll()
   return;
 }
 
@@ -39,15 +39,15 @@ function onClickIconClose(evt) {
     }
   }
   burger.addEventListener('click', onClickBurger);
-  // document.body.classList.remove('noscroll');
-  noScroll()
+  document.body.classList.remove('noscroll');
+  // noScroll()
   return;
 }
-function noScroll(){
-  if (!burgerMenu.classList.contains('hidden')) {
-    document.body.classList.add('noscroll');
-  } 
-  else {
-    document.body.classList.remove('noscroll');
-  }
-}
+// function noScroll(){
+//   if (!burgerMenu.classList.contains('hidden')) {
+//     document.body.classList.add('noscroll');
+//   } 
+//   else {
+//     document.body.classList.remove('noscroll');
+//   }
+// }

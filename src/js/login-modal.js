@@ -467,10 +467,10 @@ inputFields.forEach(input => {
 // // Добавляем текстовый узел между элементами
 // element1.appendChild(textNode);
 // element2.prepend(textNode);
-
+const burgerMenu = document.querySelector('.burger-menu');
 
 function noScroll(){
-  if (backdrop.classList.contains('ovopen')) {
+  if (backdrop.classList.contains('ovopen') || !burgerMenu.classList.contains('hidden')) {
     document.body.classList.add('noscroll');
   } 
   else {
