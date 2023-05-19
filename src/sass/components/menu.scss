@@ -31,19 +31,14 @@
     #4f2ee8 18.03%,
     #ffffff 100%
   );
+
   background-repeat: no-repeat;
+  height: 100vh;
 
-  width: 100vw;
+  // transition: opacity 0.03s ease-out;
 
-  position: fixed;
-  bottom: 0px;
-  top: 64px;
-  z-index: 2;
-
-  transition: opacity 0.6s ease;
-
-  @media screen and (max-width: 374px) {
-    width: 375px;
+  @media (min-width: 300px) and (max-width: 375px) {
+    width: 100%;
   }
 
   @include tablet {
@@ -52,13 +47,6 @@
     display: none;
   }
 }
-
-// .mobile-user-log-out {
-//   display: flex;
-//   flex-direction: column;
-//   overflow: hidden;
-//   position: relative;
-// }
 
 .mob-menu {
   flex-direction: column;
@@ -125,7 +113,7 @@
 
   letter-spacing: -0.04em;
   border-radius: 36px;
-  transition: background-color 250ms ease-out;
+  transition: background-color 0.03s ease-out;
 
   font-size: 14px;
   line-height: 1.28;
@@ -163,6 +151,10 @@
   stroke: $accent-color;
 }
 
+.mobile-sign-up-box {
+  padding-top: 40px;
+}
+
 .mobile__sign-up {
   justify-content: space-between;
   align-items: center;
@@ -175,7 +167,6 @@
   border: 2px solid #111111;
 
   padding: 14px;
-  margin-top: 40px;
 
   background-color: $blue-color;
 
@@ -198,7 +189,6 @@
 .mob-user-info {
   align-items: center;
   gap: 9px;
-  margin-top: 20px;
 }
 
 .mobile__user-img {
@@ -249,6 +239,7 @@
   font-weight: 500;
 
   position: fixed;
+  z-index: 2;
   bottom: 20px;
 
   border-radius: 18px;
@@ -266,7 +257,7 @@
 .mob-menu__img {
   max-width: 375px;
   position: fixed;
-  z-index: -1;
+  z-index: 1;
   bottom: 0;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
