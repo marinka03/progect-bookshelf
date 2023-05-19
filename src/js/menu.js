@@ -22,6 +22,7 @@ function onClickBurger(evt) {
   }
   iconClose.addEventListener('click', onClickIconClose);
   document.body.classList.add('noscroll');
+  // noScroll()
   return;
 }
 
@@ -39,5 +40,14 @@ function onClickIconClose(evt) {
   }
   burger.addEventListener('click', onClickBurger);
   document.body.classList.remove('noscroll');
+  // noScroll()
   return;
 }
+// function noScroll(){
+//   if (!burgerMenu.classList.contains('hidden')) {
+//     document.body.classList.add('noscroll');
+//   } 
+//   else {
+//     document.body.classList.remove('noscroll');
+//   }
+// }

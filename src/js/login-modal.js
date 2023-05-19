@@ -41,7 +41,7 @@ function createModal() {
   const closeButton = document.querySelector('.closeButton');
 
   closeButton.addEventListener('click', closeModal);
-  document.body.classList.add('noscroll');
+  // document.body.classList.add('noscroll');
   modalContainer.appendChild(closeButton);
 
   modalContainer.style.display = 'block';
@@ -49,6 +49,7 @@ function createModal() {
   // document.querySelector('.burger-box').click();
   // document.querySelector('.burger-menu').style.position = 'inherit';
   document.addEventListener('keydown', onConfirm);
+  noScroll();
 }
 
 function onConfirm(event) {
@@ -72,8 +73,9 @@ function closeModal() {
   // backdrop.style.display = 'none'; БЫЛО
   backdrop.classList.remove('ovopen'); // СТАЛО
   window.removeEventListener('keydown', onEscKeyPress);
-  document.body.classList.remove('noscroll');
+  // document.body.classList.remove('noscroll');
   document.removeEventListener('keydown', onConfirm);
+  noScroll();
   // form.reset();
   // document.querySelector('.burger-menu').style.position = 'fixed';
 }
@@ -465,3 +467,14 @@ inputFields.forEach(input => {
 // // Добавляем текстовый узел между элементами
 // element1.appendChild(textNode);
 // element2.prepend(textNode);
+const burgerMenu = document.querySelector('.burger-menu');
+
+function noScroll(){
+  if (backdrop.classList.contains('ovopen') || !burgerMenu.classList.contains('hidden')) {
+    document.body.classList.add('noscroll');
+  } 
+  else {
+    document.body.classList.remove('noscroll');
+  }
+}
+// noScroll();
