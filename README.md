@@ -3,6 +3,8 @@
 
 ## Review
 Bookshelf is a responsive web application designed to find a variety of books in available categories. Each of the books can be purchased from three different resources and added to your "Shopping List" collection.
+![screenshot](![36shots_so](https://github.com/marinka03/project-bookshelf/assets/97391927/31b9a942-2a34-48cc-845f-b6724347fe09)
+)
 ## Main components
 ### Header
 Header: Visible on all pages, contains a shopping list page for authorized users, a theme toggle, and a logout feature.
